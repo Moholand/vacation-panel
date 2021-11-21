@@ -1,0 +1,73 @@
+body {
+  direction: rtl;
+  text-align: right !important;
+}
+
+/* Welcome page css */
+.welcome-page {
+  height: 100vh;
+  padding: 0;
+  overflow: hidden;
+  background-image: url("../img/wallpaper/welcome-page.jpg");
+  background-size: cover;
+}
+
+.navbar {
+  background: transparent !important;
+}
+
+.nav-link {
+  color: #2d3436 !important;
+  font-size: 18px;
+}
+
+/* base layout styles */
+.main {
+  display: flex;
+}
+
+.sidebar {
+  width: 25%;
+  background: #9980FA;
+  height: 100vh;
+  padding: 20px;
+}
+
+.content {
+  width: 75%;
+}
+
+/* Sidebar styles */
+.sidebar-inner {
+  text-align: center;
+}
+
+.user-image img {
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.user-name {
+  color: #ffffff;
+}
+
+.sidebar-inner hr {
+  border-top: 1px solid #ffffff;
+}
+
+.list-group {
+  padding: 0;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+/* Content styles */
+.content-inner {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
+}
