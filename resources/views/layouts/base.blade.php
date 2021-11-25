@@ -11,6 +11,7 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
+  @stack('scripts')
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,6 +20,8 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/jalalidatepicker.min.css') }}" rel="stylesheet">
+  @stack('stylesheets')
 </head>
 <body>
   <main class="main">
@@ -26,7 +29,9 @@
       @include('includes.sidebar')
     </div>
     <div class="content">
-      @yield('content')
+      <div class="content-inner">
+        @yield('content')
+      </div>
     </div>
   </main>
 </body>

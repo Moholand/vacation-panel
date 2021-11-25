@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\VacationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VacationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +24,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [VacationController::class, 'dashboard'])->name('dashboard');
+Route::get('/vacations/create', [VacationController::class, 'create'])->name('vacations.create');
+Route::post('/vacations/store', [VacationController::class, 'store'])->name('vacations.store');

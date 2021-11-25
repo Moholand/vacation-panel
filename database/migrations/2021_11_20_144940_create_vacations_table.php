@@ -15,7 +15,15 @@ class CreateVacationsTable extends Migration
     {
         Schema::create('vacations', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('request_message');
+            $table->text('response_message')->nullable();
+            $table->enum('status', ['submitted', 'confirmed', 'refuse']);
+            $table->bigInteger('user_id')->unsigned();
+            $table->date('date');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

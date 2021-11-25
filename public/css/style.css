@@ -3,7 +3,7 @@ body {
   text-align: right !important;
 }
 
-/* Welcome page css */
+/* Enter layout styles */
 .welcome-page {
   height: 100vh;
   padding: 0;
@@ -12,6 +12,7 @@ body {
   background-size: cover;
 }
 
+/* Navbar styles */
 .navbar {
   background: transparent !important;
 }
@@ -21,25 +22,27 @@ body {
   font-size: 18px;
 }
 
-/* base layout styles */
+/* Base layout styles */
 .main {
   display: flex;
 }
 
 .sidebar {
-  width: 25%;
+  width: 20%;
   background: #9980FA;
   height: 100vh;
   padding: 20px;
 }
 
 .content {
-  width: 75%;
+  width: 80%;
 }
 
 /* Sidebar styles */
 .sidebar-inner {
   text-align: center;
+  position: relative;
+  height: 100%;
 }
 
 .user-image img {
@@ -63,6 +66,21 @@ body {
   cursor: pointer;
 }
 
+.exit-btn-wrapper {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+}
+
+.exit-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  text-align: right;
+}
+
 /* Content styles */
 .content-inner {
   margin: 20px;
@@ -70,4 +88,14 @@ body {
   border-radius: 5px;
   background: #ffffff;
   box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
+  height: 90%;
+}
+
+/* Register/Login styles */
+.register, .login {
+  margin-top: 75px;
+}
+
+.register .card, .login .card {
+  opacity: 0.9;
 }
