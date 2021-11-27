@@ -20,7 +20,8 @@ class CreateVacationsTable extends Migration
             $table->text('response_message')->nullable();
             $table->enum('status', ['submitted', 'confirmed', 'refuse']);
             $table->bigInteger('user_id')->unsigned();
-            $table->date('date');
+            $table->date('from_date');
+            $table->date('to_date');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

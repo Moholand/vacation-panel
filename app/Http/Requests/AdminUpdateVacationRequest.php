@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateVacationRequest extends FormRequest
+class AdminUpdateVacationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class CreateVacationRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'request_message' => 'required',
-            'from_date' => 'required|date',
-            'to_date' => 'required|date',
+            'status' => 'required',
         ];
     }
 }

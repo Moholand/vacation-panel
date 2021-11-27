@@ -66,6 +66,19 @@ body {
   cursor: pointer;
 }
 
+.list-group-item:hover, .list-group-item.active {
+  background: #ffeaa7;
+}
+
+.list-group-item a {
+  font-size: 16px;
+  color: #2d3436;
+}
+
+.list-group-item:hover a, .list-group-item.active a{
+  color: #40407a;
+}
+
 .exit-btn-wrapper {
   position: absolute;
   bottom: 10px;
@@ -79,6 +92,13 @@ body {
   border-radius: 5px;
   border: none;
   text-align: right;
+  font-size: 16px;
+  color: #2d3436;
+}
+
+.exit-btn:hover {
+  background: #ffeaa7;
+  color: #40407a;
 }
 
 /* Content styles */
@@ -98,4 +118,30 @@ body {
 
 .register .card, .login .card {
   opacity: 0.9;
+}
+
+/* Dashboard */
+.vacation-header {
+  cursor: pointer;
+  transition: 0.5s all ease; 
+}
+
+.vacation-header[aria-expanded="false"] {
+  background: #f5f6fa;
+}
+
+.vacation-header[aria-expanded="true"] {
+  background: #f6e58d;
+}
+
+.vacation-title {
+  min-width: 250px;
+}
+
+.change-status label {
+  min-width: 100px;
+}
+
+.change-status select {
+  width: 15%;
 }
