@@ -10,11 +10,16 @@
   <div class="request-list mt-5">
     <div id="accordion">
       @foreach($vacations as $key => $vacation)
+        @php
+          // Calculate Local date
+          Verta::setStringformat('Y-n-j H:i');
+          $request_date = new Verta($vacation->updated_at);
+        @endphp
         <div class="card mb-3">
           <div class="card-header d-flex justify-content-between align-items-center vacation-header" id="heading-{{ $key }}" data-toggle="collapse" data-target="#collapse-{{ $key }}" aria-expanded="false" aria-controls="collapse-{{ $key }}">
             <div class="request-info d-flex justify-content-between align-items-center">
-              <h5 class="mb-0 vacation-title">{{ $key + 1 }}) {{ $vacation->user->name }}</h5>
-              <div class="status">
+              <h5 class="mb-0 vacation-title">{{ $key + 1 }}) <span>نام:</span> {{ $vacation->user->name }} <span class="small font-weight-bold" dir="rtl">({{ $request_date }})</span></h5>
+              <div class="status font-weight-bold">
                 @php
                   switch($vacation->status) {
                     case('confirmed'):

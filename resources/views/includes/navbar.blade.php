@@ -9,6 +9,6 @@
     </div>
   </div>
   <div class="navbar-nav">
-    <a class="nav-item nav-link pl-5 mr-auto" href="{{ route('dashboard') }}">ورود به سایت</a>
+    <a class="nav-item nav-link ml-5 mr-auto" href="#">ورود به سایت</a>
   </div>
 </nav>

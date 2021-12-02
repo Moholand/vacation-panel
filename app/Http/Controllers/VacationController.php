@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vacation;
 use Illuminate\Http\Request;
+use Hekmatinasser\Verta\Facades\Verta;
 use App\Http\Requests\CreateVacationRequest;
 use App\Http\Requests\UpdateVacationRequest;
 

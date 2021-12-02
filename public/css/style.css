@@ -14,12 +14,18 @@ body {
 
 /* Navbar styles */
 .navbar {
-  background: transparent !important;
+  opacity: 0.8;
 }
 
 .nav-link {
-  color: #2d3436 !important;
   font-size: 18px;
+  color: #000000 !important;
+  border-radius: 15px;
+  transition: 0.3s all ease;
+}
+
+.nav-link:hover {
+  background: #ffda79!important;
 }
 
 /* Base layout styles */
@@ -29,7 +35,7 @@ body {
 
 .sidebar {
   width: 20%;
-  background: #9980FA;
+  background: #63cdda;
   height: 100vh;
   padding: 20px;
 }
@@ -64,6 +70,8 @@ body {
 
 .list-group-item {
   cursor: pointer;
+  transition: 0.3s all ease;
+  border: none;
 }
 
 .list-group-item:hover, .list-group-item.active {
@@ -116,11 +124,47 @@ body {
   margin-top: 75px;
 }
 
-.register .card, .login .card {
-  opacity: 0.9;
+.register .card-header, .login .card-header {
+  background: #ffda79;
+}
+
+.register button[type="submit"], .login button[type="submit"] {
+  background: #ffda79;
+  border: none;
+  box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
+  color: #000000;
+  font-weight: bold;
+}
+
+.register button[type="submit"]:hover, .login button[type="submit"]:hover {
+  background: #ffb142;
+}
+
+.register input:focus, .login input:focus {
+  border: none;
+  box-shadow: 0 0 5px #f39c12;
+}
+
+.password-recovery {
+  color: #f39c12;
+  border: none;
+}
+
+.password-recovery:hover {
+  color: #e67e22;
+}
+
+.password-recovery:focus {
+  border: none;
+  box-shadow: none;
 }
 
 /* Dashboard */
+#accordion .card {
+  box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
+  border: none;
+}
+
 .vacation-header {
   cursor: pointer;
   transition: 0.5s all ease; 
@@ -135,7 +179,7 @@ body {
 }
 
 .vacation-title {
-  min-width: 250px;
+  min-width: 600px;
 }
 
 .change-status label {
@@ -144,4 +188,53 @@ body {
 
 .change-status select {
   width: 15%;
+}
+
+/* Create Vacation/Profile page styles */
+.request-form, .profile-form {
+  border: none;
+  box-shadow: 0 0 10px rgba(0 0 0 / 0.25);
+  background: #dff9fb;
+}
+
+.image_area {
+  position: relative;
+  text-align: center;
+}
+
+.overlay {
+  position:absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  background-color: rgba(255,255,255,0.3);
+  overflow: hidden;
+  height: 0;
+  transition: 0.5s ease;
+  width: 100%;
+}
+
+.image_area:hover .overlay {
+  height: 100%;
+  cursor: pointer;
+}
+
+.text {
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.preview {
+  display: block;
+  max-width: 290px;
+  height: 290px;
+  border: 1px solid #333;
+  overflow: hidden;
+  margin-left: 20px;
 }
