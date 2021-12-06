@@ -7,7 +7,7 @@
       {{ session()->get('successMessage') }}
     </div>
   @endif
-  <div class="request-list mt-5">
+  <div class="request-list">
     <div id="accordion">
       @forelse($vacations as $key => $vacation)
         @php

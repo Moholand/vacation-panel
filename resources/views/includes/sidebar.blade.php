@@ -1,7 +1,9 @@
 <div class="sidebar-inner">
   <div class="user-info">
     <div class="user-image">
-      <img width="100" src="{{ url('https://www.pngitem.com/pimgs/m/391-3918613_personal-service-platform-person-icon-circle-png-transparent.png') }}" >
+      <img width="110" src="{{ $user->avatar 
+      ? asset('img/avatars') . '/' . $user->avatar 
+      : asset('img/avatars/profile-default.png') }}" >
     </div>
     <div class="user-name">
       <h3>{{ auth()->user()->name }}</h3>
@@ -11,7 +13,7 @@
   <div class="sidebar-menu">
     @if(auth()->user()->isAdmin)
       <ul class="list-group">
-        <li class="list-group-item mb-1 pr-0 {{ request()->is('*dashboard') ? 'active' : ''}}">
+        <li class="list-group-item mb-2 pr-0 {{ request()->is('*dashboard') ? 'active' : ''}}">
           <a href="{{ route('dashboard') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-files w-25" viewBox="0 0 16 16">
               <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/>
@@ -31,7 +33,7 @@
       </ul>
     @else
       <ul class="list-group">
-        <li class="list-group-item pr-0 mb-1 {{ request()->is('*dashboard') ? 'active' : '' }}">
+        <li class="list-group-item pr-0 mb-2 {{ request()->is('*dashboard') ? 'active' : '' }}">
           <a href="{{ route('dashboard') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-richtext w-25" viewBox="0 0 16 16">
               <path d="M7 4.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V7.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V7s1.54-1.274 1.639-1.208zM5 9a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
@@ -40,7 +42,7 @@
             <span>داشبورد</span>
           </a>
         </li>
-        <li class="list-group-item pr-0 mb-1 {{ request()->is('*create') ? 'active' : ''}}">
+        <li class="list-group-item pr-0 mb-2 {{ request()->is('*create') ? 'active' : ''}}">
           <a href="{{ route('vacations.create') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cloud-plus w-25" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
@@ -49,7 +51,7 @@
             <span>درخواست جدید</span>
           </a>
         </li>
-        <li class="list-group-item pr-0 mb-1 {{ request()->is('*profile') ? 'active' : ''}}">
+        <li class="list-group-item pr-0 mb-2 {{ request()->is('*profile') ? 'active' : ''}}">
           <a href="{{ route('profile') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-person w-25" viewBox="0 0 16 16">
               <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>

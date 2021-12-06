@@ -22,17 +22,22 @@ class AdminVacationController extends Controller
     public function store(AdminUpdateVacationRequest $request, Vacation $vacation)
     {
         $user = User::find($vacation->user_id);
-        
+
         $vacation->response_message = $request->response_message;
         $vacation->status = $request->status;
         
         if($vacation->isDirty('status')) {
-            VacationStatusChange::dispatch($user);
+            $vacation->save();
+
+            VacationStatusChange::dispatch($user, $vacation);
+
+            session()->flash('successMessage', 'تغییرات با موفقیت ثبت شد');
+            return redirect()->back();
+        } else {
+            $vacation->save();
+
+            session()->flash('successMessage', 'تغییرات با موفقیت ثبت شد');
+            return redirect()->back();
         }
-
-        $vacation->save();
-
-        session()->flash('successMessage', 'تغییرات با موفقیت ثبت شد');
-        return redirect()->back();
     }
 }

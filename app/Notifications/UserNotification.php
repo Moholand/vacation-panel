@@ -2,24 +2,27 @@
 
 namespace App\Notifications;
 
-use App\Mail\UserNotificationMail;
+use App\Models\Vacation;
 use Illuminate\Bus\Queueable;
+use App\Mail\UserNotificationMail;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class UserNotification extends Notification
 {
     use Queueable;
+
+    protected $vacation;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Vacation $vacation)
     {
-        //
+        $this->vacation = $vacation;
     }
 
     /**
@@ -30,7 +33,7 @@ class UserNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -42,10 +45,11 @@ class UserNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                        ->markdown('emails.user_notify');
-                    // ->line('The introduction to the moholand.')
-                    // ->action('Notification Action', url('/'))
-                    // ->line('Thank you for using our application!');
+                        ->markdown('emails.user_notify', [
+                            'employee' => $notifiable, 
+                            'vacation' => $this->vacation,
+                            'url' => config('app.url')
+                        ]);
     }
 
     /**
@@ -57,7 +61,8 @@ class UserNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'title' => $this->vacation->title,
+            'status' => $this->vacation->status,
         ];
     }
 }

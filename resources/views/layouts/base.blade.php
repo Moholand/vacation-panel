@@ -11,6 +11,7 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ asset('js/script.js') }}" defer></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   @stack('scripts')
 
@@ -29,6 +30,9 @@
       @include('includes.sidebar')
     </div>
     <div class="content">
+      <div class="content-header">
+        @include('includes.contentHeader')
+      </div>
       <div class="content-inner">
         @yield('content')
       </div>

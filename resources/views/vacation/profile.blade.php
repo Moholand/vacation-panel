@@ -21,14 +21,16 @@
       @method('PATCH')
       <div class="card profile-form">
         <div class="card-body">
-          <div class="row justify-content-center profile-image-section">
+          <div class="row justify-content-center mb-3 profile-image-section">
             <div class="col-md-4">
               {{-- <input type="file" name="image" id="uploadImage"> --}}
               <div class="image_area">
                 <form action="POST">
                   @csrf
                   <label for="uploadImage">
-                    <img src="{{ asset('img/avatars/profile-default.png') }}" id="uploaded_image" class="img-responsive rounded-circle">
+                    <img src="{{ $user->avatar 
+                      ? asset('img/avatars') . '/' . $user->avatar 
+                      : asset('img/avatars/profile-default.png') }}" id="uploaded_image" class="img-responsive rounded-circle" width="160">
                     <div class="overlay">
                       <div class="text">
                         تغییر عکس پروفایل
@@ -71,11 +73,11 @@
   <div class="modal fade" id="modal" dir="ltr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document"  style="max-width: 1000px;">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Crop Image befor upload</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-header align-items-center">
+              <button type="button" class="close mr-auto ml-0" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <h5 class="modal-title">برش تصویر قبل از بارگذاری</h5>
             </div>
             <div class="modal-body">
                 <div class="image-container">
@@ -90,8 +92,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="crop" class="btn btn-primary">Crop</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">بازگشت</button>
+                <button type="button" id="crop" class="btn btn-primary">برش</button>
             </div>
         </div>
     </div>
@@ -156,7 +158,6 @@
               success: function(data){
                 $modal.modal('hide');
                 $('#uploaded_image').attr('src', data.success);
-                console.log(data);
               }
             });
           }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
 
@@ -11,9 +12,7 @@ class UserController extends Controller
 {
     public function profile()
     {
-        $user = auth()->user();
-
-        return view('vacation.profile', ['user' => $user]);
+        return view('vacation.profile');
     }
 
     public function update(UserUpdateRequest $request, User $user) 
@@ -52,7 +51,24 @@ class UserController extends Controller
         // $saveFile = new Picture;
         // $saveFile->name = $imageName;
         // $saveFile->save();
+
+        // Set image as current user`s avatar
+        $user = auth()->user();
+
+        if($user->avatar) {
+            File::delete(public_path('img/avatars') . '/' . $user->avatar);
+        }
+
+        $user->avatar = $imageName;
+        $user->save();
     
         return response()->json(['success'=> $imageInUI]);
+    }
+
+    public function markAsReadNotifications(Request $request) 
+    {
+        $user = User::find($request->userId);
+
+        $user->unreadNotifications->markAsRead();
     }
 }
