@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VacationController;
-use App\Http\Controllers\admin\AdminVacationController;
+use App\Http\Controllers\Admin\AdminVacationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,4 +42,6 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'admin.check'])->group(function () {
     Route::get('/admin/dashboard', [AdminVacationController::class, 'dashboard'])->name('admin.dashboard');
     Route::POST('/admin/vacations/store/{vacation}', [AdminVacationController::class, 'store'])->name('admin.vacations.store');
+    
+    Route::resource('/admin/users', AdminUserController::class)->only(['index', 'update']);
 });

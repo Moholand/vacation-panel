@@ -7,67 +7,85 @@
 
 @section('content')
   <h4>ویرایش پروفایل</h4>
-  @foreach ($errors->all() as $error)
-      {{ $error }}
-  @endforeach
+  <hr>
   @if(session()->has('successMessage'))
     <div class="alert alert-success" role="alert">
       {{ session()->get('successMessage') }}
     </div>
   @endif
-  <div class="update-profile-form mt-5">
-    <form action="{{ route('profile.update', ['user' => $user->id]) }}" autocomplete="off" method="POST">
-      @csrf
-      @method('PATCH')
-      <div class="card profile-form">
-        <div class="card-body">
-          <div class="row justify-content-center mb-3 profile-image-section">
-            <div class="col-md-4">
-              {{-- <input type="file" name="image" id="uploadImage"> --}}
-              <div class="image_area">
-                <form action="POST">
+  <div class="update-profile-form mt-3">
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+
+        <div class="card profile-form">
+          <div class="card-body">
+
+            <div class="row justify-content-center mb-3 profile-image-section">
+              <div class="col-md-4">
+                <div class="image_area">
+                  <form action="POST">
+                    @csrf
+                    <label for="uploadImage">
+                      <img src="{{ $user->avatar 
+                        ? asset('img/avatars') . '/' . $user->avatar 
+                        : asset('img/avatars/profile-default.png') }}" id="uploaded_image" class="img-responsive rounded-circle" width="160">
+                      <div class="overlay">
+                        <div class="text">
+                          تغییر عکس پروفایل
+                        </div>
+                      </div>
+                      <input type="file" name="image" class="image" id="uploadImage" style="display:none">
+                    </label>
+                  </form>
+                </div>
+              </div>
+            </div>
+    
+            <div class="row justify-content-center">
+              <div class="col">
+                <form action="{{ route('profile.update', ['user' => $user->id]) }}" autocomplete="off" method="POST">
                   @csrf
-                  <label for="uploadImage">
-                    <img src="{{ $user->avatar 
-                      ? asset('img/avatars') . '/' . $user->avatar 
-                      : asset('img/avatars/profile-default.png') }}" id="uploaded_image" class="img-responsive rounded-circle" width="160">
-                    <div class="overlay">
-                      <div class="text">
-                        تغییر عکس پروفایل
+                  @method('PATCH')
+            
+                  <div class="row justify-content-center">
+                    <div class="col-md-4 right-col">
+                      <div class="form-group">
+                        <label for="name" class="font-weight-bold">نام:</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="نام و نام خانوادگی" value="{{ $user->name }}"> 
+                      </div>
+                      <div class="form-group">
+                        <label for="password" class="font-weight-bold">رمز عبور:</label>
+                        <input type="text" name="password" id="password" class="form-control" placeholder="**************"> 
                       </div>
                     </div>
-                    <input type="file" name="image" class="image" id="uploadImage" style="display:none">
-                  </label>
+                    <div class="col-md-4 left-col">
+                      <div class="form-group">
+                        <label for="email" class="font-weight-bold">ایمیل:</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="آدرس ایمیل" value="{{ $user->email }}">
+                      </div>
+                      <div class="form-group">
+                        <label for="position" class="font-weight-bold">عنوان شغلی:</label>
+                        <input type="text" name="position" id="position" class="form-control" placeholder="عنوان شغلی" value="{{ $user->position }}">
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="form-group text-left">
+                        <input type="submit" name="submit" class="btn btn-secondary btn-block mt-3 text-white font-weight-bold" value="ویرایش پروفایل">
+                      </div>
+                    </div>
+                  </div>
+                    
                 </form>
-            </div>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-md-4 right-col">
-              <div class="form-group">
-                <label for="name" class="font-weight-bold">نام:</label>
-                <input type="text" name="name" id="name" class="form-control" placeholder="نام و نام خانوادگی" value="{{ $user->name }}"> 
-              </div>
-              <div class="form-group">
-                <label for="password" class="font-weight-bold">رمز عبور:</label>
-                <input type="text" name="password" id="password" class="form-control" placeholder="**************"> 
               </div>
             </div>
-            <div class="col-md-4 left-col">
-              <div class="form-group">
-                <label for="email" class="font-weight-bold">ایمیل:</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="آدرس ایمیل" value="{{ $user->email }}">
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="form-group text-left">
-                <input type="submit" name="submit" class="btn btn-info text-white font-weight-bold" value="ویرایش پروفایل">
-              </div>
-            </div>
+
           </div>
         </div>
+
       </div>
-    </form>
+    </div>
+    
   </div>
   <!-- Modal -->
   <div class="modal fade" id="modal" dir="ltr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -158,6 +176,7 @@
               success: function(data){
                 $modal.modal('hide');
                 $('#uploaded_image').attr('src', data.success);
+                $('.user-image img').attr('src', data.success);
               }
             });
           }

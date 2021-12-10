@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Vacation;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'position',
         'password',
     ];
 
@@ -46,5 +48,10 @@ class User extends Authenticatable
     public function vacations() 
     {
         return $this->hasMany(Vacation::class);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
     }
 }

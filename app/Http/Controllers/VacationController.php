@@ -10,13 +10,18 @@ use App\Http\Requests\UpdateVacationRequest;
 
 class VacationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified.check', ['except' => ['dashboard']]);
+    }
+
     public function dashboard()
     {
         if(auth()->user()->isAdmin) {
             return redirect()->route('admin.dashboard');
         }
 
-        $vacations = Vacation::where('user_id', auth()->user()->id)->get();
+        $vacations = Vacation::where('user_id', auth()->user()->id)->orderBy('updated_at', 'DESC')->get();
 
         return view('vacation.dashboard', ['vacations' => $vacations]);
     }
@@ -31,8 +36,12 @@ class VacationController extends Controller
         $vacation = auth()->user()->vacations()->create([
             'title' => $request->title,
             'request_message' => $request->request_message,
+            'type' => $request->type,
+            'mode' => $request->mode,
             'from_date' => $request->from_date,
             'to_date' => $request->to_date,
+            'from_hour' => $request->from_hour,
+            'to_hour' => $request->to_hour,
         ]);
 
         $vacation->status = 'submitted';
@@ -52,8 +61,16 @@ class VacationController extends Controller
     {
         $vacation->title = $request->title;
         $vacation->request_message = $request->request_message;
+        $vacation->type = $request->type;
+        $vacation->mode = $request->mode;
         $vacation->from_date = $request->from_date;
-        $vacation->to_date = $request->to_date;
+        if($request->mode === 'daily') {
+            $vacation->to_date = $request->to_date;
+        }
+        if($request->mode === 'hourly') {
+            $vacation->from_hour = $request->from_hour;
+            $vacation->to_hour = $request->to_hour;
+        }
         $vacation->save();
 
         session()->flash('successMessage', 'درخواست شما با موفقیت ویرایش شد');

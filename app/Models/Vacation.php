@@ -10,7 +10,16 @@ class Vacation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'request_message', 'from_date', 'to_date'];
+    protected $fillable = [
+        'title', 
+        'request_message', 
+        'type', 
+        'mode', 
+        'from_date', 
+        'to_date',
+        'from_hour', 
+        'to_hour'
+    ];
 
     public function user()
     {

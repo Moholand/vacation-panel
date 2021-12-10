@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Vacation;
@@ -14,7 +14,7 @@ class AdminVacationController extends Controller
 {
     public function dashboard()
     {
-        $vacations = Vacation::all();
+        $vacations = Vacation::orderBy('updated_at', 'DESC')->get();
         
         return view('admin.dashboard', ['vacations' => $vacations]);
     }

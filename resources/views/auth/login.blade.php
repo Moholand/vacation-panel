@@ -4,7 +4,7 @@
 <div class="container login">
 	<div class="row justify-content-center">
 		<div class="col-md-6">
-			<div class="card">
+			<div class="card border-0">
 				<div class="card-header text-center p-4">
 					<span class="font-weight-bold h5">ورود به پنل درخواست مرخصی</span>
 				</div>

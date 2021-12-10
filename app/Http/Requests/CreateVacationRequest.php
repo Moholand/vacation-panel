@@ -24,10 +24,14 @@ class CreateVacationRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'request_message' => 'required',
+            'title' => 'required|string',
+            'request_message' => 'required|string',
+            'type' => 'required|in:deserved,emergency',
+            'mode' => 'required|in:daily,hourly',
             'from_date' => 'required|date',
-            'to_date' => 'required|date',
+            'to_date' => 'required_if:mode,daily|date|after_or_equal:from_date',
+            'from_hour' => 'required_if:mode,hourly|string',
+            'to_hour' => 'required_if:mode,hourly|string',
         ];
     }
 }

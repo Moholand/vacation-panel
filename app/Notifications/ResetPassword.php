@@ -2,27 +2,25 @@
 
 namespace App\Notifications;
 
-use App\Models\Vacation;
 use Illuminate\Bus\Queueable;
-use App\Mail\UserNotificationMail;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
-class UserNotification extends Notification
+class ResetPassword extends Notification
 {
     use Queueable;
 
-    protected $vacation;
+    public $token;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Vacation $vacation)
+    public function __construct($token)
     {
-        $this->vacation = $vacation;
+        $this->token = $token;
     }
 
     /**
@@ -33,7 +31,7 @@ class UserNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**
@@ -45,11 +43,10 @@ class UserNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                        ->markdown('emails.user_notify', [
-                            'employee' => $notifiable, 
-                            'vacation' => $this->vacation,
-                            'url' => url('dashboard'),
-                        ]);
+                    ->markdown('emails.reset_password', [
+                        'employee' => $notifiable,
+                        'url' => url('password/reset', $this->token),
+                    ]);;
     }
 
     /**
@@ -61,8 +58,7 @@ class UserNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => $this->vacation->title,
-            'status' => $this->vacation->status,
+            //
         ];
     }
 }

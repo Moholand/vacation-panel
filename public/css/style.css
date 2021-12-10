@@ -3,8 +3,18 @@ body {
   text-align: right !important;
 }
 
+/* Scrollbar styles */
 ::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e4e5eb;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d2d3da;
 }
 
 /* Enter layout styles */
@@ -30,7 +40,7 @@ body {
 .welcome-page:after {
   content: '';
   position: absolute;
-  left: 70%;
+  left: 50%;
   top: 0;
   bottom: 0;
   right: 0;
@@ -42,9 +52,18 @@ body {
   margin: 150px;
   position: relative;
   z-index: 10;
+  max-width: 300px;
 }
 
-.welcome-box button {
+.welcome-box .welcome-title {
+  line-height: 40px;
+}
+
+.welcome-box .welcome-desc {
+  line-height: 30px;
+}
+
+.welcome-box a {
   border-radius: 15px;
   box-shadow: -7px 7px 10px rgba(0 0 0 / 0.25);
 }
@@ -180,19 +199,28 @@ body {
 .content-inner {
   margin: 0 20px;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   background: #ffffff;
   box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
-  height: 94%;
+  height: 95%;
   overflow: hidden;
 }
 
-/* Register/Login styles */
-.register, .login {
+/* Authentication */
+.register, .login, .passwords-email, .passwords-reset {
   margin-top: 75px;
+  position: relative;
+  z-index: 20;
 }
 
-.register .card-header, .login .card-header {
+.register .card, .login .card, .passwords-email .card, .passwords-reset .card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.register .card-header, 
+.login .card-header, 
+.passwords-email .card-header, 
+.passwords-reset .card-header {
   background: #ffda79;
 }
 
@@ -229,7 +257,7 @@ body {
 
 /* Dashboard */
 .request-list {
-  padding: 25px 5px 50px 5px;
+  padding: 10px 5px 70px 40px;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -266,10 +294,18 @@ body {
 }
 
 /* Create Vacation/Profile page styles */
+.request-form-wrapper {
+  padding: 10px 5px 50px 40px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .request-form, .profile-form {
   border: none;
+  border-radius: 15px;
   box-shadow: 0 0 10px rgba(0 0 0 / 0.25);
-  background: #dff9fb;
+  background: #f1f2f6;
 }
 
 .image_area {
@@ -284,7 +320,7 @@ body {
   bottom: 10px;
   left: 0;
   right: 0;
-  background-color: rgba(255,255,255,0.3);
+  background-color: #f1f2f630;
   overflow: hidden;
   height: 0;
   transition: 0.5s ease;
