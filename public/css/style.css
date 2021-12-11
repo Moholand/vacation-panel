@@ -177,8 +177,8 @@ body {
 
 /* Content Header */
 .content-header li {
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border: none;
 }
 
@@ -193,6 +193,26 @@ body {
 
 .read .bi-bell {
   color: #6c757d !important;
+}
+
+.search input {
+  width: 0 !important;
+  padding-right: 0; 
+  padding-left: 0; 
+  margin-right: 0 !important;
+  border: none;
+  overflow: hidden;
+  transition: 0.5s all ease;
+}
+
+.search input:focus {
+  box-shadow: none;
+}
+
+.search:hover input {
+  width: 200px !important;
+  padding-right: 10px; 
+  padding-left: 10px; 
 }
 
 /* Content styles */
@@ -257,7 +277,7 @@ body {
 
 /* Dashboard */
 .request-list {
-  padding: 10px 5px 70px 40px;
+  padding: 30px 5px 70px 40px;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -282,7 +302,11 @@ body {
 }
 
 .vacation-title {
-  min-width: 600px;
+  min-width: 400px;
+}
+
+.status {
+  font-size: 13px;
 }
 
 .change-status label {

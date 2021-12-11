@@ -1,27 +1,11 @@
 @component('mail::message')
   # {{ $employee->name }}
 
-  @php
-    switch($vacation->status) {
-      case('confirmed'):
-        $status = 'تأیید';
-        $status_class = 'success';
-        break;
-      case('refuse'):
-        $status = 'عدم تأیید';
-        $status_class = 'danger';
-        break;
-      default:
-        $status = 'ارسال شده';
-        $status_class = 'info';
-    }
-  @endphp
-
   <p>
     درخواست مرخصی شما با عنوان
     <span class="vacation-title">{{ $vacation->title }}</span>
     به وضعیت
-    <span class="status">{{ $status }}</span>
+    <span class="status">{{ translate_status($vacation->status)['status'] }}</span>
     تغییر پیدا کرده است.   
   </p>
 

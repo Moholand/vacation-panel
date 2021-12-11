@@ -15,13 +15,17 @@ class VacationController extends Controller
         $this->middleware('verified.check', ['except' => ['dashboard']]);
     }
 
-    public function dashboard()
+    public function index(Request $request)
     {
         if(auth()->user()->isAdmin) {
             return redirect()->route('admin.dashboard');
         }
 
-        $vacations = Vacation::where('user_id', auth()->user()->id)->orderBy('updated_at', 'DESC')->get();
+        if($request->has('search') && $request->search !== null) {
+            $vacations = Vacation::where('user_id', auth()->user()->id)->where('title', 'LIKE', '%' . $request->search . '%')->orderBy('updated_at', 'DESC')->get();
+        } else {
+            $vacations = Vacation::where('user_id', auth()->user()->id)->orderBy('updated_at', 'DESC')->get();
+        }
 
         return view('vacation.dashboard', ['vacations' => $vacations]);
     }

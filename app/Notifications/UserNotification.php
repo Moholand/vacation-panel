@@ -48,7 +48,7 @@ class UserNotification extends Notification
                         ->markdown('emails.user_notify', [
                             'employee' => $notifiable, 
                             'vacation' => $this->vacation,
-                            'url' => url('dashboard'),
+                            'url' => url('vacations'),
                         ]);
     }
 

@@ -2,7 +2,7 @@
 
 @section('content')
   <h4>همه‌ی درخواست‌ها</h4>
-  <hr>
+  <hr class="mb-0">
   @if(session()->has('successMessage'))
     <div class="alert alert-success" role="alert">
       {{ session()->get('successMessage') }}
@@ -19,7 +19,7 @@
         <div class="card mb-4">
           <div class="card-header py-2 px-4 d-flex justify-content-between align-items-center vacation-header" id="heading-{{ $key }}" data-toggle="collapse" data-target="#collapse-{{ $key }}" aria-expanded="false" aria-controls="collapse-{{ $key }}">
             <div class="request-info d-flex justify-content-between align-items-center">
-              <h5 class="mb-0 vacation-title">{{ $key + 1 }}) <span>نام:</span> {{ $vacation->user->name }} <span class="small font-weight-bold" dir="rtl">({{ $request_date }})</span></h5>
+              <h6 class="mb-0 vacation-title">{{ $key + 1 }}) <span>نام:</span> {{ $vacation->user->name }} <span class="small font-weight-bold" dir="rtl">({{ $request_date }})</span></h6>
               <div class="status font-weight-bold">
                 <span>وضعیت:</span>
                 <span class="mr-2 badge badge-{{ translate_status($vacation->status)['status_class'] }}">

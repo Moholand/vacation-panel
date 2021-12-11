@@ -24,15 +24,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [VacationController::class, 'dashboard'])->name('dashboard');
-    Route::get('/vacations/create', [VacationController::class, 'create'])->name('vacations.create');
-    Route::post('/vacations/store', [VacationController::class, 'store'])->name('vacations.store');
-    Route::get('/vacations/edit/{vacation}', [VacationController::class, 'edit'])->name('vacations.edit');
-    Route::patch('/vacations/update/{vacation}', [VacationController::class, 'update'])->name('vacations.update');
-    Route::delete('/vacations/delete/{vacation}', [VacationController::class, 'destroy'])->name('vacations.destroy');
+    Route::resource('/vacations', VacationController::class)->except('show');
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::patch('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
