@@ -12,7 +12,7 @@ class VacationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('verified.check', ['except' => ['dashboard']]);
+        $this->middleware('verified.check', ['except' => ['index']]);
     }
 
     public function index(Request $request)

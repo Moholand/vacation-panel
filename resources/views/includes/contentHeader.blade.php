@@ -13,23 +13,40 @@
           </svg>
         </button>
         @if($user->notifications->count() !== 0)
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            @foreach ($user->notifications as $notification)
-              <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
-                <small>
-                    درخواست مرخصی شما با عنوان
-                  <span class="font-weight-bold">{{ $notification->data['title'] }}</span>
-                  به وضعیت
-                  <span class="font-weight-bold">{{ translate_status($notification->data['status'])['status'] }}</span>
-                  تغییر یافته است.
-                </small>
-              </a>
-              <div class="dropdown-divider my-1"></div>
-            @endforeach
+          <div class="dropdown-menu shadow border-0" aria-labelledby="dropdownMenuButton">
+            @if($user->isAdmin)
+              @foreach ($user->notifications as $notification)
+                <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
+                  <small>
+                      کاربر جدید با نام
+                    <span class="font-weight-bold">{{ $notification->data['name'] }}</span>
+                    با آدرس ایمیل
+                    <span class="font-weight-bold">{{ $notification->data['email'] }}</span>
+                    در سامانه نام نویسی کرده است. 
+                    لطفاً هویت این کاربر را بررسی نمایید.
+                  </small>
+                </a>
+                <div class="dropdown-divider my-1"></div>
+              @endforeach
+            @else
+              @foreach ($user->notifications as $notification)
+                <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
+                  <small>
+                      درخواست مرخصی شما با عنوان
+                    <span class="font-weight-bold">{{ $notification->data['title'] }}</span>
+                    به وضعیت
+                    <span class="font-weight-bold">{{ translate_status($notification->data['status'])['status'] }}</span>
+                    تغییر یافته است.
+                  </small>
+                </a>
+                <div class="dropdown-divider my-1"></div>
+              @endforeach
+            @endif
           </div>
         @endif
       </div>
     </li>
+    @if(request()->is('*vacations'))
     <li class="list-group-item bg-transparent search px-0">
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" name="search" placeholder="جستجوی عنوان مرخصی ...">
@@ -40,5 +57,6 @@
         </button>
       </form>
     </li>
+    @endif
   </ul>
 </div>

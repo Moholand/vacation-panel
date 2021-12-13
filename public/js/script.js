@@ -1,4 +1,6 @@
 // Mark as read Notifications
+axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+
 let bell = document.querySelector('.dropdown-bell');
 
 bell.addEventListener('click', function(e) {

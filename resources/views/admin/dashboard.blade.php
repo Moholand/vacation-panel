@@ -3,11 +3,9 @@
 @section('content')
   <h4>همه‌ی درخواست‌ها</h4>
   <hr class="mb-0">
-  @if(session()->has('successMessage'))
-    <div class="alert alert-success" role="alert">
-      {{ session()->get('successMessage') }}
-    </div>
-  @endif
+
+  @include('includes.successMessage')
+
   <div class="request-list">
     <div id="accordion">
       @forelse($vacations as $key => $vacation)

@@ -2,14 +2,11 @@
 
 @section('content')
   <h4>همه‌ی کاربرها</h4>
-  <hr>
-  @if(session()->has('successMessage'))
-    <div class="alert alert-success" role="alert">
-      {{ session()->get('successMessage') }}
-    </div>
-  @endif
+  <hr class="mb-0">
 
-  <div class="users-list mt-4">
+  @include('includes.successMessage')
+
+  <div class="users-list">
     <table class="table table-hover">
       <thead>
         <tr>

@@ -12,12 +12,10 @@
       درخواست جدید
     @endif
   </h4>
-  <hr>
-  @if(session()->has('successMessage'))
-    <div class="alert alert-success" role="alert">
-      {{ session()->get('successMessage') }}
-    </div>
-  @endif
+
+  <hr class="my-0">
+
+  @include('includes.successMessage')
 
   <div class="row justify-content-center request-form-wrapper">
     <div class="col-md-6">
@@ -83,24 +81,28 @@
               </div>
             </div>
 
-            <div class="d-flex align-items-center request-date">
-              <div class="form-group ml-5">
-                <label for="from_date" class="font-weight-bold">از تاریخ:</label>
-                <input type="text" name="from_date" id="from_date" data-jdp class="form-control mr-2 @error('from_date') is-invalid @enderror" placeholder="1400/05/05" value="{{ isset($vacation) ? $vacation->from_date : '' }}">
-                @error('from_date')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
+            <div class="row align-items-center request-date">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="from_date" class="font-weight-bold">از تاریخ:</label>
+                  <input type="text" name="from_date" id="from_date" data-jdp class="form-control mr-2 @error('from_date') is-invalid @enderror" placeholder="1400/05/05" value="{{ isset($vacation) ? $vacation->from_date : '' }}">
+                  @error('from_date')
+                    <span class="invalid-feedback mr-3" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
               </div>
-              <div class="form-group">
-                <label for="to_date" class="font-weight-bold">تا تاریخ:</label>
-                <input type="text" name="to_date" id="to_date" data-jdp class="form-control mr-2 @error('to_date') is-invalid @enderror" placeholder="1400/05/06" value="{{ isset($vacation) ? $vacation->to_date : '' }}" {{ isset($vacation) && $vacation->mode === 'hourly' ? 'disabled' : '' }}>
-                @error('to_date')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="to_date" class="font-weight-bold">تا تاریخ:</label>
+                  <input type="text" name="to_date" id="to_date" data-jdp class="form-control mr-2 @error('to_date') is-invalid @enderror" placeholder="1400/05/06" value="{{ isset($vacation) ? $vacation->to_date : '' }}" {{ isset($vacation) && $vacation->mode === 'hourly' ? 'disabled' : '' }}>
+                  @error('to_date')
+                    <span class="invalid-feedback mr-3" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
               </div>
             </div>
 

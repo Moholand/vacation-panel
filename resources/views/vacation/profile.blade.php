@@ -1,18 +1,15 @@
 @extends('layouts.base')
 
 @push('stylesheets')
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
 @endpush
 
 @section('content')
   <h4>ویرایش پروفایل</h4>
   <hr>
-  @if(session()->has('successMessage'))
-    <div class="alert alert-success" role="alert">
-      {{ session()->get('successMessage') }}
-    </div>
-  @endif
+
+  @include('includes.successMessage')
+
   <div class="update-profile-form mt-3">
 
     <div class="row justify-content-center">
@@ -24,7 +21,7 @@
             <div class="row justify-content-center mb-3 profile-image-section">
               <div class="col-md-4">
                 <div class="image_area">
-                  <form action="POST">
+                  <form method="POST">
                     @csrf
                     <label for="uploadImage">
                       <img src="{{ $user->avatar 
@@ -35,7 +32,7 @@
                           تغییر عکس پروفایل
                         </div>
                       </div>
-                      <input type="file" name="image" class="image" id="uploadImage" style="display:none">
+                      <input type="file" name="image" class="image" id="uploadImage" data-user="{{ $user->id }}">
                     </label>
                   </form>
                 </div>
@@ -88,8 +85,8 @@
     
   </div>
   <!-- Modal -->
-  <div class="modal fade" id="modal" dir="ltr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document"  style="max-width: 1000px;">
+  <div class="modal fade modal-cropper" id="modal" dir="ltr" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header align-items-center">
               <button type="button" class="close mr-auto ml-0" data-dismiss="modal" aria-label="Close">
@@ -120,8 +117,6 @@
 
 @push('scripts')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
   
   <script>
@@ -132,7 +127,7 @@
       $(document).on("change", "#uploadImage", function(e){
         let files = e.target.files;
         let done = function (url) {
-          image.attr('src', url);;
+          image.attr('src', url);
           $modal.modal('show');
         };
 
@@ -167,12 +162,15 @@
           reader.readAsDataURL(blob); 
           reader.onloadend = function() {
             let base64data = reader.result; 
-            console.log($(".image_area input[type='hidden']").val())
             $.ajax({
               type: "POST",
               dataType: "json",
-              url: "crop-image-upload",
-              data: {'_token': $(".image_area input[type='hidden']").val(), 'image': base64data},
+              url: "api/crop-image-upload",
+              data: {
+                '_token': $(".image_area input[type='hidden']").val(), 
+                'image': base64data,
+                'userId': $('#uploadImage').attr('data-user')
+              },
               success: function(data){
                 $modal.modal('hide');
                 $('#uploaded_image').attr('src', data.success);

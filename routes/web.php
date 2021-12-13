@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VacationController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminVacationController;
 
 /*
@@ -24,14 +24,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/vacations', VacationController::class)->except('show');
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::patch('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
-    Route::post('/crop-image-upload', [UserController::class, 'uploadCropImage'])->name('profile.upload.image');
 });
 
 Route::middleware(['auth', 'admin.check'])->group(function () {

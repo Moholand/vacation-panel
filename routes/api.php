@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\UserAvatarUpdateController;
+use App\Http\Controllers\Api\ReadNotificationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/user-notifications-markAsRead', [UserController::class, 'markAsReadNotifications'])->name('notifications.markAsRead');
+Route::post('/user-notifications-markAsRead', ReadNotificationsController::class);
+
+Route::post('/crop-image-upload', UserAvatarUpdateController::class);

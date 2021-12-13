@@ -20,7 +20,7 @@ class VerifiedCheck
             return $next($request);
         } else {
             session()->flash('errorMessage', 'متأسفانه هنوز هویت شما توسط مدیر سایت تأیید نشده است... لطفاً صبر کنید و یا با واحد مربوطه تماس بگیرید');
-            return redirect()->route('dashboard');
+            return redirect()->route('vacations.index');
         }
     }
 }

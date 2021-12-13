@@ -222,7 +222,7 @@ body {
   border-radius: 5px 5px 0 0;
   background: #ffffff;
   box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
-  height: 95%;
+  height: 94%;
   overflow: hidden;
 }
 
@@ -319,10 +319,14 @@ body {
 
 /* Create Vacation/Profile page styles */
 .request-form-wrapper {
-  padding: 10px 5px 50px 40px;
+  padding: 30px 5px 50px 40px;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.request-date .invalid-feedback {
+  min-height: 35px;
 }
 
 .request-form, .profile-form {
@@ -356,6 +360,10 @@ body {
   cursor: pointer;
 }
 
+#uploadImage {
+  display: none;
+}
+
 .text {
   color: #333;
   font-size: 16px;
@@ -365,6 +373,10 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.modal-cropper .modal-dialog {
+  max-width: 800px;
 }
 
 .preview {
@@ -379,4 +391,12 @@ body {
 #sample_image {
   max-height: 500px;
   overflow: hidden;
+}
+
+/* Admin Users */
+.users-list {
+  padding: 30px 5px 50px 40px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
