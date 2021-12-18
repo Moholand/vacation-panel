@@ -63,6 +63,7 @@ class UserNotification extends Notification
         return [
             'title' => $this->vacation->title,
             'status' => $this->vacation->status,
+            'type' => 'vacationConfirmation'
         ];
     }
 }

@@ -1,4 +1,9 @@
 <div class="sidebar-inner">
+  <div class="sidebar-hide d-md-none text-left">
+    <button class="bg-transparent border-0 text-secondary">
+      <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+    </button>
+  </div>
   <div class="user-info">
     <div class="user-image">
       <img width="110" src="{{ $user->avatar 

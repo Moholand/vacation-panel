@@ -1,5 +1,6 @@
 <div class="row flex-row-reverse">
-  <ul class="list-group d-flex flex-row-reverse px-5">
+
+  <ul class="list-group flex-row-reverse px-5">
     <li class="list-group-item bg-transparent px-0">
       <div class="dropdown dropdown-bell" data-user-id={{ $user->id }}>
         <button class="btn btn-secondary bg-transparent border-0 shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -16,30 +17,53 @@
           <div class="dropdown-menu shadow border-0" aria-labelledby="dropdownMenuButton">
             @if($user->isAdmin)
               @foreach ($user->notifications as $notification)
-                <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
-                  <small>
-                      کاربر جدید با نام
-                    <span class="font-weight-bold">{{ $notification->data['name'] }}</span>
-                    با آدرس ایمیل
-                    <span class="font-weight-bold">{{ $notification->data['email'] }}</span>
-                    در سامانه نام نویسی کرده است. 
-                    لطفاً هویت این کاربر را بررسی نمایید.
-                  </small>
-                </a>
-                <div class="dropdown-divider my-1"></div>
+                @if($notification->data['type'] === 'userRegistered')
+                  <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
+                    <small>
+                        کاربر جدید با نام
+                      <span class="font-weight-bold">{{ $notification->data['name'] }}</span>
+                      با آدرس ایمیل
+                      <span class="font-weight-bold">{{ $notification->data['email'] }}</span>
+                      در سامانه نام نویسی کرده است. 
+                      لطفاً هویت این کاربر را بررسی نمایید.
+                    </small>
+                  </a>
+                  <div class="dropdown-divider my-1"></div>
+                @endif
               @endforeach
             @else
               @foreach ($user->notifications as $notification)
-                <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
-                  <small>
-                      درخواست مرخصی شما با عنوان
-                    <span class="font-weight-bold">{{ $notification->data['title'] }}</span>
-                    به وضعیت
-                    <span class="font-weight-bold">{{ translate_status($notification->data['status'])['status'] }}</span>
-                    تغییر یافته است.
-                  </small>
-                </a>
-                <div class="dropdown-divider my-1"></div>
+                @if($notification->data['type'] === 'vacationConfirmation')
+                  <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
+                    <small>
+                        درخواست مرخصی شما با عنوان
+                      <span class="font-weight-bold">{{ $notification->data['title'] }}</span>
+                      به وضعیت
+                      <span class="font-weight-bold">{{ translate_status($notification->data['status'])['status'] }}</span>
+                      تغییر یافته است.
+                    </small>
+                  </a>
+                  <div class="dropdown-divider my-1"></div>
+                @elseif($notification->data['type'] === 'userConfirmation')
+                  <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
+                    @if($notification->data['isVerified'] === 'verified')
+                      <small>
+                        هویت شما توسط مدیر سایت 
+                        <strong>تأیید</strong>
+                        شده است. 
+                        شما می‌توانید درخواست مرخصی خود را ثبت و نتیجه را پیگیری نمایید.
+                      </small>
+                    @else
+                      <small>
+                        هویت شما توسط مدیر سایت
+                        <strong>تأیید نشده است</strong>
+                        . 
+                        لطفاً جهت پیگیری با واحد مربوطه تماس حاصل فرمایید.
+                      </small>
+                    @endif
+                  </a>
+                  <div class="dropdown-divider my-1"></div>
+                @endif
               @endforeach
             @endif
           </div>
@@ -59,4 +83,13 @@
     </li>
     @endif
   </ul>
+
+  <ul class="list-group justify-content-center px-5 d-md-none ml-auto sidebar-show">
+    <li class="list-group-item bg-transparent">
+      <button class="bg-transparent border-0">
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </li>
+  </ul>
+
 </div>

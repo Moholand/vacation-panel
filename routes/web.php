@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'admin.check'])->group(function () {
     Route::get('/admin/dashboard', [AdminVacationController::class, 'dashboard'])->name('admin.dashboard');
-    Route::POST('/admin/vacations/store/{vacation}', [AdminVacationController::class, 'store'])->name('admin.vacations.store');
+    Route::patch('/admin/vacations/{vacation}/update', [AdminVacationController::class, 'update'])->name('admin.vacations.update');
     
     Route::resource('/admin/users', AdminUserController::class)->only(['index', 'update']);
 });

@@ -2,26 +2,25 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
-class UserRegisteredNotification extends Notification
+class UserConfirmationNotification extends Notification
 {
     use Queueable;
 
-    public $user;
+    public $isVerified;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($isVerified)
     {
-        $this->user = $user;
+        $this->isVerified = $isVerified;
     }
 
     /**
@@ -32,7 +31,7 @@ class UserRegisteredNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -44,9 +43,11 @@ class UserRegisteredNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->markdown('emails.user_confirmation_notify', [
+                        'employee' => $notifiable, 
+                        'isVerified' => $this->isVerified,
+                        'url' => url('vacations/create'),
+                    ]);
     }
 
     /**
@@ -58,9 +59,8 @@ class UserRegisteredNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'name' => $this->user->name,
-            'email' => $this->user->email,
-            'type' => 'userRegistered'
+            'isVerified' => $this->isVerified,
+            'type' => 'userConfirmation'
         ];
     }
 }

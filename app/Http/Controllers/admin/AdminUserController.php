@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Jobs\UserConfirmation;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class AdminUserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('cache.admin.users:50', ['only' => ['index']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -72,12 +79,15 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        // Update user isVerified field
         $user->isVerified = $request->verified === 'verified' ? true : false;
-
         $user->save();
 
-        session()->flash('successMessage', 'تغییرات با موفقیت ذخیره شد');
+        // Send notification to user / Delete chache to see the changes Immediately
+        UserConfirmation::dispatch($user, $request->verified);
+        Cache::forget('getUsers');
 
+        session()->flash('successMessage', 'تغییرات با موفقیت ذخیره شد');
         return redirect()->back();
     }
 

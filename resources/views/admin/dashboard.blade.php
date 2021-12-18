@@ -61,8 +61,9 @@
                 @endif
               </div>
               <hr>
-              <form action="{{ route('admin.vacations.store', ['vacation' => $vacation->id]) }}" method="POST">
+              <form action="{{ route('admin.vacations.update', ['vacation' => $vacation->id]) }}" method="POST">
                 @csrf
+                @method('PATCH')
                 <div class="form-group">
                   <label for="response_message" class="font-weight-bold">متن پاسخ:</label>
                   <textarea class="form-control" name="response_message" id="response_message" cols="15" rows="3" placeholder="متن پاسخ">{{ $vacation->response_message }}</textarea>

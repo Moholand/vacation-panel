@@ -19,7 +19,7 @@ class AdminVacationController extends Controller
         return view('admin.dashboard', ['vacations' => $vacations]);
     }
 
-    public function store(AdminUpdateVacationRequest $request, Vacation $vacation)
+    public function update(AdminUpdateVacationRequest $request, Vacation $vacation)
     {
         $user = User::find($vacation->user_id);
 

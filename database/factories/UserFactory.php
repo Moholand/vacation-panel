@@ -15,13 +15,24 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $jobName = [
+            'برنامه‌نویس فرانت‌اند',
+            'برنامه‌نویس بک‌اند',
+            'برنامه‌نویس فول‌استک',
+            'برنامه‌نویس دواپس',
+            'متخصص هوش مصنوعی',
+            'مهندس داده',
+            'متخصص ui/ux',
+            'مسئول منابع انسانی',
+        ];
+
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'position' => $this->faker->words($nb = 3, $asText = true),
-            'email_verified_at' => now(),
+            'position' => $jobName[random_int(0, count($jobName) - 1)],
+            // 'email_verified_at' => now(),
             'password' => Hash::make('mha123456789'),
-            'remember_token' => Str::random(10),
+            // 'remember_token' => Str::random(10),
         ];
     }
 

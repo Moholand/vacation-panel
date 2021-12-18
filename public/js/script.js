@@ -13,3 +13,16 @@ bell.addEventListener('click', function(e) {
     bell.classList.add('read');
   });
 });
+
+// SideBar Transition
+let sidebarShow = document.querySelector('.sidebar-show button');
+let sidebarHide = document.querySelector('.sidebar-hide button');
+let sidebar = document.querySelector('.sidebar');
+
+sidebarShow.addEventListener('click', function() {
+  sidebar.classList.add('show');
+});
+
+sidebarHide.addEventListener('click', function() {
+  sidebar.classList.remove('show');
+});

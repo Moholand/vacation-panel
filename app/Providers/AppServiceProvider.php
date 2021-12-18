@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Middleware\AdminUserResponseMiddleware;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,8 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('user', auth()->user());
         });
+
+        // Call Cache service provider as singelton
+        $this->app->singleton(AdminUserResponseMiddleware::class);
     }
 }
