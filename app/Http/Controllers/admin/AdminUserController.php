@@ -83,7 +83,7 @@ class AdminUserController extends Controller
         $user->isVerified = $request->verified === 'verified' ? true : false;
         $user->save();
 
-        // Send notification to user / Delete chache to see the changes Immediately
+        // Send notification to user / Delete cache to see the changes Immediately
         UserConfirmation::dispatch($user, $request->verified);
         Cache::forget('getUsers');
 

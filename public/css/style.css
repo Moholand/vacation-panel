@@ -1,10 +1,10 @@
 @font-face {
   font-family: "Vazir";
-  src: url("/fonts/main/Vazir.eot"); /* IE9 Compact Modes */
-  src: url("/fonts/main/Vazir.eot?#iefix") format("embedded-opentype"),
-  url("/fonts/main/Vazir.woff2") format("woff2"),
-  url("/fonts/main/Vazir.woff") format("woff"),    
-  url("/fonts/main/Vazir.ttf") format("truetype"); /* Safari - Android - IOS */
+  src: url("/fonts/main/Vazir-FD-WOL.eot"); /* IE9 Compact Modes */
+  src: url("/fonts/main/Vazir-FD-WOL.eot?#iefix") format("embedded-opentype"),
+  url("/fonts/main/Vazir-FD-WOL.woff2") format("woff2"),
+  url("/fonts/main/Vazir-FD-WOL.woff") format("woff"),    
+  url("/fonts/main/Vazir-FD-WOL.ttf") format("truetype"); /* Safari - Android - IOS */
 }
 
 body {
@@ -319,8 +319,78 @@ body {
   padding-left: 10px; 
 }
 
-@media only screen and (max-width: 600px) {
+.perPage-select {
+  cursor: pointer;
+}
 
+.filters-wrapper {
+  position: absolute;
+  top: -160%;
+  left: 10%;
+  right: 10%;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
+  background: #f1f2f6;
+  z-index: 40;
+  transition: 0.7s all ease;
+}
+
+.filters-wrapper.show {
+  top: 0;
+}
+
+.filters-wrapper .slider-btn {
+  position: absolute;
+  bottom: -29%;
+  left: 49%;
+  background: #f1f2f6 !important;
+  padding: 3px 15px;
+  border-radius: 0 0 50% 50%;
+  box-shadow: 0 1px 5px rgba(0 0 0 / 0.25);
+  z-index: 39;
+}
+
+.filters-wrapper .slider-btn .fa-angle-down.up {
+  transform: rotate(180deg);
+}
+
+.date-filter input {
+  border: 1px solid #6c757d;
+  border-radius: 0;
+  width: 150px;
+}
+
+.date-filter .from-date-input {
+  border-radius: 0 5px 5px 0;
+}
+
+.date-filter .to-date-input {
+  border-radius: 5px 0 0 5px;
+}
+
+.date-filter input:focus {
+  border: 1px solid #6c757d !important;
+  outline: 0 none;
+}
+
+.date-filter button {
+  border-radius: 5px 0 0 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .filters-wrapper {
+    left: 0;
+    right: 0;
+    top: -330%;
+  }
+
+  .filters-wrapper ul {
+    flex-direction: column !important;
+  }
+
+  .filters-wrapper .slider-btn {
+    bottom: -15%;
+  }
 }
 
 /* Content styles */
@@ -332,6 +402,13 @@ body {
   box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
   height: 94%;
   overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  .content-inner {
+    margin: 0 5px;
+    padding: 15px 10px 15px 5px;
+  }
 }
 
 /* Authentication */
@@ -425,6 +502,29 @@ body {
   width: 15%;
 }
 
+@media only screen and (max-width: 600px) {
+  .request-list {
+    padding: 20px 5px 50px 10px;
+  }
+
+  .vacation-header {
+    padding: 10px !important;
+  }
+
+  .request-info {
+    flex-direction: column;
+    align-items: start !important;
+  }
+
+  .request-info .status {
+    padding: 10px 10px 0 10px;
+  }
+
+  .vacation-title {
+    min-width: fit-content;
+  }
+}
+
 /* Create Vacation/Profile page styles */
 .request-form-wrapper {
   padding: 30px 5px 50px 40px;
@@ -508,3 +608,5 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+/* Pagination */

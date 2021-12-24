@@ -16,15 +16,16 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, User $user) 
     {
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->position = $request->position;
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'position' => $request->position
+        ]);
 
         if($request->password) {
             $user->password = Hash::make($request->password);
+            $user->save();
         }
-
-        $user->save();
 
         session()->flash('successMessage', 'اطلاعات شما با موفقیت ویرایش شد');
 

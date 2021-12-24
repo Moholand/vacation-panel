@@ -1,6 +1,6 @@
-<div class="row flex-row-reverse">
+<div class="row flex-row-reverse justify-content-between position-relative">
 
-  <ul class="list-group flex-row-reverse px-5">
+  <ul class="list-group flex-row-reverse px-3 px-md-5">
     <li class="list-group-item bg-transparent px-0">
       <div class="dropdown dropdown-bell" data-user-id={{ $user->id }}>
         <button class="btn btn-secondary bg-transparent border-0 shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -84,7 +84,8 @@
     @endif
   </ul>
 
-  <ul class="list-group justify-content-center px-5 d-md-none ml-auto sidebar-show">
+  {{-- Sidebar show btn -- mobile mode --}}
+  <ul class="list-group justify-content-center px-3 d-md-none ml-auto sidebar-show">
     <li class="list-group-item bg-transparent">
       <button class="bg-transparent border-0">
         <i class="fas fa-bars fa-lg"></i>
@@ -92,4 +93,31 @@
     </li>
   </ul>
 
+  {{-- filters --}}
+  <div class="filters-wrapper text-center">
+    <ul class="list-group flex-row">
+      @yield('filters')
+    </ul>
+    <button class="bg-transparent border-0 d-flex slider-btn">
+      <i class="fas fa-angle-down fa-lg text-secondary"></i>
+    </button>
+  </div>
+
 </div>
+
+<script>
+  // Filters slider btn
+  let sliderBtn = document.querySelector('.filters-wrapper .slider-btn');
+  let filtersWrapper = document.querySelector('.filters-wrapper');
+  let sliderBtnIcom = document.querySelector('.filters-wrapper .slider-btn .fa-angle-down');
+
+  sliderBtn.addEventListener('click', function() {
+    if(filtersWrapper.classList.contains('show')) {
+      filtersWrapper.classList.remove('show');
+      sliderBtnIcom.classList.remove('up');
+    } else {
+      filtersWrapper.classList.add('show');
+      sliderBtnIcom.classList.add('up');
+    }
+  });
+</script>

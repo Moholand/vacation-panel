@@ -54,7 +54,7 @@
                 <div class="col-md-4">
                   <span class="font-weight-bold">از تاریخ:</span> <span>&#x200E;{{ $vacation->from_date }}</span>
                   @if($vacation->mode === 'daily')
-                    <span class="mr-5 font-weight-bold">تا تاریخ:</span> <span>&#x200E;{{ $vacation->to_date }}</span>
+                    <span class="mr-4 mr-md-5 font-weight-bold">تا تاریخ:</span> <span>&#x200E;{{ $vacation->to_date }}</span>
                   @endif
                 </div>
                 @if($vacation->mode === 'hourly')

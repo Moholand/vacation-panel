@@ -63,11 +63,14 @@ class VacationController extends Controller
 
     public function update(UpdateVacationRequest $request, Vacation $vacation)
     {
-        $vacation->title = $request->title;
-        $vacation->request_message = $request->request_message;
-        $vacation->type = $request->type;
-        $vacation->mode = $request->mode;
-        $vacation->from_date = $request->from_date;
+        $vacation->update([
+            'title' => $request->title,
+            'request_message' => $request->request_message,
+            'type' => $request->type,
+            'mode' => $request->mode,
+            'from_date' => $request->from_date
+        ]);
+
         if($request->mode === 'daily') {
             $vacation->to_date = $request->to_date;
         }
@@ -78,7 +81,6 @@ class VacationController extends Controller
         $vacation->save();
 
         session()->flash('successMessage', 'درخواست شما با موفقیت ویرایش شد');
-
         return redirect()->back();
     }
 

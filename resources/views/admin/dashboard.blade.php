@@ -1,5 +1,68 @@
 @extends('layouts.base')
 
+@push('stylesheets')
+  <link type="text/css" rel="stylesheet" href="{{ asset('css/jalalidatepicker.min.css') }}" />
+@endpush
+
+@section('filters')
+  {{-- PerPage options --}}
+  <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
+    <form>
+      <div class="form-group my-0">
+        <select class="form-control-sm perPage-select" name="perPage" onchange="this.form.submit()">
+          <option selected="true" disabled="disabled">فیلتر تعداد</option>
+          @for ($count = 10; $count <= 50; $count += 10)
+            <option 
+              value="{{ $count }}" 
+              {{ request()->get('perPage') == $count ? 'selected' : '' }}
+            >
+                {{ $count }}
+            </option>
+          @endfor
+        </select>
+      </div>
+    </form>
+  </li>
+
+  {{-- Date Range options --}}
+  <li class="list-group-item bg-transparent d-flex align-items-center date-filter py-4">
+    <form autocomplete="off">
+      <div class="form-row">
+        <div class="col-3">
+          <input 
+            type="text" 
+            name="fromDate"
+            class="form-control-sm from-date-input" 
+            placeholder="تاریخ شروع"
+            data-jdp
+            value="{{ request()->get('fromDate') ?? '' }}"
+            required
+          >
+        </div>
+        <div class="col-3">
+          <input 
+            type="text" 
+            name="toDate"
+            class="form-control-sm to-date-input" 
+            placeholder="تاریخ پایان"
+            data-jdp
+            value="{{ request()->get('toDate') ?? '' }}"
+            required
+          >
+        </div>
+        <div class="col-4">
+          <button 
+            type="submit" 
+            class="btn btn-secondary btn-sm"
+          >
+            اعمال فیلتر
+          </button>
+        </div>
+      </div>
+    </form>
+  </li>
+@endsection
+
 @section('content')
   <h4>همه‌ی درخواست‌ها</h4>
   <hr class="mb-0">
@@ -9,15 +72,17 @@
   <div class="request-list">
     <div id="accordion">
       @forelse($vacations as $key => $vacation)
+
         @php
           // Calculate Local date
           Verta::setStringformat('H:i Y-n-j');
           $request_date = new Verta($vacation->updated_at);
         @endphp
+        
         <div class="card mb-4">
           <div class="card-header py-2 px-4 d-flex justify-content-between align-items-center vacation-header" id="heading-{{ $key }}" data-toggle="collapse" data-target="#collapse-{{ $key }}" aria-expanded="false" aria-controls="collapse-{{ $key }}">
             <div class="request-info d-flex justify-content-between align-items-center">
-              <h6 class="mb-0 vacation-title">{{ $key + 1 }}) <span>نام:</span> {{ $vacation->user->name }} <span class="small font-weight-bold" dir="rtl">({{ $request_date }})</span></h6>
+              <h6 class="mb-0 vacation-title">{{ ($key + 1) + (($vacations->currentPage() - 1) * $vacations->perPage()) }}) <span>نام:</span> {{ $vacation->user->name }} <span class="small font-weight-bold" dir="rtl">({{ $request_date }})</span></h6>
               <div class="status font-weight-bold">
                 <span>وضعیت:</span>
                 <span class="mr-2 badge badge-{{ translate_status($vacation->status)['status_class'] }}">
@@ -83,11 +148,25 @@
             </div>
           </div>
         </div>
+
       @empty
         <div class="alert alert-danger p-4 text-center border-0 font-weight-bold">
           متأسفانه درخواستی یافت نشد !!!
         </div>
       @endforelse
+
+      {{ $vacations->onEachSide(2)->links('vendor.pagination.default') }}
+
     </div>
   </div>
 @endsection
+
+@push('scripts')
+  <script type="text/javascript" src="{{ asset('js/jalalidatepicker.min.js') }}"></script>
+  <script>
+    $( document ).ready(function() {
+      // Date picker start
+      jalaliDatepicker.startWatch();
+    });
+  </script>
+@endpush
