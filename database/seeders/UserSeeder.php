@@ -18,14 +18,13 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'محمد حسین اکبرزاده',
             'email' => 'mohammad@gmail.com',
-            'position' => 'توسعه‌دهنده بک‌اند',
+            'department_id' => 1,
             'password' => Hash::make('mha123456789'),
         ]);
 
         User::create([
             'name' => 'مدیر کل',
             'email' => 'Admin@gmail.com',
-            'position' => 'مدیر‌عامل',
             'password' => Hash::make('mha123456789'),
             'isVerified' => true,
             'isAdmin' => true,
