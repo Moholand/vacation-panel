@@ -7,6 +7,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminCreateDepartmentRequest;
+use App\Http\Requests\AdminUpdateDepartmentRequest;
 
 class AdminDepartmentController extends Controller
 {
@@ -34,7 +35,7 @@ class AdminDepartmentController extends Controller
         return redirect()->back();
     }
 
-    public function edit(Request $request, Department $department) {
+    public function edit(Department $department) {
         $users = User::all();
 
         return view('admin.departments.create', 
@@ -42,8 +43,21 @@ class AdminDepartmentController extends Controller
         ); 
     }
 
-    public function update(Department $department) 
+    public function update(AdminUpdateDepartmentRequest $request, Department $department) 
     {
-        //
+        $department->update([
+            'name' => $request->name,
+            'head' => $request->head
+        ]);
+
+        session()->flash('successMessage', 'واحد کاری جدید با موفقیت ایجاد شد');
+        return redirect()->back();
+    }
+
+    public function destroy(Department $department)
+    {
+        $department->delete();
+        session()->flash('successMessage', 'واحد کاری با موفقیت حذف شد');
+        return redirect()->back();
     }
 }

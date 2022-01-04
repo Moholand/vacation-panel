@@ -16,7 +16,7 @@
               value="{{ $count }}" 
               {{ request()->get('perPage') == $count ? 'selected' : '' }}
             >
-                {{ $count }}
+              {{ $count }}
             </option>
           @endfor
         </select>
@@ -137,7 +137,8 @@
                   <label for="status" class="font-weight-bold mb-0">تغییر وضعیت:</label>
                   <select name="status" id="status" class="form-control">
                     <option value="submitted" {{ ($vacation->status) == 'submitted' ? 'selected' : '' }}>ارسال شده</option>
-                    <option value="confirmed" {{ ($vacation->status) == 'confirmed' ? 'selected' : '' }}>تأیید</option>
+                    <option value="initial-approval" {{ ($vacation->status) == 'initial-approval' ? 'selected' : '' }}>تأیید اولیه</option>
+                    <option value="confirmed" {{ ($vacation->status) == 'confirmed' ? 'selected' : '' }}>تأیید نهایی</option>
                     <option value="refuse" {{ ($vacation->status) == 'refuse' ? 'selected' : '' }}>عدم تأیید</option>
                   </select>
                 </div>

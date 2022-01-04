@@ -18,9 +18,10 @@ class CreateVacationsTable extends Migration
             $table->string('title');
             $table->text('request_message');
             $table->text('response_message')->nullable();
-            $table->enum('status', ['submitted', 'confirmed', 'refuse']);
-            $table->enum('type', ['deserved', 'emergency']);
-            $table->enum('mode', ['daily', 'hourly']);
+            $table->enum('status', 
+                ['submitted', 'initial-approval', 'confirmed', 'refuse'])->default('submitted');
+            $table->enum('type', ['deserved', 'emergency'])->default('deserved');
+            $table->enum('mode', ['daily', 'hourly'])->default('daily');
             $table->bigInteger('user_id')->unsigned();
             $table->date('from_date');
             $table->date('to_date')->nullable();

@@ -21,7 +21,8 @@ class VacationFactory extends Factory
             'title' => $this->faker->realText(30),
             'request_message' => $this->faker->realText(200),
             'response_message' => $this->faker->realText(100),
-            'status' => $this->faker->randomElement(['confirmed', 'refuse', 'submitted']),
+            'status' => $this->faker
+                ->randomElement(['initial-approval', 'confirmed', 'refuse', 'submitted']),
             'type' => $this->faker->randomElement(['emergency', 'deserved']),
             'mode' => $this->faker->randomElement(['hourly', 'daily']),
             'from_date' => new Verta(now()),

@@ -26,7 +26,7 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => 'required|string',
             'email' => 'required|email|unique:users,email,' . auth()->user()->id,
-            'position' => 'required|string',
+            'department_id' => 'required|exists:departments,id',
             'password' => 'nullable|min:6'
         ];
     }

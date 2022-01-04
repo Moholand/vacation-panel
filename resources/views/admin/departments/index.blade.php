@@ -29,10 +29,22 @@
             <td>{{ $department->name }}</td>
             <td>{{ $department->administrator->name ?? 'نامشخص'}}</td>
             <td>{{ $department->users->count() }}</td>
-            <td>
+            <td class="d-flex align-items-center">
+              {{-- Edit Department --}}
               <a href="{{ route('departments.edit', ['department' => $department->id]) }}">
                 <i class="far fa-edit fa-lg text-info"></i>
               </a>
+              {{-- Delete Department --}}
+              <form 
+                action="{{ route('departments.destroy', ['department' => $department->id]) }}" 
+                method="POST"
+              >
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="bg-transparent border-0 mr-3">
+                  <i class="far fa-trash-alt fa-lg text-danger"></i>
+                </button>
+              </form>
             </td>
           </tr>
         @empty

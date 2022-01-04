@@ -42,12 +42,24 @@
 						</div>
 
 						<div class="form-group row">
-							<label for="position" class="col-md-4 col-form-label text-md-right font-weight-bold">عنوان شغلی:</label>
+							<label for="department_id" class="col-md-4 col-form-label text-md-right font-weight-bold">واحد کاری:</label>
 
 							<div class="col-md-6">
-								<input id="position" type="text" class="form-control @error('position') is-invalid @enderror" name="position" value="{{ old('position') }}" required autocomplete="position">
+								{{-- <input id="department_id" type="text" class="form-control @error('department_id') is-invalid @enderror" name="department_id" value="{{ old('department_id') }}" required autocomplete="department_id"> --}}
+								<select 
+									name="department_id" 
+									id="department_id" 
+									class="form-control @error('department_id') is-invalid @enderror" 
+									value="{{ old('department_id') }}" 
+									required
+								>
+									<option selected="true" disabled="disabled">انتخاب واحد کاری</option>
+									@foreach($departments as $department)
+										<option value="{{ $department->id }}">{{ $department->name }}</option>
+									@endforeach
+								</select>
 
-								@error('position')
+								@error('department_id')
 										<span class="invalid-feedback" role="alert">
 												<strong>{{ $message }}</strong>
 										</span>

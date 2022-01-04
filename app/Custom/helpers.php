@@ -4,8 +4,12 @@ if(!function_exists('translate_status')) {
   function translate_status($status) {
     switch($status) {
       case('confirmed'):
-        $status = 'تأیید';
+        $status = 'تأیید نهایی';
         $status_class = 'success';
+        break;
+      case('initial-approval'):
+        $status = 'تأیید اولیه';
+        $status_class = 'info';
         break;
       case('refuse'):
         $status = 'عدم تأیید';
@@ -13,7 +17,7 @@ if(!function_exists('translate_status')) {
         break;
       default:
         $status = 'ارسال شده';
-        $status_class = 'info';
+        $status_class = 'secondary';
     }
 
     return ['status' => $status, 'status_class' => $status_class];

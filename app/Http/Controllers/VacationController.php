@@ -27,12 +27,12 @@ class VacationController extends Controller
             $vacations = Vacation::where('user_id', auth()->user()->id)->orderBy('updated_at', 'DESC')->get();
         }
 
-        return view('vacation.dashboard', ['vacations' => $vacations]);
+        return view('user.dashboard', ['vacations' => $vacations]);
     }
 
     public function create()
     {
-        return view('vacation.create');
+        return view('user.create');
     }
 
     public function store(CreateVacationRequest $request) 
@@ -48,7 +48,6 @@ class VacationController extends Controller
             'to_hour' => $request->to_hour,
         ]);
 
-        $vacation->status = 'submitted';
         $vacation->save();
         
         session()->flash('successMessage', 'درخواست شما با موفقیت ثبت شد');
@@ -58,7 +57,7 @@ class VacationController extends Controller
 
     public function edit(Vacation $vacation) 
     {
-        return view('vacation.create', ['vacation' => $vacation]);
+        return view('user.create', ['vacation' => $vacation]);
     }
 
     public function update(UpdateVacationRequest $request, Vacation $vacation)

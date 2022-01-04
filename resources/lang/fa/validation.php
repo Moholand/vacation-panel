@@ -157,6 +157,7 @@ return [
         'day'                   => 'روز',
         'daily'                 => 'روزانه',
         'description'           => 'توضیحات',
+        'department_id'         => 'واحد کاری',
         'district'              => 'ناحیه',
         'email'                 => 'ایمیل',
         'excerpt'               => 'گزیده مطلب',

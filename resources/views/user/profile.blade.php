@@ -61,10 +61,29 @@
                         <label for="email" class="font-weight-bold">ایمیل:</label>
                         <input type="email" name="email" id="email" class="form-control" placeholder="آدرس ایمیل" value="{{ $user->email }}">
                       </div>
+
+                      {{-- User Department Update --}}
                       <div class="form-group">
-                        <label for="position" class="font-weight-bold">عنوان شغلی:</label>
-                        <input type="text" name="position" id="position" class="form-control" placeholder="عنوان شغلی" value="{{ $user->position }}">
+                        <label for="department_id" class="font-weight-bold">
+                          واحد کاری:
+                        </label>
+                        <select 
+                          name="department_id" 
+                          id="department_id"
+                          class="form-control"
+                          value="{{ $user->position }}">
+                        >
+                          @foreach($departments as $department)
+                            <option 
+                              value="{{ $department->id }}" 
+                              {{ $department->id === $user->department->id ? 'selected' : '' }}
+                            >
+                              {{ $department->name }}
+                            </option>
+                          @endforeach
+                        </select>
                       </div>
+                      
                     </div>
                     <div class="col-md-8">
                       <div class="form-group text-left">

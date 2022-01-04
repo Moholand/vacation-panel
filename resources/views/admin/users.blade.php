@@ -13,7 +13,7 @@
           <th scope="col">#</th>
           <th scope="col">نام ‌و ‌نام‌خوانوادگی</th>
           <th scope="col">آدرس ایمیل</th>
-          <th scope="col">عنوان شغلی</th>
+          <th scope="col">واحد کاری</th>
           <th scope="col">احراز هویت</th>
         </tr>
       </thead>
@@ -23,7 +23,7 @@
             <th scope="row">{{ ++$key }}</th>
             <td>{{ $employe->name }}</td>
             <td>{{ $employe->email }}</td>
-            <td>{{ $employe->position }}</td>
+            <td>{{ $employe->department->name ?? 'نامشخص' }}</td>
             <td class="d-flex align-items-center">
               <form action="{{ route('users.update', ['user' => $employe->id]) }}" method="POST">
                 @csrf

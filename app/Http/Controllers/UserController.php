@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
@@ -11,7 +12,7 @@ class UserController extends Controller
 {
     public function profile()
     {
-        return view('vacation.profile');
+        return view('user.profile', ['departments' => Department::all()]);
     }
 
     public function update(UserUpdateRequest $request, User $user) 
@@ -19,7 +20,7 @@ class UserController extends Controller
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'position' => $request->position
+            'department_id' => $request->department_id
         ]);
 
         if($request->password) {
