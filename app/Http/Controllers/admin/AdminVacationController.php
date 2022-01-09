@@ -18,25 +18,11 @@ class AdminVacationController extends Controller
         // 20 is the default if there is no perPage in the request
         $perPage = $request->perPage ?? 20; 
 
-        if($request->fromDate) {
-            //convert dates to gerogrian
-            $fromDate = implode('-', Verta::getGregorian(
-                explode('/', $request->fromDate)[0],
-                explode('/', $request->fromDate)[1],
-                explode('/', $request->fromDate)[2]
-            ));
-            
-            $toDate = implode('-', Verta::getGregorian(
-                explode('/', $request->toDate)[0],
-                explode('/', $request->toDate)[1],
-                explode('/', $request->toDate)[2]
-            ));
+        if($request->fromDate && $request->toDate) {
+            //convert dates to gerogrian -- return array of from and to dates
+            $dates = $this->dateToGerogrian($request->fromDate, $request->toDate);
 
-            // Delete the effect of clock
-            $fromDateStandard = Carbon::createFromFormat('Y-m-d', $fromDate)->startOfDay();
-            $toDateStandard = Carbon::createFromFormat('Y-m-d', $toDate)->endOfDay();
-
-            $vacations = Vacation::whereBetween('updated_at', [$fromDateStandard, $toDateStandard])
+            $vacations = Vacation::whereBetween('updated_at', [$dates['fromDate'], $dates['toDate']])
             ->orderBy('updated_at', 'DESC')
             ->paginate($perPage)
             ->withQueryString();
@@ -54,17 +40,42 @@ class AdminVacationController extends Controller
         $user = User::find($vacation->user_id);
 
         $vacation->response_message = $request->response_message;
-        $vacation->status = $request->status;
-        
-        if($vacation->isDirty('status')) {
-            $vacation->save();
-            // notify user about the request result
-            VacationStatusChange::dispatch($user, $vacation);
-        } else {
-            $vacation->save();
+        if($request->submit === 'confirm') {
+            $vacation->status = 'confirmed';
+        } elseif($request->submit === 'refuse') {
+            $vacation->status = 'refuse';
         }
 
-        session()->flash('successMessage', 'تغییرات با موفقیت ثبت شد');
-        return redirect()->back();
+        $vacation->save();
+
+        // notify user about the request result
+        VacationStatusChange::dispatch($user, $vacation);
+
+        return redirect()->back()->with('successMessage', 'تغییرات با موفقیت ثبت شد');
+    }
+
+    public function dateToGerogrian($fromDate, $toDate) : array
+    {
+        // Convert to gerogrian date manually -- any better idea??
+        $fromDateGerogrian = implode('-', Verta::getGregorian(
+            explode('/',$fromDate)[0],
+            explode('/',$fromDate)[1],
+            explode('/',$fromDate)[2]
+        ));
+        
+        $toDateGerogrian = implode('-', Verta::getGregorian(
+            explode('/',$toDate)[0],
+            explode('/',$toDate)[1],
+            explode('/',$toDate)[2]
+        ));
+
+        // Delete the effect of clock
+        $fromDateStandard = Carbon::createFromFormat('Y-m-d', $fromDateGerogrian)->startOfDay();
+        $toDateStandard = Carbon::createFromFormat('Y-m-d', $toDateGerogrian)->endOfDay();
+
+        return [
+            'fromDate' => $fromDateStandard,
+            'toDate' => $toDateStandard
+        ];
     }
 }

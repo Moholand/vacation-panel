@@ -98,8 +98,9 @@
     <ul class="list-group flex-row">
       @yield('filters')
     </ul>
-    <button class="bg-transparent border-0 d-flex slider-btn">
-      <i class="fas fa-angle-down fa-lg text-secondary"></i>
+    <button class="bg-transparent border-0 d-flex align-items-center text-secondary slider-btn">
+      <span class="ml-2">اعمال فیلتر</span>
+      <i class="fas fa-angle-down"></i>
     </button>
   </div>
 

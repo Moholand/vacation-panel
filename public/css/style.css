@@ -346,9 +346,9 @@ body {
 
 .filters-wrapper {
   position: absolute;
-  top: -160%;
-  left: 10%;
-  right: 10%;
+  top: -75px;
+  left: 3%;
+  right: 3%;
   border-radius: 0 0 10px 10px;
   box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
   background: #f1f2f6;
@@ -362,12 +362,14 @@ body {
 
 .filters-wrapper .slider-btn {
   position: absolute;
-  bottom: -29%;
-  left: 49%;
+  bottom: -30px;
+  right: 5%;
   background: #f1f2f6 !important;
-  padding: 3px 15px;
+  padding: 3px 10px;
   border-radius: 0 0 50% 50%;
-  box-shadow: 0 1px 5px rgba(0 0 0 / 0.25);
+  border: 2px solid #00000015 !important;
+  border-top: none !important;
+  font-size: 14px;
   z-index: 39;
 }
 
@@ -378,7 +380,7 @@ body {
 .date-filter input {
   border: 1px solid #6c757d;
   border-radius: 0;
-  width: 150px;
+  width: 100px;
 }
 
 .date-filter .from-date-input {
@@ -390,12 +392,13 @@ body {
 }
 
 .date-filter input:focus {
-  border: 1px solid #6c757d !important;
+  /* border: 1px solid #6c757d !important; */
   outline: 0 none;
 }
 
 .date-filter button {
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
+  transform: translateX(5px);
 }
 
 @media only screen and (max-width: 600px) {

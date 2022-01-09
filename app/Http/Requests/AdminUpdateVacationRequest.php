@@ -24,7 +24,7 @@ class AdminUpdateVacationRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'required|in:submitted,initial-approval,confirmed,refuse'
+            'response_message' => 'nullable|min:3|max:1000'
         ];
     }
 }

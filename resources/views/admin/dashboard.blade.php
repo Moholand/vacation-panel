@@ -7,9 +7,17 @@
 @section('filters')
   {{-- PerPage options --}}
   <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
-    <form>
+    <form id="perPage-form">
       <div class="form-group my-0">
-        <select class="form-control-sm perPage-select" name="perPage" onchange="this.form.submit()">
+        {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
+        @if(request()->fromDate && request()->toDate)
+          <input type="hidden" name="fromDate" value="{{ request()->fromDate ?? null }}"/>
+          <input type="hidden" name="toDate" value="{{ request()->toDate ?? null }}"/>
+        @endif
+        <select 
+          class="form-control-sm text-secondary border-0 perPage-select" 
+          id="perPageSelect" name="perPage" onchange="this.form.submit()"
+        >
           <option selected="true" disabled="disabled">فیلتر تعداد</option>
           @for ($count = 10; $count <= 50; $count += 10)
             <option 
@@ -27,23 +35,27 @@
   {{-- Date Range options --}}
   <li class="list-group-item bg-transparent d-flex align-items-center date-filter py-4">
     <form autocomplete="off">
+      {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
+      @if(request()->perPage)
+        <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
+      @endif
       <div class="form-row">
-        <div class="col-3">
+        <div class="col-4">
           <input 
             type="text" 
             name="fromDate"
-            class="form-control-sm from-date-input" 
+            class="form-control-sm border-0 from-date-input" 
             placeholder="تاریخ شروع"
             data-jdp
             value="{{ request()->get('fromDate') ?? '' }}"
             required
           >
         </div>
-        <div class="col-3">
+        <div class="col-4">
           <input 
             type="text" 
             name="toDate"
-            class="form-control-sm to-date-input" 
+            class="form-control-sm border-0 to-date-input" 
             placeholder="تاریخ پایان"
             data-jdp
             value="{{ request()->get('toDate') ?? '' }}"
@@ -65,7 +77,7 @@
 
 @section('content')
   <h4>همه‌ی درخواست‌ها</h4>
-  <hr class="mb-0">
+  <hr class="mb-0 header-line">
 
   @include('includes.successMessage')
 
@@ -85,7 +97,7 @@
               <h6 class="mb-0 vacation-title">{{ ($key + 1) + (($vacations->currentPage() - 1) * $vacations->perPage()) }}) <span>نام:</span> {{ $vacation->user->name }} <span class="small font-weight-bold" dir="rtl">({{ $request_date }})</span></h6>
               <div class="status font-weight-bold">
                 <span>وضعیت:</span>
-                <span class="mr-2 badge badge-{{ translate_status($vacation->status)['status_class'] }}">
+                <span class="mr-2 text-white badge badge-{{ translate_status($vacation->status)['status_class'] }}">
                   {{ translate_status($vacation->status)['status'] }}
                 </span>
               </div>
@@ -125,27 +137,36 @@
                 </div>
                 @endif
               </div>
-              <hr>
-              <form action="{{ route('admin.vacations.update', ['vacation' => $vacation->id]) }}" method="POST">
-                @csrf
-                @method('PATCH')
-                <div class="form-group">
-                  <label for="response_message" class="font-weight-bold">متن پاسخ:</label>
-                  <textarea class="form-control" name="response_message" id="response_message" cols="15" rows="3" placeholder="متن پاسخ">{{ $vacation->response_message }}</textarea>
-                </div>
-                <div class="form-group d-flex align-items-center change-status">
-                  <label for="status" class="font-weight-bold mb-0">تغییر وضعیت:</label>
-                  <select name="status" id="status" class="form-control">
-                    <option value="submitted" {{ ($vacation->status) == 'submitted' ? 'selected' : '' }}>ارسال شده</option>
-                    <option value="initial-approval" {{ ($vacation->status) == 'initial-approval' ? 'selected' : '' }}>تأیید اولیه</option>
-                    <option value="confirmed" {{ ($vacation->status) == 'confirmed' ? 'selected' : '' }}>تأیید نهایی</option>
-                    <option value="refuse" {{ ($vacation->status) == 'refuse' ? 'selected' : '' }}>عدم تأیید</option>
-                  </select>
-                </div>
-                <div class="form-group text-left">
-                  <input type="submit" class="btn btn-secondary font-weight-bold" value="اعمال تغییرات">
-                </div>
-              </form>
+              {{-- Only vacations with status of 'initial-approval' can be updated by admin  --}}
+              {{-- 'initial-approval' => Means vacations that confirmed by head of department --}}
+              @if($vacation->status === 'initial-approval')
+                <hr>
+                <form action="{{ route('admin.vacations.update', ['vacation' => $vacation->id]) }}" method="POST">
+                  @csrf
+                  @method('PATCH')
+
+                  <div class="form-group">
+                    <label for="response_message" class="font-weight-bold">متن پاسخ:</label>
+                    <textarea class="form-control" name="response_message" id="response_message" cols="15" rows="3" placeholder="متن پاسخ">{{ $vacation->response_message }}</textarea>
+                  </div>
+                  
+                  <div class="form-group mb-0 d-flex justify-content-end">
+                    <button type="submit" name="submit" value="confirm" class="btn btn-sm btn-success">
+                      تأیید
+                    </button>
+                    <button type="submit" name="submit" value="refuse" class="btn btn-sm btn-danger mr-2">
+                      عدم تأیید
+                    </button>
+                  </div>
+
+                </form>
+              @else
+                @if($vacation->response_message)
+                  <hr>
+                  <span class="font-weight-bold">متن پاسخ:</span>
+                  <p>{{ $vacation->response_message }}</p>
+                @endif
+              @endif
             </div>
           </div>
         </div>
@@ -169,5 +190,25 @@
       // Date picker start
       jalaliDatepicker.startWatch();
     });
+
+    // Submit form through GET and preserve already existing GET parameters
+    // function perPageFormSubmit() {
+    //   const perPageForm = document.getElementById('perPage-form');
+    //   const perPage = document.getElementById('perPageSelect');
+
+    //   // get query string values in JavaScript
+    //   const urlSearchParams = new URLSearchParams(window.location.search);
+    //   const params = Object.fromEntries(urlSearchParams.entries());   
+
+    //   perPageForm.action += `?`;
+    //   for (item in params) {
+    //     console.log(item, params[item]);
+    //     perPageForm.action += `${item}=${params[item]}&`;
+    //   }
+
+    //   console.log(perPageForm.action);
+
+    //   perPageForm.submit();
+    // }
   </script>
 @endpush

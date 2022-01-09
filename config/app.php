@@ -167,6 +167,7 @@ return [
          */
         Hekmatinasser\Verta\Laravel\VertaServiceProvider::class,
         Ybazli\Faker\FakerServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Verta' => Hekmatinasser\Verta\Verta::class,
         'Faker' => Ybazli\Faker\Facades\Faker::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ],
 
 ];

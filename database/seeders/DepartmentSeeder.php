@@ -16,7 +16,12 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         $departments = [
-            'واحد فرانت اند', 'واحد بک اند', 'واحد طراحی', 'منابع انسانی', 'واحد خدمات'
+            'واحد مدیریت',
+            'واحد فرانت اند',
+            'واحد بک اند',
+            'واحد طراحی',
+            'منابع انسانی',
+            'واحد خدمات'
         ];
 
         foreach($departments as $department) {
