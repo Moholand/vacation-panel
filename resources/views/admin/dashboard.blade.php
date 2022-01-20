@@ -190,25 +190,5 @@
       // Date picker start
       jalaliDatepicker.startWatch();
     });
-
-    // Submit form through GET and preserve already existing GET parameters
-    // function perPageFormSubmit() {
-    //   const perPageForm = document.getElementById('perPage-form');
-    //   const perPage = document.getElementById('perPageSelect');
-
-    //   // get query string values in JavaScript
-    //   const urlSearchParams = new URLSearchParams(window.location.search);
-    //   const params = Object.fromEntries(urlSearchParams.entries());   
-
-    //   perPageForm.action += `?`;
-    //   for (item in params) {
-    //     console.log(item, params[item]);
-    //     perPageForm.action += `${item}=${params[item]}&`;
-    //   }
-
-    //   console.log(perPageForm.action);
-
-    //   perPageForm.submit();
-    // }
   </script>
 @endpush

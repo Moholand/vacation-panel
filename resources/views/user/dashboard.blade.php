@@ -1,5 +1,80 @@
 @extends('layouts.base')
 
+@push('stylesheets')
+  <link type="text/css" rel="stylesheet" href="{{ asset('css/jalalidatepicker.min.css') }}" />
+@endpush
+
+@section('filters')
+  {{-- PerPage options --}}
+  <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
+    <form id="perPage-form">
+      <div class="form-group my-0">
+        {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
+        @if(request()->fromDate && request()->toDate)
+          <input type="hidden" name="fromDate" value="{{ request()->fromDate ?? null }}"/>
+          <input type="hidden" name="toDate" value="{{ request()->toDate ?? null }}"/>
+        @endif
+        <select 
+          class="form-control-sm text-secondary border-0 perPage-select" 
+          id="perPageSelect" name="perPage" onchange="this.form.submit()"
+        >
+          <option selected="true" disabled="disabled">فیلتر تعداد</option>
+          @for ($count = 10; $count <= 50; $count += 10)
+            <option 
+              value="{{ $count }}" 
+              {{ request()->get('perPage') == $count ? 'selected' : '' }}
+            >
+              {{ $count }}
+            </option>
+          @endfor
+        </select>
+      </div>
+    </form>
+  </li>
+
+  {{-- Date Range options --}}
+  <li class="list-group-item bg-transparent d-flex align-items-center date-filter py-4">
+    <form autocomplete="off">
+      {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
+      @if(request()->perPage)
+        <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
+      @endif
+      <div class="form-row">
+        <div class="col-4">
+          <input 
+            type="text" 
+            name="fromDate"
+            class="form-control-sm border-0 from-date-input" 
+            placeholder="تاریخ شروع"
+            data-jdp
+            value="{{ request()->get('fromDate') ?? '' }}"
+            required
+          >
+        </div>
+        <div class="col-4">
+          <input 
+            type="text" 
+            name="toDate"
+            class="form-control-sm border-0 to-date-input" 
+            placeholder="تاریخ پایان"
+            data-jdp
+            value="{{ request()->get('toDate') ?? '' }}"
+            required
+          >
+        </div>
+        <div class="col-4">
+          <button 
+            type="submit" 
+            class="btn btn-secondary btn-sm"
+          >
+            اعمال فیلتر
+          </button>
+        </div>
+      </div>
+    </form>
+  </li>
+@endsection
+
 @section('content')
   <h4>همه‌ی درخواست‌ها</h4>
   <hr class="mb-0">
@@ -94,6 +169,8 @@
         </div>
       @endforelse
     </div>
+
+    {{ $vacations->onEachSide(2)->links('vendor.pagination.default') }}
   </div>
 
   @include('includes.deleteModal')
@@ -101,7 +178,13 @@
 @endsection
 
 @push('scripts')
+  <script type="text/javascript" src="{{ asset('js/jalalidatepicker.min.js') }}"></script>
   <script>
+    $( document ).ready(function() {
+      // Date picker start
+      jalaliDatepicker.startWatch();
+    });
+
     // Confirm delete vacation request
     function confirmation(e) {
       e.preventDefault();
