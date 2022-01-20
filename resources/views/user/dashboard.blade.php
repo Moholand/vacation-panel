@@ -9,11 +9,14 @@
   <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
     <form id="perPage-form">
       <div class="form-group my-0">
+
         {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-        @if(request()->fromDate && request()->toDate)
+        @if(request()->fromDate || request()->toDate || request()->vacation_status)
           <input type="hidden" name="fromDate" value="{{ request()->fromDate ?? null }}"/>
           <input type="hidden" name="toDate" value="{{ request()->toDate ?? null }}"/>
+          <input type="hidden" name="vacation_status" value="{{ request()->vacation_status ?? null }}"/>
         @endif
+
         <select 
           class="form-control-sm text-secondary border-0 perPage-select" 
           id="perPageSelect" name="perPage" onchange="this.form.submit()"
@@ -32,12 +35,44 @@
     </form>
   </li>
 
+  {{-- Select Vacation status --}}
+  <li class="list-group-item bg-transparent d-flex align-items-center py-4">
+    <form>
+      <div class="form-group my-0">
+
+        {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
+        @if(request()->fromDate || request()->toDate || request()->perPage)
+          <input type="hidden" name="fromDate" value="{{ request()->fromDate ?? null }}"/>
+          <input type="hidden" name="toDate" value="{{ request()->toDate ?? null }}"/>
+          <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
+        @endif
+
+        <select class="form-control-sm text-secondary border-0" name="vacation_status" onchange="this.form.submit()">
+          <option value="">همه‌ی درخواست‌ها</option>
+          <option value="submitted" {{ request()->get('vacation_status') === 'submitted' ? 'selected' : '' }}>
+            ارسال شده
+          </option>
+          <option value="initial-approval" {{ request()->get('vacation_status') === 'initial-approval' ? 'selected' : '' }}>
+            تأیید اولیه
+          </option>
+          <option value="confirmed" {{ request()->get('vacation_status') === 'confirmed' ? 'selected' : '' }}>
+            تأیید نهایی
+          </option>
+          <option value="refuse" {{ request()->get('vacation_status') === 'refuse' ? 'selected' : '' }}>
+            عدم تأیید
+          </option>
+        </select>
+      </div>
+    </form>
+  </li>
+
   {{-- Date Range options --}}
   <li class="list-group-item bg-transparent d-flex align-items-center date-filter py-4">
     <form autocomplete="off">
       {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-      @if(request()->perPage)
+      @if(request()->perPage || request()->vacation_status)
         <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
+        <input type="hidden" name="vacation_status" value="{{ request()->vacation_status ?? null }}"/>
       @endif
       <div class="form-row">
         <div class="col-4">

@@ -25,6 +25,9 @@ class VacationController extends Controller
             ->when($request->search && $request->search !== null, function($query) use($request) {
                 $query->where('title', 'LIKE', '%' . $request->search . '%');
             })
+            ->when($request->vacation_status && $request->vacation_status !== null, function($query) use($request) {
+                $query->where('status', $request->vacation_status);
+            })
             ->when($request->fromDate && $request->toDate, function($query) use($request) {
                 //convert dates to gerogrian -- return array of from and to dates
                 $dates = $this->dateToGerogrian($request->fromDate, $request->toDate);
