@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\Vacation;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Hekmatinasser\Verta\Facades\Verta;
 use App\Http\Requests\CreateVacationRequest;
 use App\Http\Requests\UpdateVacationRequest;

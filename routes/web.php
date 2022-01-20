@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\VacationController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\VacationController;
 use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\TeammateVacationController;
 use App\Http\Controllers\Admin\AdminVacationController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
+use App\Http\Controllers\User\TeammateVacationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +42,5 @@ Route::middleware(['auth', 'admin.check'])->group(function () {
     Route::patch('/admin/vacations/{vacation}/update', [AdminVacationController::class, 'update'])->name('admin.vacations.update');
     
     Route::resource('/admin/users', AdminUserController::class)->only(['index', 'update']);
-    Route::resource('/admin/departments', AdminDepartmentController::class)
-        ->except('show');
+    Route::resource('/admin/departments', AdminDepartmentController::class)->except('show');
 });
