@@ -17,10 +17,6 @@ class VacationController extends Controller
 
     public function index(Request $request)
     {
-        if(auth()->user()->isAdmin) {
-            return redirect()->route('admin.dashboard');
-        }
-
         if($request->has('search') && $request->search !== null) {
             $vacations = Vacation::where('user_id', auth()->user()->id)->where('title', 'LIKE', '%' . $request->search . '%')->orderBy('updated_at', 'DESC')->get();
         } else {

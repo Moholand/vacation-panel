@@ -48,6 +48,10 @@ body {
   z-index: 20;
 }
 
+.alert-success {
+  z-index: 30;
+}
+
 /* Enter layout styles */
 .welcome-page {
   height: 100vh;

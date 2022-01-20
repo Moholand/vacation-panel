@@ -1,6 +1,7 @@
 <div class="row flex-row-reverse justify-content-between position-relative">
 
   <ul class="list-group flex-row-reverse px-3 px-md-5">
+    {{-- Notification --}}
     <li class="list-group-item bg-transparent px-0">
       <div class="dropdown dropdown-bell" data-user-id={{ $user->id }}>
         <button class="btn btn-secondary bg-transparent border-0 shadow-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,14 +71,14 @@
         @endif
       </div>
     </li>
-    @if(request()->is('*vacations'))
+
+    {{-- Search --}}
+    @if(request()->is('*vacations') || request()->is('admin/users'))
     <li class="list-group-item bg-transparent search px-0">
       <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" name="search" placeholder="جستجوی عنوان مرخصی ...">
+        <input class="form-control mr-sm-2" type="search" name="search" placeholder="جستجو ...">
         <button class="btn border-0 shadow-none" type="submit">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-search text-secondary" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>
+          <i class="fas fa-search text-secondary fa-lg"></i>
         </button>
       </form>
     </li>
