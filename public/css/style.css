@@ -299,9 +299,9 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-  .sidebar-hide {
+  /* .sidebar-hide {
 
-  }
+  } */
 }
 
 /* Content Header */
@@ -409,7 +409,7 @@ body {
   .filters-wrapper {
     left: 0;
     right: 0;
-    top: -330%;
+    top: -140px;
   }
 
   .filters-wrapper ul {
@@ -417,7 +417,17 @@ body {
   }
 
   .filters-wrapper .slider-btn {
-    bottom: -15%;
+    bottom: -17%;
+    right: 20%;
+    font-size: 10px;
+  }
+
+  .filters-wrapper input, .filters-wrapper select, .filters-wrapper button {
+    font-size: 10px;
+  }
+
+  .date-filter input{
+    margin-left: 10px;
   }
 }
 

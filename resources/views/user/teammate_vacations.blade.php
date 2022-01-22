@@ -6,7 +6,7 @@
 
 @section('filters')
   {{-- PerPage options --}}
-  <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
+  <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 pt-3 pb-2 py-md-4">
     <form id="perPage-form">
       <div class="form-group my-0">
 
@@ -36,7 +36,7 @@
   </li>
 
   {{-- Select Vacation status --}}
-  <li class="list-group-item bg-transparent d-flex align-items-center py-4">
+  <li class="list-group-item bg-transparent d-flex align-items-center py-2 py-md-4">
     <form>
       <div class="form-group my-0">
 
@@ -67,7 +67,7 @@
   </li>
 
   {{-- Date Range options --}}
-  <li class="list-group-item bg-transparent d-flex align-items-center date-filter py-4">
+  <li class="list-group-item bg-transparent d-flex justify-content-center align-items-center date-filter pb-3 pt-2 py-md-4">
     <form autocomplete="off">
       {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
       @if(request()->perPage || request()->vacation_status)
