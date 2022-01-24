@@ -25,4 +25,9 @@ class Vacation extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return Verta($value)->formatDifference(); //Also can use another format (Verta($value)->format('H:i Y-n-j'))
+    }
 }

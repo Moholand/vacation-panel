@@ -125,15 +125,22 @@
   <div class="request-list">
     <div id="accordion">
       @forelse($vacations as $key => $vacation)
-        @php
-          // Calculate Local date
-          Verta::setStringformat('H:i Y-n-j');
-          $request_date = new Verta($vacation->updated_at);
-        @endphp
+
         <div class="card mb-4">
-          <div class="card-header py-2 px-4 d-flex justify-content-between align-items-center vacation-header" id="heading-{{ $key }}" data-toggle="collapse" data-target="#collapse-{{ $key }}" aria-expanded="false" aria-controls="collapse-{{ $key }}">
+          <div 
+            class="card-header py-2 px-4 d-flex justify-content-between align-items-center vacation-header" 
+            id="heading-{{ $key }}" 
+            data-toggle="collapse" 
+            data-target="#collapse-{{ $key }}"
+          >
+
             <div class="request-info d-flex justify-content-between align-items-center">
-              <h6 class="mb-0 vacation-title">{{ $key + 1 }}) <span>عنوان:</span> {{ $vacation->title }} <span class="small font-weight-bold" dir="rtl">({{ $request_date }})</span></h6> 
+              <h6 class="mb-0 vacation-title">
+                {{ ($key + 1) + (($vacations->currentPage() - 1) * $vacations->perPage()) }})
+                <span>عنوان:</span> 
+                {{ $vacation->title }} 
+                <span class="small font-weight-bold" dir="rtl">({{ $vacation->updated_at }})</span>
+              </h6> 
               <div class="status font-weight-bold">
                 <span>وضعیت:</span>
                 <span class="mr-2 text-white badge badge-{{ translate_status($vacation->status)['status_class'] }}">
@@ -141,11 +148,13 @@
                 </span>
               </div>
             </div>
+
             <span class="btn btn-link">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
               </svg>
             </span>
+
           </div>
       
           <div id="collapse-{{ $key }}" class="collapse" aria-labelledby="heading-{{ $key }}" data-parent="#accordion">
