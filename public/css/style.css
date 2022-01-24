@@ -312,8 +312,10 @@ body {
 }
 
 .notification-counter {
-  font-size: 70%;
-  transform: translate(-10px, 5px);
+  font-size: 60%;
+  width: 12px;
+  height: 12px;
+  transform: translate(-10px, -5px);
 }
 
 .read .notification-counter {
@@ -322,6 +324,17 @@ body {
 
 .read .bi-bell {
   color: #6c757d !important;
+}
+
+.dropdown-bell .dropdown-menu {
+  max-height: 500px;
+  width: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dropdown-bell .dropdown-menu .dropdown-item {
+  white-space: unset !important;
 }
 
 .search input {
