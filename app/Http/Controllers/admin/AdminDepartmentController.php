@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Department;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminCreateDepartmentRequest;
 use App\Http\Requests\AdminUpdateDepartmentRequest;
@@ -20,44 +19,30 @@ class AdminDepartmentController extends Controller
 
     public function create() 
     {
-        return view('admin.departments.create', 
-            ['users' => User::all()]
-        );
+        return view('admin.departments.create', ['users' => User::all()]);
     }
 
     public function store(AdminCreateDepartmentRequest $request) {
-        Department::create([
-            'name' => $request->name,
-            'head' => $request->head
-        ]);
+        Department::create( $request->only(['name', 'head']) );
 
-        session()->flash('successMessage', 'واحد کاری جدید با موفقیت ایجاد شد');
-        return redirect()->back();
+        return redirect()->back()->with('successMessage', 'واحد کاری جدید با موفقیت ایجاد شد');
     }
 
     public function edit(Department $department) {
-        $users = User::all();
-
-        return view('admin.departments.create', 
-            ['department' => $department, 'users' => $users]
-        ); 
+         return view('admin.departments.create', ['department' => $department, 'users' => User::all()]); 
     }
 
     public function update(AdminUpdateDepartmentRequest $request, Department $department) 
     {
-        $department->update([
-            'name' => $request->name,
-            'head' => $request->head
-        ]);
+        $department->update( $request->only(['name', 'head']) );
 
-        session()->flash('successMessage', 'واحد کاری جدید با موفقیت ایجاد شد');
-        return redirect()->back();
+        return redirect()->back()->with('successMessage', 'واحد کاری با موفقیت ویرایش شد');
     }
 
     public function destroy(Department $department)
     {
         $department->delete();
-        session()->flash('successMessage', 'واحد کاری با موفقیت حذف شد');
-        return redirect()->back();
+        
+        return redirect()->back()->with('successMessage', 'واحد کاری با موفقیت حذف شد');
     }
 }

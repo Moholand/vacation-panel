@@ -3,7 +3,7 @@
 @section('content')
   <div class="d-flex justify-content-between">
     <h4>واحد‌های کاری</h4>
-    <a class="btn btn-secondary" href="{{ route('departments.create') }}">
+    <a class="btn btn-outline-secondary ml-3" href="{{ route('departments.create') }}">
       واحد کاری جدید
     </a>
   </div>
