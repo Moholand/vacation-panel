@@ -28,7 +28,7 @@
             <th scope="row">{{ ++$key }}</th>
             <td>{{ $department->name }}</td>
             <td>{{ $department->administrator->name ?? 'نامشخص'}}</td>
-            <td>{{ $department->users->count() }}</td>
+            <td>{{ $department->employees->count() }}</td>
             <td class="d-flex align-items-center">
               {{-- Edit Department --}}
               <a href="{{ route('departments.edit', ['department' => $department->id]) }}">

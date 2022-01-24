@@ -13,7 +13,7 @@ class AdminDepartmentController extends Controller
 {
     public function index() 
     {
-        $departments = Department::all();
+        $departments = Department::with(['administrator', 'employees'])->get();
 
         return view('admin.departments.index', ['departments' => $departments]);
     }
