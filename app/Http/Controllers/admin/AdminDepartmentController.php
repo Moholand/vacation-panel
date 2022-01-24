@@ -13,9 +13,9 @@ class AdminDepartmentController extends Controller
 {
     public function index() 
     {
-        return view('admin.departments.index', 
-            ['departments' => Department::all()]
-        );
+        $departments = Department::all();
+
+        return view('admin.departments.index', ['departments' => $departments]);
     }
 
     public function create() 

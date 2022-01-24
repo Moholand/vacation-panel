@@ -357,6 +357,11 @@ body {
   padding-left: 10px; 
 }
 
+.search .fa-search {
+  font-size: 1.2em;
+  transform: translateY(1px);
+}
+
 .perPage-select {
   cursor: pointer;
 }
