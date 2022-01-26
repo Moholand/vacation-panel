@@ -15,22 +15,27 @@ class AdminVacationController extends Controller
 {
     public function dashboard(Request $request)
     {
-        // 20 is the default if there is no perPage in the request
-        $perPage = $request->perPage ?? 20; 
+        $perPage = $request->perPage ?? 20; // 20 is the default perPage
 
-        if($request->fromDate && $request->toDate) {
+        $vacations = Vacation::with('user')
+        ->when($request->search && $request->search !== null, function($query) use($request) {
+            // Search in the username column - notice user comes with eager loading
+            $query->whereHas('user', function($nested_query) use($request) {
+                $nested_query->where('name', 'LIKE', '%' . $request->search . '%');
+            });
+        })
+        ->when($request->vacation_status && $request->vacation_status !== null, function($query) use($request) {
+            $query->where('status', $request->vacation_status);
+        })
+        ->when($request->fromDate && $request->toDate, function($query) use($request) {
             //convert dates to gerogrian -- return array of from and to dates
             $dates = $this->dateToGerogrian($request->fromDate, $request->toDate);
 
-            $vacations = Vacation::whereBetween('updated_at', [$dates['fromDate'], $dates['toDate']])
-            ->orderBy('updated_at', 'DESC')
-            ->paginate($perPage)
-            ->withQueryString();
-        } else {
-            $vacations = Vacation::orderBy('updated_at', 'DESC')
-            ->paginate($perPage)
-            ->withQueryString();
-        }
+            $query->whereBetween('updated_at', [$dates['fromDate'], $dates['toDate']]);
+        })
+        ->orderBy('updated_at', 'DESC')
+        ->paginate($perPage)
+        ->withQueryString();
         
         return view('admin.dashboard', ['vacations' => $vacations]);
     }

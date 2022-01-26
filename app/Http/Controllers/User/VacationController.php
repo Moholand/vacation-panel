@@ -19,7 +19,7 @@ class VacationController extends Controller
 
     public function index(Request $request)
     {
-        $perPage = $request->perPage ?? 10; // 10 is the default if there is no perPage in the request
+        $perPage = $request->perPage ?? 10; // 10 is the default perPage
 
         $vacations = Vacation::where('user_id', auth()->user()->id)
             ->when($request->search && $request->search !== null, function($query) use($request) {
