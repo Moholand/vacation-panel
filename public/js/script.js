@@ -26,3 +26,8 @@ sidebarShow.addEventListener('click', function() {
 sidebarHide.addEventListener('click', function() {
   sidebar.classList.remove('show');
 });
+
+// Remove alert message from dom
+$(document).on('click', '.alert-success .close-message', function() {
+  $(this).parent().remove();
+});
