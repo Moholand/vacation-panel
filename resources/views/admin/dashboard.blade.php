@@ -10,7 +10,7 @@
     <form id="perPage-form">
       <div class="form-group my-0">
         {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-        @if(request()->fromDate && request()->toDate)
+        @if(request()->fromDate || request()->toDate || request()->vacation_status)
           <input type="hidden" name="fromDate" value="{{ request()->fromDate ?? null }}"/>
           <input type="hidden" name="toDate" value="{{ request()->toDate ?? null }}"/>
           <input type="hidden" name="vacation_status" value="{{ request()->vacation_status ?? null }}"/>
@@ -65,7 +65,7 @@
   <li class="list-group-item bg-transparent d-flex align-items-center date-filter py-4">
     <form autocomplete="off">
       {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-      @if(request()->perPage)
+      @if(request()->perPage || request()->vacation_status)
         <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
         <input type="hidden" name="vacation_status" value="{{ request()->vacation_status ?? null }}"/>
       @endif
@@ -93,12 +93,7 @@
           >
         </div>
         <div class="col-4">
-          <button 
-            type="submit" 
-            class="btn btn-secondary btn-sm"
-          >
-            اعمال فیلتر
-          </button>
+          <button type="submit" class="btn btn-outline-secondary btn-sm">اعمال فیلتر</button>
         </div>
       </div>
     </form>

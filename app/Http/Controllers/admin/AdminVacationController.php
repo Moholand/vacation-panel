@@ -17,7 +17,7 @@ class AdminVacationController extends Controller
     {
         $perPage = $request->perPage ?? 20; // 20 is the default perPage
 
-        $vacations = Vacation::with('user')
+        $vacations = Vacation::with('user')->where('status', '<>', 'submitted')
         ->when($request->search && $request->search !== null, function($query) use($request) {
             // Search in the username column - notice user comes with eager loading
             $query->whereHas('user', function($nested_query) use($request) {
