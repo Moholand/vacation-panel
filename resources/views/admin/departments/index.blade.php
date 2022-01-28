@@ -3,7 +3,7 @@
 @section('content')
   <div class="d-flex justify-content-between">
     <h4>واحد‌های کاری</h4>
-    <a class="btn btn-outline-secondary ml-3" href="{{ route('departments.create') }}">
+    <a class="btn btn-outline-secondary ml-3" href="{{ route('admin.departments.create') }}">
       واحد کاری جدید
     </a>
   </div>
@@ -31,12 +31,12 @@
             <td>{{ $department->employees->count() }}</td>
             <td class="d-flex align-items-center">
               {{-- Edit Department --}}
-              <a href="{{ route('departments.edit', ['department' => $department->id]) }}">
+              <a href="{{ route('admin.departments.edit', ['department' => $department->id]) }}">
                 <i class="far fa-edit fa-lg text-info"></i>
               </a>
               {{-- Delete Department --}}
               <form 
-                action="{{ route('departments.destroy', ['department' => $department->id]) }}" 
+                action="{{ route('admin.departments.destroy', ['department' => $department->id]) }}" 
                 method="POST"
               >
                 @csrf

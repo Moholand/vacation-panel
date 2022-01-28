@@ -64,7 +64,7 @@
             <td>{{ $employe->email }}</td>
             <td>{{ $employe->department->name ?? 'نامشخص' }}</td>
             <td class="d-flex align-items-center">
-              <form action="{{ route('users.update', ['user' => $employe->id]) }}" method="POST" id="userUpdateForm">
+              <form action="{{ route('admin.users.update', ['user' => $employe->id]) }}" method="POST" id="userUpdateForm">
                 @csrf
                 @method("PATCH")
                 

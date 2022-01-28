@@ -13,7 +13,7 @@ use App\Http\Requests\AdminUpdateVacationRequest;
 
 class AdminVacationController extends Controller
 {
-    public function dashboard(Request $request)
+    public function index(Request $request)
     {
         $perPage = $request->perPage ?? 20; // 20 is the default perPage
 

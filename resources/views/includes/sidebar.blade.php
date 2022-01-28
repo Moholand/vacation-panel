@@ -23,24 +23,24 @@
     {{-- Admin Sidebar --}}
     @if($user->isAdmin)
       <ul class="list-group">
-        <li class="list-group-item mb-2 pr-0 {{ request()->is('admin/dashboard') ? 'active' : ''}}">
-          <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center text-decoration-none">
+        <li class="list-group-item mb-2 pr-0 {{ Route::is('admin.vacations.index') ? 'active' : ''}}">
+          <a href="{{ route('admin.vacations.index') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-files w-25" viewBox="0 0 16 16">
               <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/>
             </svg>
             <span>همه‌ی درخواست‌ها</span>
           </a>
         </li>
-        <li class="list-group-item mb-2 pr-0 {{ request()->is('admin/users') ? 'active' : ''}}">
-          <a href="{{ route('users.index') }}" class="d-flex align-items-center text-decoration-none">
+        <li class="list-group-item mb-2 pr-0 {{ Route::is('admin.users.index') ? 'active' : ''}}">
+          <a href="{{ route('admin.users.index') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people w-25" viewBox="0 0 16 16">
               <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
             </svg>
             <span>کاربر‌ها</span>
           </a>
         </li>
-        <li class="list-group-item pr-0 {{ request()->is('admin/departments') ? 'active' : ''}}">
-          <a href="{{ route('departments.index') }}" class="d-flex align-items-center text-decoration-none">
+        <li class="list-group-item pr-0 {{ Route::is('admin.departments.index') ? 'active' : ''}}">
+          <a href="{{ route('admin.departments.index') }}" class="d-flex align-items-center text-decoration-none">
             <i class="far fa-building w-25"></i>
             <span>واحد‌های کاری</span>
           </a>
@@ -49,7 +49,7 @@
     @else
       {{-- User Sidebar --}}
       <ul class="list-group">
-        <li class="list-group-item pr-0 mb-2 {{ request()->is('vacations') ? 'active' : '' }}">
+        <li class="list-group-item pr-0 mb-2 {{ Route::is('vacations.index') ? 'active' : '' }}">
           <a href="{{ route('vacations.index') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-richtext w-25" viewBox="0 0 16 16">
               <path d="M7 4.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V7.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V7s1.54-1.274 1.639-1.208zM5 9a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
@@ -58,7 +58,7 @@
             <span>داشبورد</span>
           </a>
         </li>
-        <li class="list-group-item pr-0 mb-2 {{ request()->is('vacations/create') ? 'active' : ''}}">
+        <li class="list-group-item pr-0 mb-2 {{ Route::is('vacations.create') ? 'active' : ''}}">
           <a href="{{ route('vacations.create') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cloud-plus w-25" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
@@ -67,7 +67,7 @@
             <span>درخواست جدید</span>
           </a>
         </li>
-        <li class="list-group-item pr-0 mb-2 {{ request()->is('profile') ? 'active' : ''}}">
+        <li class="list-group-item pr-0 mb-2 {{ Route::is('profile') ? 'active' : ''}}">
           <a href="{{ route('profile') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-person w-25" viewBox="0 0 16 16">
               <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
@@ -78,7 +78,7 @@
         </li>
         {{-- Check if current user is administrator of this department or not --}}
         @if($user->id === $user->department->administrator->id)
-        <li class="list-group-item pr-0 mb-2 {{ request()->is('teammate-vacations') ? 'active' : ''}}">
+        <li class="list-group-item pr-0 mb-2 {{ Route::is('teammate-vacations.index') ? 'active' : ''}}">
           <a 
             href="{{ route('teammate-vacations.index') }}" 
             class="d-flex align-items-center text-decoration-none"

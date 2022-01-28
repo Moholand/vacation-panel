@@ -26,8 +26,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::middleware(['auth'])->group(function () {
+    // User routes
     Route::resource('/vacations', VacationController::class)->except('show');
 
     // Can be profile resource???
@@ -35,12 +35,11 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
 
     Route::resource('/teammate-vacations', TeammateVacationController::class)->only('index', 'update');
-});
 
-Route::middleware(['auth', 'admin.check'])->group(function () {
-    Route::get('/admin/dashboard', [AdminVacationController::class, 'dashboard'])->name('admin.dashboard');
-    Route::patch('/admin/vacations/{vacation}/update', [AdminVacationController::class, 'update'])->name('admin.vacations.update');
-    
-    Route::resource('/admin/users', AdminUserController::class)->only(['index', 'update']);
-    Route::resource('/admin/departments', AdminDepartmentController::class)->except('show');
+    // Admin routes
+    Route::prefix('/admin')->name('admin.')->middleware('admin.check')->group(function () {
+        Route::resource('/vacations', AdminVacationController::class)->only(['index', 'update']);
+        Route::resource('/users', AdminUserController::class)->only(['index', 'update']);
+        Route::resource('/departments', AdminDepartmentController::class)->except('show');
+    });
 });

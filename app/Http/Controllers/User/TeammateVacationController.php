@@ -54,18 +54,18 @@ class TeammateVacationController extends Controller
 
     public function getTeammatesIds() 
     {
-        $user_ids = [];
+        $teammate_ids = [];
 
-        $users = auth()->user()->department()->with(['users'])
+        $employees = auth()->user()->department()->with(['employees'])
         ->get()
-        ->pluck('users')
+        ->pluck('employees')
         ->collapse();
 
-        foreach ($users as $user) {
-            array_push($user_ids, $user->id);
+        foreach ($employees as $employer) {
+            array_push($teammate_ids, $employer->id);
         }
 
-        return $user_ids;
+        return $teammate_ids;
     }
 
     public function dateToGerogrian($fromDate, $toDate) : array
