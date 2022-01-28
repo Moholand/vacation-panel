@@ -23,12 +23,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                // return redirect(RouteServiceProvider::HOME);
+
                 $role = Auth::user()->isAdmin; 
     
                 switch ($role) {
                     case true:
-                        return redirect('/admin/dashboard');
+                        return redirect('/admin/vacations');
                         break;
             
                     default:

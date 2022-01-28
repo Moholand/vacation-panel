@@ -22,8 +22,8 @@
         <div class="card p-5">
           <form 
             action="{{ isset($department) 
-              ? route('departments.update', ['department' => $department->id]) 
-              : route('departments.store') }}" 
+              ? route('admin.departments.update', ['department' => $department->id]) 
+              : route('admin.departments.store') }}" 
             method="POST"
           >
             @csrf
