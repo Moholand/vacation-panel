@@ -8,10 +8,12 @@
         </button>
       </div>
       <div class="modal-body">
-        آیا مایل به حذف می‌باشید؟
+        آیا مایل به
+        <span class="font-weight-bold">{{ $title }}</span>
+        می‌باشید؟
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="deleteBtn">حذف</button>
+        <button type="button" class="btn btn-success" id="confirmBtn">تأیید</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">بازگشت</button>
       </div>
     </div>

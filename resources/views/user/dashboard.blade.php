@@ -217,8 +217,7 @@
     {{ $vacations->onEachSide(2)->links('vendor.pagination.default') }}
   </div>
 
-  <x-delete-modal></x-delete-modal>
-
+  <x-confirm-modal title="حذف درخواست مرخصی"></x-confirm-modal>
 @endsection
 
 @push('scripts')
@@ -238,7 +237,7 @@
       $('#confirmModal').modal('show');
 
       $('#confirmModal').on('shown.bs.modal', function(e) {
-        $('#deleteBtn').on('click', function() {
+        $('#confirmBtn').on('click', function() {
           form.submit();
         });
       })

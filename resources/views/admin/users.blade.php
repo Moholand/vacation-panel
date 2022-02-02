@@ -88,7 +88,7 @@
                   value="unverified" 
                   class="border-0 bg-transparent {{ $employe->isVerified ? 'text-secondary' : 'text-danger' }} mr-1" 
                   title="عدم تأیید"
-                  onclick="confirmation(event, 'unverified')"
+                  {{-- onclick="confirmation(event, 'unverified')" --}}
                 >
                   <i class="fas fa-user-times fa-lg"></i>
                 </button>
@@ -107,8 +107,7 @@
 
   </div>
 
-  @include('includes.adminUserConfirmModal');
-
+  <x-confirm-modal title="تأیید کاربر"></x-confirm-modal>
 @endsection
 
 @push('scripts')
@@ -125,7 +124,7 @@
 
       $('#confirmModal').on('shown.bs.modal', function(e) {
         $('#confirmBtn').on('click', function() {
-          $(form).submit();
+          form.submit();
         });
       })
     }

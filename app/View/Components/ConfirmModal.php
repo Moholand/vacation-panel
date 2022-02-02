@@ -4,16 +4,18 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class DeleteModal extends Component
+class ConfirmModal extends Component
 {
+    public $title;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(String $title)
     {
-        //
+        $this->title = $title;
     }
 
     /**
@@ -23,6 +25,6 @@ class DeleteModal extends Component
      */
     public function render()
     {
-        return view('components.delete-modal');
+        return view('components.confirm-modal');
     }
 }

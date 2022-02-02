@@ -56,7 +56,7 @@
     </table>
   </div>
 
-  <x-delete-modal></x-delete-modal>
+  <x-confirm-modal title="حذف واحد کاری"></x-confirm-modal>
 @endsection
 
 @push('scripts')
@@ -70,7 +70,7 @@
       $('#confirmModal').modal('show');
 
       $('#confirmModal').on('shown.bs.modal', function(e) {
-        $('#deleteBtn').on('click', function() {
+        $('#confirmBtn').on('click', function() {
           form.submit();
         });
       })
