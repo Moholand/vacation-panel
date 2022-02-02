@@ -217,7 +217,7 @@
     {{ $vacations->onEachSide(2)->links('vendor.pagination.default') }}
   </div>
 
-  @include('includes.deleteModal')
+  <x-delete-modal></x-delete-modal>
 
 @endsection
 
@@ -232,12 +232,14 @@
     // Confirm delete vacation request
     function confirmation(e) {
       e.preventDefault();
+
+      let form = e.target.parentElement.parentElement;
       
       $('#confirmModal').modal('show');
 
       $('#confirmModal').on('shown.bs.modal', function(e) {
         $('#deleteBtn').on('click', function() {
-          $('#deleteForm').submit();
+          form.submit();
         });
       })
     }

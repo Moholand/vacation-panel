@@ -41,7 +41,7 @@
               >
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="bg-transparent border-0 mr-3">
+                <button onclick="confirmation(event)" type="submit" class="bg-transparent border-0 mr-3">
                   <i class="far fa-trash-alt fa-lg text-danger"></i>
                 </button>
               </form>
@@ -55,4 +55,25 @@
       </tbody>
     </table>
   </div>
+
+  <x-delete-modal></x-delete-modal>
 @endsection
+
+@push('scripts')
+  <script>
+    // Confirm delete department 
+    function confirmation(e) {
+      e.preventDefault();
+
+      let form = e.target.parentElement.parentElement;
+      
+      $('#confirmModal').modal('show');
+
+      $('#confirmModal').on('shown.bs.modal', function(e) {
+        $('#deleteBtn').on('click', function() {
+          form.submit();
+        });
+      })
+    }
+  </script>
+@endpush
