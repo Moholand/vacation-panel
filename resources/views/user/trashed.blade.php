@@ -111,11 +111,7 @@
 @endsection
 
 @section('content')
-  <div class="d-flex justify-content-between align-items-center">
-    <h4>{{ Route::is('vacations.index') ? 'همه‌ی درخواست‌ها' :
-     'زباله‌دان' }}</h4>
-    <a href="{{ route('vacations.trashed') }}" class="btn btn-outline-danger">زباله‌دان</a>
-  </div>
+  <h4>همه‌ی درخواست‌ها</h4>
   <hr class="mb-0">
 
   @include('includes.successMessage')

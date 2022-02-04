@@ -86,8 +86,19 @@ class VacationController extends Controller
     public function destroy(Vacation $vacation) 
     {
         $vacation->delete();
+        return redirect()->back()->with('successMessage', 'درخواست شما با موفقیت حذف گردید');
+    }
 
-        session()->flash('successMessage', 'درخواست شما با موفقیت حذف گردید');
-        return redirect()->back();
+    public function trashed(Request $request)
+    {
+        $vacations = Vacation::onlyTrashed()
+        ->where('user_id', auth()->user()->id)
+        ->searchInTitle()
+        ->filterByDate()
+        ->orderBy('updated_at', 'DESC')
+        ->paginate($request->perPage ?? 10) // 10 is the default perPage
+        ->withQueryString();
+
+    return view('user.dashboard', compact('vacations'));
     }
 }

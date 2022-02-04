@@ -6,11 +6,12 @@ use App\Models\User;
 use App\Traits\VacationFilter;
 use App\Traits\VacationSearch;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vacation extends Model
 {
-    use HasFactory, VacationSearch, VacationFilter;
+    use HasFactory, SoftDeletes, VacationSearch, VacationFilter;
 
     protected $fillable = [
         'title', 

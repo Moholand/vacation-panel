@@ -29,6 +29,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     // User routes
     Route::resource('/vacations', VacationController::class)->except('show');
+    Route::get('/vacations/trashed', [VacationController::class, 'trashed'])->name('vacations.trashed');
 
     // Can be profile resource???
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
