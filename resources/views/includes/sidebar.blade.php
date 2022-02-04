@@ -39,7 +39,7 @@
             <span>کاربر‌ها</span>
           </a>
         </li>
-        <li class="list-group-item pr-0 {{ Route::is('admin.departments.index') ? 'active' : ''}}">
+        <li class="list-group-item pr-0 {{ Route::is('admin.departments.*') ? 'active' : ''}}">
           <a href="{{ route('admin.departments.index') }}" class="d-flex align-items-center text-decoration-none">
             <i class="far fa-building w-25"></i>
             <span>واحد‌های کاری</span>

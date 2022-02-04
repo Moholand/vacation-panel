@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Vacation;
 use Illuminate\Http\Request;

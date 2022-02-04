@@ -1,10 +1,5 @@
 @extends('layouts.base')
 
-@push('stylesheets')
-  {{-- Bootstrap Select Picker js - Style --}}
-  {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> --}}
-@endpush
-
 @section('content')
   <h4>
     {{ 
@@ -81,10 +76,7 @@
             </div>
             <div class="form-group d-flex justify-content-end mt-4">
               <button type="submit" class="btn btn-secondary">
-                {{ 
-                  isset($department) ? 'ویرایش واحد' 
-                  : 'ایجاد واحد' 
-                }}
+                {{ isset($department) ? 'ویرایش واحد' : 'ایجاد واحد' }}
               </button>
             </div>
           </form>
@@ -95,12 +87,9 @@
 @endsection
 
 @push('scripts')
-  {{-- Bootstrap Select Picker js - Script --}}
-  {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-  
   <script>
     $(document).ready(function() {
-      $('.select-picker').selectpicker();
+      $('.select-picker').select2();
     });
-  </script> --}}
+  </script>
 @endpush
