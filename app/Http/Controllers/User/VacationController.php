@@ -19,26 +19,15 @@ class VacationController extends Controller
 
     public function index(Request $request)
     {
-        $perPage = $request->perPage ?? 10; // 10 is the default perPage
-
         $vacations = Vacation::where('user_id', auth()->user()->id)
-            ->when($request->search && $request->search !== null, function($query) use($request) {
-                $query->where('title', 'LIKE', '%' . $request->search . '%');
-            })
-            ->when($request->vacation_status && $request->vacation_status !== null, function($query) use($request) {
-                $query->where('status', $request->vacation_status);
-            })
-            ->when($request->fromDate && $request->toDate, function($query) use($request) {
-                //convert dates to gerogrian -- return array of from and to dates
-                $dates = $this->dateToGerogrian($request->fromDate, $request->toDate);
-
-                $query->whereBetween('updated_at', [$dates['fromDate'], $dates['toDate']]);
-            })
+            ->searchInTitle()
+            ->filterByStatus()
+            ->filterByDate()
             ->orderBy('updated_at', 'DESC')
-            ->paginate($perPage)
+            ->paginate($request->perPage ?? 10) // 10 is the default perPage
             ->withQueryString();
 
-        return view('user.dashboard', ['vacations' => $vacations]);
+        return view('user.dashboard', compact('vacations'));
     }
 
     public function create()
@@ -100,30 +89,5 @@ class VacationController extends Controller
 
         session()->flash('successMessage', 'درخواست شما با موفقیت حذف گردید');
         return redirect()->back();
-    }
-
-    public function dateToGerogrian($fromDate, $toDate) : array
-    {
-        // Convert to gerogrian date manually -- any better idea??
-        $fromDateGerogrian = implode('-', Verta::getGregorian(
-            explode('/',$fromDate)[0],
-            explode('/',$fromDate)[1],
-            explode('/',$fromDate)[2]
-        ));
-        
-        $toDateGerogrian = implode('-', Verta::getGregorian(
-            explode('/',$toDate)[0],
-            explode('/',$toDate)[1],
-            explode('/',$toDate)[2]
-        ));
-
-        // Delete the effect of clock
-        $fromDateStandard = Carbon::createFromFormat('Y-m-d', $fromDateGerogrian)->startOfDay();
-        $toDateStandard = Carbon::createFromFormat('Y-m-d', $toDateGerogrian)->endOfDay();
-
-        return [
-            'fromDate' => $fromDateStandard,
-            'toDate' => $toDateStandard
-        ];
     }
 }

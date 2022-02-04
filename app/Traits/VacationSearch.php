@@ -13,4 +13,11 @@ trait VacationSearch
       });
     });
   }
+
+  public function scopeSearchInTitle($builder)
+  {
+    $builder->when(request()->search && request()->search !== null, function($query) {
+      $query->where('title', 'LIKE', '%' . request()->search . '%');
+    });
+  }
 }
