@@ -83,10 +83,19 @@ class VacationController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Vacation $vacation) 
+    public function destroy($id) 
     {
-        $vacation->delete();
-        return redirect()->back()->with('successMessage', 'درخواست شما با موفقیت حذف گردید');
+        $vacation = Vacation::withTrashed()->findOrFail($id);
+
+        if($vacation->trashed()) {
+            $vacation->forceDelete();
+            $message = 'درخواست شما با موفقیت حذف گردید';
+        } else {
+            $vacation->delete();
+            $message = 'درخواست شما با موفقیت به زباله‌دان منتقل گردید';
+        }
+
+        return redirect()->back()->with('successMessage', $message);
     }
 
     public function trashed(Request $request)
@@ -99,6 +108,13 @@ class VacationController extends Controller
         ->paginate($request->perPage ?? 10) // 10 is the default perPage
         ->withQueryString();
 
-    return view('user.dashboard', compact('vacations'));
+        return view('user.dashboard', compact('vacations'));
+    }
+
+    public function restore($id)
+    {
+        $vacation = Vacation::withTrashed()->findOrFail($id)->restore();
+
+        return redirect()->back()->with('successMessage', 'درخواست شما با موفقیت بازیابی گردید');
     }
 }

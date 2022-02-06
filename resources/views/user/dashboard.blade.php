@@ -35,36 +35,38 @@
     </form>
   </li>
 
-  {{-- Select Vacation status --}}
-  <li class="list-group-item bg-transparent d-flex align-items-center py-2 py-md-4">
-    <form>
-      <div class="form-group my-0">
+  @if(Route::is('vacations.index'))
+    {{-- Select Vacation status --}}
+    <li class="list-group-item bg-transparent d-flex align-items-center py-2 py-md-4">
+      <form>
+        <div class="form-group my-0">
 
-        {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-        @if(request()->fromDate || request()->toDate || request()->perPage)
-          <input type="hidden" name="fromDate" value="{{ request()->fromDate ?? null }}"/>
-          <input type="hidden" name="toDate" value="{{ request()->toDate ?? null }}"/>
-          <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
-        @endif
+          {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
+          @if(request()->fromDate || request()->toDate || request()->perPage)
+            <input type="hidden" name="fromDate" value="{{ request()->fromDate ?? null }}"/>
+            <input type="hidden" name="toDate" value="{{ request()->toDate ?? null }}"/>
+            <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
+          @endif
 
-        <select class="form-control-sm text-secondary border-0" name="vacation_status" onchange="this.form.submit()">
-          <option value="">همه‌ی درخواست‌ها</option>
-          <option value="submitted" {{ request()->get('vacation_status') === 'submitted' ? 'selected' : '' }}>
-            ارسال شده
-          </option>
-          <option value="initial-approval" {{ request()->get('vacation_status') === 'initial-approval' ? 'selected' : '' }}>
-            تأیید اولیه
-          </option>
-          <option value="confirmed" {{ request()->get('vacation_status') === 'confirmed' ? 'selected' : '' }}>
-            تأیید نهایی
-          </option>
-          <option value="refuse" {{ request()->get('vacation_status') === 'refuse' ? 'selected' : '' }}>
-            عدم تأیید
-          </option>
-        </select>
-      </div>
-    </form>
-  </li>
+          <select class="form-control-sm text-secondary border-0" name="vacation_status" onchange="this.form.submit()">
+            <option value="">همه‌ی درخواست‌ها</option>
+            <option value="submitted" {{ request()->get('vacation_status') === 'submitted' ? 'selected' : '' }}>
+              ارسال شده
+            </option>
+            <option value="initial-approval" {{ request()->get('vacation_status') === 'initial-approval' ? 'selected' : '' }}>
+              تأیید اولیه
+            </option>
+            <option value="confirmed" {{ request()->get('vacation_status') === 'confirmed' ? 'selected' : '' }}>
+              تأیید نهایی
+            </option>
+            <option value="refuse" {{ request()->get('vacation_status') === 'refuse' ? 'selected' : '' }}>
+              عدم تأیید
+            </option>
+          </select>
+        </div>
+      </form>
+    </li>
+  @endif
 
   {{-- Date Range options --}}
   <li class="list-group-item bg-transparent d-flex justify-content-center align-items-center date-filter pb-3 pt-2 py-md-4">
@@ -114,7 +116,12 @@
   <div class="d-flex justify-content-between align-items-center">
     <h4>{{ Route::is('vacations.index') ? 'همه‌ی درخواست‌ها' :
      'زباله‌دان' }}</h4>
-    <a href="{{ route('vacations.trashed') }}" class="btn btn-outline-danger">زباله‌دان</a>
+    
+    @if(Route::is('vacations.index'))
+      <a href="{{ route('vacations.trashed') }}" class="btn btn-outline-danger">زباله‌دان</a>
+    @elseif(Route::is('vacations.trashed'))
+      <a href="{{ route('vacations.index') }}" class="btn btn-outline-primary">همه درخواست‌ها</a>
+    @endif
   </div>
   <hr class="mb-0">
 
@@ -202,9 +209,20 @@
                       <i class="far fa-trash-alt fa-lg"></i>
                     </button>
                   </form>
-                  <a href="{{ route('vacations.edit', ['vacation' => $vacation->id]) }}" class="text-info" title="ویرایش">
-                    <i class="far fa-edit fa-lg"></i>
-                  </a>
+
+                  @if(Route::is('vacations.index'))
+                    <a href="{{ route('vacations.edit', ['vacation' => $vacation->id]) }}" class="text-info" title="ویرایش">
+                      <i class="far fa-edit fa-lg"></i>
+                    </a>
+                  @elseif(Route::is('vacations.trashed'))
+                    <form action="{{ route('vacations.restore', ['vacation' => $vacation->id]) }}" method="POST">
+                      @csrf
+                      @method('PATCH')
+                      <button type="submit" class="text-primary border-0 bg-transparent mr-2" title="بازیابی">
+                        <i class="fas fa-undo fa-lg"></i>
+                      </button>
+                    </form>
+                  @endif
                 </div>
               @endif
 
@@ -242,7 +260,7 @@
 
       $('#confirmModal').on('shown.bs.modal', function(e) {
         $('#confirmBtn').on('click', function() {
-          form.submit();
+          $(form).submit();
         });
       })
     }

@@ -49,7 +49,7 @@
     @else
       {{-- User Sidebar --}}
       <ul class="list-group">
-        <li class="list-group-item pr-0 mb-2 {{ Route::is('vacations.index') ? 'active' : '' }}">
+        <li class="list-group-item pr-0 mb-2 {{ Route::is('vacations.index') || Route::is('vacations.trashed') ? 'active' : '' }}">
           <a href="{{ route('vacations.index') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-richtext w-25" viewBox="0 0 16 16">
               <path d="M7 4.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V7.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V7s1.54-1.274 1.639-1.208zM5 9a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
