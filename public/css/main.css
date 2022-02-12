@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Vazir";
+  src: url("/fonts/main/Vazir-FD-WOL.eot"); /* IE9 Compact Modes */
+  src: url("/fonts/main/Vazir-FD-WOL.eot?#iefix") format("embedded-opentype"),
+  url("/fonts/main/Vazir-FD-WOL.woff2") format("woff2"),
+  url("/fonts/main/Vazir-FD-WOL.woff") format("woff"),    
+  url("/fonts/main/Vazir-FD-WOL.ttf") format("truetype"); /* Safari - Android - IOS */
+} 
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e4e5eb;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d2d3da;
+}
+
+body {
+  direction: rtl;
+  text-align: right !important;
+  font-family: "Vazir" !important;
+}

@@ -10,6 +10,7 @@
 
 		<title>پنل درخواست مرخصی</title>
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 	</head>
 	<body class="welcome-page">
