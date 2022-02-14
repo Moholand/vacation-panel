@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.main_layout')
 
 @push('stylesheets')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>

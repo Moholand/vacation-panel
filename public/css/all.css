@@ -1,0 +1,153 @@
+@font-face {
+  font-family: "Vazir";
+  src: url("/fonts/main/Vazir-FD-WOL.eot"); /* IE9 Compact Modes */
+  src: url("/fonts/main/Vazir-FD-WOL.eot?#iefix") format("embedded-opentype"),
+  url("/fonts/main/Vazir-FD-WOL.woff2") format("woff2"),
+  url("/fonts/main/Vazir-FD-WOL.woff") format("woff"),    
+  url("/fonts/main/Vazir-FD-WOL.ttf") format("truetype"); /* Safari - Android - IOS */
+} 
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e4e5eb;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d2d3da;
+}
+
+body {
+  direction: rtl;
+  text-align: right !important;
+  font-family: "Vazir" !important;
+}
+
+.content-list {
+  padding: 30px 5px 70px 40px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.header-line {
+  position: relative;
+}
+
+.header-line::after {
+  content: '';
+  position: absolute;
+  left: 30px;
+  right: 0;
+  background: linear-gradient(to bottom, #ffffff, #ffffff00);
+  height: 20px;
+  z-index: 20;
+}
+
+.alert-success {
+  z-index: 30;
+}
+
+/* Content styles */
+.content-inner {
+  margin: 0 20px;
+  padding: 20px;
+  border-radius: 5px 5px 0 0;
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
+  height: 94%;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  .content-inner {
+    margin: 0 5px;
+    padding: 15px 10px 15px 5px;
+  }
+}
+
+/* Dashboard */
+.request-list {
+  padding: 30px 5px 70px 40px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#accordion .card {
+  box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
+  border: none;
+}
+
+.vacation-header {
+  cursor: pointer;
+  transition: 0.5s all ease; 
+}
+
+.vacation-header[aria-expanded="false"] {
+  background: #f5f6fa;
+}
+
+.vacation-header[aria-expanded="true"] {
+  background: #f6e58d;
+}
+
+.vacation-title {
+  min-width: 400px;
+}
+
+.status {
+  font-size: 13px;
+}
+
+.change-status label {
+  min-width: 100px;
+}
+
+.change-status select {
+  width: 15%;
+}
+
+@media only screen and (max-width: 600px) {
+  .request-list {
+    padding: 20px 5px 50px 10px;
+  }
+
+  .vacation-header {
+    padding: 10px !important;
+  }
+
+  .request-info {
+    flex-direction: column;
+    align-items: start !important;
+  }
+
+  .request-info .status {
+    padding: 10px 10px 0 10px;
+  }
+
+  .vacation-title {
+    min-width: -webkit-fit-content;
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+  }
+}
+
+/* Admin Users */
+.users-list {
+  padding: 30px 5px 50px 40px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Pagination */
+
+/* Alert Message */
+.alert-success .close-message {
+  cursor: pointer;
+}

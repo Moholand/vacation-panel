@@ -15,13 +15,19 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps();
 
-mix.postCss('resources/css/main.css', 'public/css')
-    .postCss('resources/css/enter_layout.css', 'public/css')
-    .postCss('resources/css/base_layout.css', 'public/css')
-    .postCss('resources/css/navbar.css', 'public/css')
-    .postCss('resources/css/sidebar.css', 'public/css')
-    .postCss('resources/css/header.css', 'public/css')
-    .postCss('resources/css/authentication.css', 'public/css')
+mix.combine([
+        'resources/css/main_layout.css',
+        'resources/css/sidebar.css',
+        'resources/css/header.css'
+    ], 'public/css/main.css')
+
+mix.combine([
+        'resources/css/welcome_layout.css',
+        'resources/css/navbar.css',
+        'resources/css/authentication.css'
+    ], 'public/css/welcome.css')
+
+mix.postCss('resources/css/all.css', 'public/css')
     .postCss('resources/css/create_vacation_profile.css', 'public/css')
     .postCss('resources/css/departments.css', 'public/css')
     .options({

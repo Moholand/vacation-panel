@@ -1,4 +1,4 @@
-@extends('layouts.enter')
+@extends('layouts.welcome_layout')
 
 @section('content')
 <div class="container passwords-reset">

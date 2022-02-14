@@ -10,10 +10,8 @@
 
 		<title>پنل درخواست مرخصی</title>
 		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
-		<link rel="stylesheet" href="{{ mix('css/main.css') }}">
-		<link rel="stylesheet" href="{{ mix('css/enter_layout.css') }}">
-		<link rel="stylesheet" href="{{ mix('css/navbar.css') }}">
-		<link rel="stylesheet" href="{{ mix('css/authentication.css') }}">
+		<link rel="stylesheet" href="{{ mix('css/all.css') }}">
+		<link rel="stylesheet" href="{{ mix('css/welcome.css') }}">
 	</head>
 	<body class="welcome-page">
     @include('includes.navbar')

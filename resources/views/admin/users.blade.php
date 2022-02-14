@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.main_layout')
 
 @section('filters')
   {{-- Select Department --}}

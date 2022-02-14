@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.main_layout')
 
 @push('stylesheets')
   <link type="text/css" rel="stylesheet" href="{{ asset('css/jalalidatepicker.min.css') }}" />
