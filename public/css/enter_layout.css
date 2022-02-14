@@ -1,0 +1,85 @@
+/* Enter layout styles */
+.welcome-page {
+  height: 100vh;
+  padding: 0;
+  overflow: hidden;
+  background-image: url("../img/wallpaper/welcome-page.jpg");
+  background-size: cover;
+}
+
+.welcome-page:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 70%;
+  right: 0;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgb(255, 255, 255, 0));
+  z-index: 1;
+}
+
+.welcome-page:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 1), rgb(255, 255, 255, 0));
+  z-index: 1;
+}
+
+.welcome-box {
+  margin: 150px;
+  position: relative;
+  z-index: 9;
+  max-width: 300px;
+}
+
+.welcome-box .welcome-title {
+  line-height: 40px;
+}
+
+.welcome-box .welcome-desc {
+  line-height: 30px;
+}
+
+.welcome-box a {
+  border-radius: 15px;
+  box-shadow: -7px 7px 10px rgba(0 0 0 / 0.25);
+}
+
+@media only screen and (max-width: 600px) {
+  .welcome-page:after {
+    display: none;
+  }
+
+  .welcome-page:before {
+    bottom: 0;
+  }
+  
+  .welcome-row {
+    margin: 0!important;
+  }
+
+  .welcome-box {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: -webkit-fit-content;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    padding: 150px 20px 50px 20px;
+    text-align: center;
+  }
+
+  .welcome-box .welcome-title {
+    font-size: 25px;
+  }
+
+  .welcome-box a {
+    margin-right: auto;
+    margin-left:auto;
+  }
+}

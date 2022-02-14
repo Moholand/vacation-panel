@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@push('stylesheets')
+  <link href="{{ mix('css/departments.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
   <h4>
     {{ 

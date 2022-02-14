@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@push('stylesheets')
+  <link href="{{ mix('css/departments.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
   <div class="d-flex justify-content-between">
     <h4>واحد‌های کاری</h4>

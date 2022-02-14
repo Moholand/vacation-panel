@@ -2,6 +2,7 @@
 
 @push('stylesheets')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
+  <link href="{{ mix('css/create_vacation_profile.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')

@@ -1,0 +1,144 @@
+/* Content Header */
+.content-header li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: none;
+}
+
+.notification-counter {
+  font-size: 60%;
+  width: 12px;
+  height: 12px;
+  transform: translate(-10px, -5px);
+}
+
+.read .notification-counter {
+  display: none; 
+}
+
+.read .bi-bell {
+  color: #6c757d !important;
+}
+
+.dropdown-bell .dropdown-menu {
+  max-height: 500px;
+  width: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dropdown-bell .dropdown-menu .dropdown-item {
+  white-space: unset !important;
+}
+
+.search input {
+  width: 0 !important;
+  padding-right: 0; 
+  padding-left: 0; 
+  margin-right: 0 !important;
+  border: none;
+  overflow: hidden;
+  transition: 0.5s all ease;
+}
+
+.search input:focus {
+  box-shadow: none;
+}
+
+.search:hover input {
+  width: 200px !important;
+  padding-right: 10px; 
+  padding-left: 10px; 
+}
+
+.search .fa-search {
+  font-size: 1.2em;
+  transform: translateY(1px);
+}
+
+.perPage-select {
+  cursor: pointer;
+}
+
+.filters-wrapper {
+  position: absolute;
+  top: -75px;
+  left: 3%;
+  right: 3%;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 0 5px rgba(0 0 0 / 0.25);
+  background: #f1f2f6;
+  z-index: 40;
+  transition: 0.7s all ease;
+}
+
+.filters-wrapper.show {
+  top: 0;
+}
+
+.filters-wrapper .slider-btn {
+  position: absolute;
+  bottom: -30px;
+  right: 5%;
+  background: #f1f2f6 !important;
+  padding: 3px 10px;
+  border-radius: 0 0 50% 50%;
+  border: 2px solid #00000015 !important;
+  border-top: none !important;
+  font-size: 14px;
+  z-index: 39;
+}
+
+.filters-wrapper .slider-btn .fa-angle-down.up {
+  transform: rotate(180deg);
+}
+
+.date-filter input {
+  border: 1px solid #6c757d;
+  border-radius: 0;
+  width: 100px;
+}
+
+.date-filter .from-date-input {
+  border-radius: 0 5px 5px 0;
+}
+
+.date-filter .to-date-input {
+  border-radius: 5px 0 0 5px;
+}
+
+.date-filter input:focus {
+  /* border: 1px solid #6c757d !important; */
+  outline: 0 none;
+}
+
+.date-filter button {
+  border-radius: 5px;
+  transform: translateX(5px);
+}
+
+@media only screen and (max-width: 600px) {
+  .filters-wrapper {
+    left: 0;
+    right: 0;
+    top: -140px;
+  }
+
+  .filters-wrapper ul {
+    flex-direction: column !important;
+  }
+
+  .filters-wrapper .slider-btn {
+    bottom: -17%;
+    right: 20%;
+    font-size: 10px;
+  }
+
+  .filters-wrapper input, .filters-wrapper select, .filters-wrapper button {
+    font-size: 10px;
+  }
+
+  .date-filter input{
+    margin-left: 10px;
+  }
+}

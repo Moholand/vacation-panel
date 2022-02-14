@@ -366,6 +366,61 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nvar __WE
 
 /***/ }),
 
+/***/ "./resources/css/sidebar.css":
+/*!***********************************!*\
+  !*** ./resources/css/sidebar.css ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL3NpZGViYXIuY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9jc3Mvc2lkZWJhci5jc3M/YzYzMSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/css/sidebar.css\n");
+
+/***/ }),
+
+/***/ "./resources/css/header.css":
+/*!**********************************!*\
+  !*** ./resources/css/header.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL2hlYWRlci5jc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vcmVzb3VyY2VzL2Nzcy9oZWFkZXIuY3NzPzE0MmQiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/css/header.css\n");
+
+/***/ }),
+
+/***/ "./resources/css/authentication.css":
+/*!******************************************!*\
+  !*** ./resources/css/authentication.css ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL2F1dGhlbnRpY2F0aW9uLmNzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvY3NzL2F1dGhlbnRpY2F0aW9uLmNzcz8xZTZmIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/css/authentication.css\n");
+
+/***/ }),
+
+/***/ "./resources/css/create_vacation_profile.css":
+/*!***************************************************!*\
+  !*** ./resources/css/create_vacation_profile.css ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL2NyZWF0ZV92YWNhdGlvbl9wcm9maWxlLmNzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvY3NzL2NyZWF0ZV92YWNhdGlvbl9wcm9maWxlLmNzcz84NWU3Il0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/css/create_vacation_profile.css\n");
+
+/***/ }),
+
+/***/ "./resources/css/departments.css":
+/*!***************************************!*\
+  !*** ./resources/css/departments.css ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL2RlcGFydG1lbnRzLmNzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvY3NzL2RlcGFydG1lbnRzLmNzcz9iZGFmIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/css/departments.css\n");
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -385,6 +440,39 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL21haW4uY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9jc3MvbWFpbi5jc3M/YTAxNCJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/css/main.css\n");
+
+/***/ }),
+
+/***/ "./resources/css/enter_layout.css":
+/*!****************************************!*\
+  !*** ./resources/css/enter_layout.css ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL2VudGVyX2xheW91dC5jc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vcmVzb3VyY2VzL2Nzcy9lbnRlcl9sYXlvdXQuY3NzP2U1YzIiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/css/enter_layout.css\n");
+
+/***/ }),
+
+/***/ "./resources/css/base_layout.css":
+/*!***************************************!*\
+  !*** ./resources/css/base_layout.css ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL2Jhc2VfbGF5b3V0LmNzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvY3NzL2Jhc2VfbGF5b3V0LmNzcz8zZTA2Il0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/css/base_layout.css\n");
+
+/***/ }),
+
+/***/ "./resources/css/navbar.css":
+/*!**********************************!*\
+  !*** ./resources/css/navbar.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvY3NzL25hdmJhci5jc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vcmVzb3VyY2VzL2Nzcy9uYXZiYXIuY3NzP2RkYmIiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/css/navbar.css\n");
 
 /***/ }),
 
@@ -554,7 +642,15 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0,
-/******/ 			"css/main": 0
+/******/ 			"css/navbar": 0,
+/******/ 			"css/base_layout": 0,
+/******/ 			"css/enter_layout": 0,
+/******/ 			"css/main": 0,
+/******/ 			"css/departments": 0,
+/******/ 			"css/create_vacation_profile": 0,
+/******/ 			"css/authentication": 0,
+/******/ 			"css/header": 0,
+/******/ 			"css/sidebar": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -604,9 +700,17 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/main"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/main"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/main"], () => (__webpack_require__("./resources/css/main.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/css/main.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/css/enter_layout.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/css/base_layout.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/css/navbar.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/css/sidebar.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/css/header.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/css/authentication.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/css/create_vacation_profile.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/navbar","css/base_layout","css/enter_layout","css/main","css/departments","css/create_vacation_profile","css/authentication","css/header","css/sidebar"], () => (__webpack_require__("./resources/css/departments.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

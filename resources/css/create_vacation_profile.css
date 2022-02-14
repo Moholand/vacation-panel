@@ -1,0 +1,75 @@
+/* Create Vacation/Profile page styles */
+.request-form-wrapper {
+  padding: 30px 5px 50px 40px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.request-date .invalid-feedback {
+  min-height: 35px;
+}
+
+.request-form, .profile-form {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0 0 0 / 0.25);
+  background: #f1f2f6;
+}
+
+.image_area {
+  position: relative;
+  text-align: center;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.overlay {
+  position:absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  background-color: #f1f2f630;
+  overflow: hidden;
+  height: 0;
+  transition: 0.5s ease;
+  width: 100%;
+}
+
+.image_area:hover .overlay {
+  height: 100%;
+  cursor: pointer;
+}
+
+#uploadImage {
+  display: none;
+}
+
+.text {
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.modal-cropper .modal-dialog {
+  max-width: 800px;
+}
+
+.preview {
+  display: block;
+  max-width: 290px;
+  height: 290px;
+  border: 1px solid #333;
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+#sample_image {
+  max-height: 500px;
+  overflow: hidden;
+}

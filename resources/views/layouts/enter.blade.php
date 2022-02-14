@@ -11,7 +11,9 @@
 		<title>پنل درخواست مرخصی</title>
 		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 		<link rel="stylesheet" href="{{ mix('css/main.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+		<link rel="stylesheet" href="{{ mix('css/enter_layout.css') }}">
+		<link rel="stylesheet" href="{{ mix('css/navbar.css') }}">
+		<link rel="stylesheet" href="{{ mix('css/authentication.css') }}">
 	</head>
 	<body class="welcome-page">
     @include('includes.navbar')

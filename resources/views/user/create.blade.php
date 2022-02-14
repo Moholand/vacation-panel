@@ -2,6 +2,7 @@
 
 @push('stylesheets')
   <link type="text/css" rel="stylesheet" href="{{ asset('css/jalalidatepicker.min.css') }}" />
+  <link href="{{ mix('css/create_vacation_profile.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')

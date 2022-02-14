@@ -22,7 +22,9 @@
   <!-- Styles -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <link href="{{ mix('css/main.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/base_layout.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/sidebar.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/header.css') }}" rel="stylesheet">
   @stack('stylesheets')
 </head>
 <body>
