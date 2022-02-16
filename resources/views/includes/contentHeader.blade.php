@@ -76,7 +76,12 @@
     </li>
 
     {{-- Search --}}
-    @if(Route::is('vacations.*') || request()->is('admin/users') || request()->is('admin/dashboard'))
+    @if(
+      Route::is('vacations.*') || 
+      Route::is('teammate-vacations.index') || 
+      request()->is('admin/users') || 
+      request()->is('admin/dashboard')
+    )
     <li class="list-group-item bg-transparent search px-0">
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" name="search" placeholder="جستجو ...">
