@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\User;
 
-use Carbon\Carbon;
 use App\Models\Vacation;
 use Illuminate\Http\Request;
-use Hekmatinasser\Verta\Verta;
+use App\Services\UserService;
 use App\Http\Controllers\Controller;
 
 class TeammateVacationController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, UserService $userService)
     {
         $vacations = Vacation::with('user')
-            ->whereIn('user_id', $this->getTeammatesIds()) // Find a better way for doing this!
+            ->whereIn('user_id', $userService->getTeammatesIds())
             ->searchInAuthor()
             ->filterByStatus()
             ->filterByDate()
@@ -37,21 +36,5 @@ class TeammateVacationController extends Controller
 
             return redirect()->back()->with('successMessage', 'تغییرات با موفقیت ذخیره شد');
         }
-    }
-
-    public function getTeammatesIds() 
-    {
-        $teammate_ids = [];
-
-        $employees = auth()->user()->department()->with(['employees'])
-        ->get()
-        ->pluck('employees')
-        ->collapse();
-
-        foreach ($employees as $employer) {
-            array_push($teammate_ids, $employer->id);
-        }
-
-        return $teammate_ids;
     }
 }
