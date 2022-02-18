@@ -79,11 +79,11 @@
     @if(
       Route::is('vacations.*') || 
       Route::is('teammate-vacations.index') || 
-      request()->is('admin/users') || 
-      request()->is('admin/dashboard')
+      Route::is('admin.vacations.index') || 
+      request()->is('admin/users') 
     )
     <li class="list-group-item bg-transparent search px-0">
-      <form class="form-inline">
+      <form class="form-inline" autocomplete="off">
         <input class="form-control mr-sm-2" type="search" name="search" placeholder="جستجو ...">
         <button class="btn border-0 shadow-none" type="submit">
           <i class="fas fa-search text-secondary fa-lg"></i>

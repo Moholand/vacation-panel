@@ -10,15 +10,22 @@
 				</div>
 
 				<div class="card-body">
-					<form method="POST" action="{{ route('register') }}">
+					<form method="POST" action="{{ route('register') }}" autocomplete="off">
 						@csrf
 
 						<div class="form-group row">
 							<label for="name" class="col-md-4 col-form-label text-md-right font-weight-bold">نام:</label>
 
 							<div class="col-md-6">
-								<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+								<input 
+									type="text"
+									name="name"
+									id="name" 
+									class="form-control @error('name') is-invalid @enderror"
+									value="{{ old('name') }}"
+									autocomplete="off"
+									autofocus      
+								>
 								@error('name')
 									<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
@@ -31,8 +38,14 @@
 							<label for="email" class="col-md-4 col-form-label text-md-right font-weight-bold">آدرس ایمیل:</label>
 
 							<div class="col-md-6">
-								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+								<input
+									type="email"
+									name="email" 
+									id="email"
+									class="form-control @error('email') is-invalid @enderror"
+									value="{{ old('email') }}"
+									autocomplete="off"
+								>
 								@error('email')
 										<span class="invalid-feedback" role="alert">
 												<strong>{{ $message }}</strong>
