@@ -5,6 +5,10 @@
   <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
     <form>
       <div class="form-group my-0">
+        {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
+        @if(request()->user_status)
+          <input type="hidden" name="user_status" value="{{ request()->user_status }}"/>
+        @endif
         <select class="form-control-sm text-secondary border-0" name="department_id" onchange="this.form.submit()">
           <option selected="true" value="">همه‌ی واحدهای کاری</option>
           @foreach($departments as $department)
@@ -24,6 +28,10 @@
   <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
     <form>
       <div class="form-group my-0">
+        {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
+        @if(request()->department_id)
+          <input type="hidden" name="department_id" value="{{ request()->department_id }}"/>
+        @endif
         <select class="form-control-sm text-secondary border-0" name="user_status" onchange="this.form.submit()">
           <option value="">همه‌ی کاربر‌ها</option>
           <option value="confirm" {{ request()->get('user_status') == 'confirm' ? 'selected' : '' }}>
