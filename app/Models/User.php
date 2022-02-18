@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Vacation;
+use App\Traits\User\UserFilter;
+use App\Traits\User\UserSearch;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, UserSearch, UserFilter;
 
     /**
      * The attributes that are mass assignable.

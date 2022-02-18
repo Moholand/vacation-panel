@@ -18,7 +18,7 @@ class TeammateVacationController extends Controller
             ->filterByDate()
             ->orderBy('updated_at', 'DESC')
             ->paginate($request->perPage ?? 20) // 20 is the default
-            ->withQueryString();;
+            ->withQueryString();
 
         return view('user.teammate_vacations', compact('vacations'));
     }

@@ -15,13 +15,11 @@ class AdminUserController extends Controller
     {
         $departments = Department::all();
 
-        if($request->search) {
-            $employees = User::where('name', 'LIKE', '%' . $request->search . '%')
-                ->orWhere('email', 'LIKE', '%' . $request->search . '%')->get();
-        } else if($request->department_id) {
-            $employees = User::where('department_id', $request->department_id)->get();
-        } else if($request->user_status) {
-            $employees = User::where('isVerified', $request->user_status === 'confirm' ? 1 : 0)->get();
+        if($request->all()) {
+            $employees = User::searchInUser()
+                ->filterByDepartment()
+                ->filterByStatus()
+                ->get();
         } else {
             // Cache all employees  
             $employees = Cache::rememberForever('employees', function() {
@@ -29,7 +27,7 @@ class AdminUserController extends Controller
             });
         }
 
-        return view('admin.users', ['employees' => $employees, 'departments' => $departments]);
+        return view('admin.users', compact(['employees', 'departments']));
     }
 
     public function update(Request $request, User $user)

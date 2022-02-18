@@ -124,7 +124,7 @@
 
       $('#confirmModal').on('shown.bs.modal', function(e) {
         $('#confirmBtn').on('click', function() {
-          form.submit();
+          $(form).submit();
         });
       })
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace App\Traits\Vacation;
 
 use App\Services\DateService;
 
