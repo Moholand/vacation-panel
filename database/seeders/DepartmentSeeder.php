@@ -24,9 +24,23 @@ class DepartmentSeeder extends Seeder
             'واحد خدمات'
         ];
 
+        // First create 1 department
+        // Then create administrator for that department and assign
+        // At last create 20 users for that department
         foreach($departments as $department) {
-            Department::create([
-                'name' => $department,
+            $department = Department::create([
+                'name' => $department
+            ]);
+
+            $administrator = \App\Models\User::factory()->create([
+                'department_id' => $department->id
+            ]);
+
+            $department->head = $administrator->id;
+            $department->save();
+
+            \App\Models\User::factory(20)->create([
+                'department_id' => $department->id
             ]);
         }
     }
