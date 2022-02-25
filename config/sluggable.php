@@ -213,5 +213,4 @@ return [
      * configuration options will be used when instantiating the engine.
      */
     'slugEngineOptions' => [],
-
 ];

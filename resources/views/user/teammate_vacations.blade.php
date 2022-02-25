@@ -182,7 +182,7 @@
               @if($vacation->status === 'submitted')
                 <hr>
                 <form 
-                  action="{{ route('teammate-vacations.update', ['teammate_vacation' => $vacation->id]) }}" 
+                  action="{{ route('teammate-vacations.update', $vacation) }}" 
                   method="POST"
                 >
                   @csrf

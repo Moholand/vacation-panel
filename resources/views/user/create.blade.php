@@ -22,7 +22,7 @@
     <div class="col-md-6">
       <div class="card request-form">
         <div class="card-body">
-          <form action="{{ isset($vacation) ? route('vacations.update', ['vacation' => $vacation->id]) : route('vacations.store') }}" class="mx-auto" method="POST" autocomplete="off">
+          <form action="{{ isset($vacation) ? route('vacations.update', $vacation) : route('vacations.store') }}" class="mx-auto" method="POST" autocomplete="off">
 
             @csrf
             @if(isset($vacation))

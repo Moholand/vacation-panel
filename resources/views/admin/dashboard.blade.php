@@ -172,7 +172,7 @@
               {{-- 'initial-approval' => Means vacations that confirmed by head of department --}}
               @if($vacation->status === 'initial-approval')
                 <hr>
-                <form action="{{ route('admin.vacations.update', ['vacation' => $vacation->id]) }}" method="POST">
+                <form action="{{ route('admin.vacations.update', $vacation) }}" method="POST">
                   @csrf
                   @method('PATCH')
 

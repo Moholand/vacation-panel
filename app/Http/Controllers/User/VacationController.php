@@ -62,13 +62,7 @@ class VacationController extends Controller
 
     public function update(UpdateVacationRequest $request, Vacation $vacation)
     {
-        $vacation->update([
-            'title' => $request->title,
-            'request_message' => $request->request_message,
-            'type' => $request->type,
-            'mode' => $request->mode,
-            'from_date' => $request->from_date
-        ]);
+        $vacation->update( $request->only(['title', 'request_message', 'type', 'mode', 'from_date']) );
 
         if($request->mode === 'daily') {
             $vacation->to_date = $request->to_date;
@@ -79,8 +73,7 @@ class VacationController extends Controller
         }
         $vacation->save();
 
-        session()->flash('successMessage', 'درخواست شما با موفقیت ویرایش شد');
-        return redirect()->back();
+        return redirect()->route('vacations.index')->with('successMessage', 'درخواست شما با موفقیت ویرایش شد');
     }
 
     public function destroy($slug) 

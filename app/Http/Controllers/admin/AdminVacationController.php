@@ -27,9 +27,8 @@ class AdminVacationController extends Controller
 
     public function update(AdminUpdateVacationRequest $request, Vacation $vacation)
     {
-        $user = User::find($vacation->user_id);
-
         $vacation->response_message = $request->response_message;
+
         if($request->submit === 'confirm') {
             $vacation->status = 'confirmed';
         } elseif($request->submit === 'refuse') {
@@ -39,7 +38,7 @@ class AdminVacationController extends Controller
         $vacation->save();
 
         // notify user about the request result
-        VacationStatusChange::dispatch($user, $vacation);
+        VacationStatusChange::dispatch(User::findOrFail($vacation->user_id), $vacation);
 
         return redirect()->back()->with('successMessage', 'تغییرات با موفقیت ثبت شد');
     }

@@ -16,7 +16,7 @@ class CreateVacationsTable extends Migration
         Schema::create('vacations', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('request_message');
             $table->text('response_message')->nullable();
             $table->enum('status', ['submitted', 'initial-approval', 'confirmed', 'refuse'])->default('submitted');
