@@ -83,9 +83,9 @@ class VacationController extends Controller
         return redirect()->back();
     }
 
-    public function destroy($id) 
+    public function destroy($slug) 
     {
-        $vacation = Vacation::withTrashed()->findOrFail($id);
+        $vacation = Vacation::withTrashed()->where([['user_id', auth()->user()->id], ['slug', $slug]])->first();
 
         if($vacation->trashed()) {
             $vacation->forceDelete();
@@ -111,9 +111,9 @@ class VacationController extends Controller
         return view('user.dashboard', compact('vacations'));
     }
 
-    public function restore($id)
+    public function restore($slug)
     {
-        $vacation = Vacation::withTrashed()->findOrFail($id)->restore();
+        Vacation::withTrashed()->where([['user_id', auth()->user()->id], ['slug', $slug]])->restore();
 
         return redirect()->back()->with('successMessage', 'درخواست شما با موفقیت بازیابی گردید');
     }

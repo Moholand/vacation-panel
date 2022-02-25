@@ -202,7 +202,7 @@
 
               @if($vacation->status === 'submitted')
                 <div class="mb-0 d-flex align-items-center flex-row-reverse edit/delete">
-                  <form action="{{ route('vacations.destroy', ['vacation' => $vacation->id]) }}" method="POST" id="deleteForm">
+                  <form action="{{ route('vacations.destroy', $vacation) }}" method="POST" id="deleteForm">
                     @csrf
                     @method('DELETE')
                     <button onclick="confirmation(event)" type="submit" id="delete-request" class="text-danger border-0 bg-transparent mr-2" title="حذف">
@@ -211,11 +211,11 @@
                   </form>
 
                   @if(Route::is('vacations.index'))
-                    <a href="{{ route('vacations.edit', ['vacation' => $vacation->id]) }}" class="text-info" title="ویرایش">
+                    <a href="{{ route('vacations.edit', $vacation) }}" class="text-info" title="ویرایش">
                       <i class="far fa-edit fa-lg"></i>
                     </a>
                   @elseif(Route::is('vacations.trashed'))
-                    <form action="{{ route('vacations.restore', ['vacation' => $vacation->id]) }}" method="POST">
+                    <form action="{{ route('vacations.restore', $vacation) }}" method="POST">
                       @csrf
                       @method('PATCH')
                       <button type="submit" class="text-primary border-0 bg-transparent mr-2" title="بازیابی">

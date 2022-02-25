@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,7 +16,7 @@ class VacationFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->realText(30),
+            'title' => $title = $this->faker->realText(30),
             'request_message' => $this->faker->realText(200),
             'status' => $status = $this->faker
                 ->randomElement(['initial-approval', 'confirmed', 'refuse', 'submitted']),
