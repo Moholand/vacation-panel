@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
-use Carbon\Carbon;
 use App\Models\Vacation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Hekmatinasser\Verta\Facades\Verta;
 use App\Http\Requests\CreateVacationRequest;
 use App\Http\Requests\UpdateVacationRequest;
 
@@ -15,6 +13,7 @@ class VacationController extends Controller
     public function __construct()
     {
         $this->middleware('verified.check', ['except' => ['index']]);
+        $this->middleware('throttle:limit_3_times', ['only' => ['store']]);
     }
 
     public function index(Request $request)
