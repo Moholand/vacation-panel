@@ -1,13 +1,41 @@
 @extends('layouts.main_layout')
 
 @section('filters')
+  {{-- PerPage options --}}
+  <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
+    <form id="perPage-form">
+      <div class="form-group my-0">
+        {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
+        @if(request()->department_id || request()->user_status)
+          <input type="hidden" name="department_id" value="{{ request()->department_id ?? null }}"/>
+          <input type="hidden" name="user_status" value="{{ request()->user_status ?? null }}"/>
+        @endif
+        <select 
+          class="form-control-sm text-secondary border-0 perPage-select" 
+          id="perPageSelect" name="perPage" onchange="this.form.submit()"
+        >
+          <option selected="true" disabled="disabled">فیلتر تعداد</option>
+          @for ($count = 10; $count <= 50; $count += 10)
+            <option 
+              value="{{ $count }}" 
+              {{ request()->get('perPage') == $count ? 'selected' : '' }}
+            >
+              {{ $count }}
+            </option>
+          @endfor
+        </select>
+      </div>
+    </form>
+  </li>
+
   {{-- Select Department --}}
   <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
     <form>
       <div class="form-group my-0">
         {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-        @if(request()->user_status)
+        @if(request()->user_status || request()->perPage)
           <input type="hidden" name="user_status" value="{{ request()->user_status }}"/>
+          <input type="hidden" name="perPage" value="{{ request()->perPage }}"/>
         @endif
         <select class="form-control-sm text-secondary border-0" name="department_id" onchange="this.form.submit()">
           <option selected="true" value="">همه‌ی واحدهای کاری</option>
@@ -29,8 +57,9 @@
     <form>
       <div class="form-group my-0">
         {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-        @if(request()->department_id)
+        @if(request()->department_id || request()->perPage)
           <input type="hidden" name="department_id" value="{{ request()->department_id }}"/>
+          <input type="hidden" name="perPage" value="{{ request()->perPage }}"/>
         @endif
         <select class="form-control-sm text-secondary border-0" name="user_status" onchange="this.form.submit()">
           <option value="">همه‌ی کاربر‌ها</option>
@@ -53,7 +82,7 @@
 
   @include('includes.successMessage')
 
-  <div class="users-list">
+  <div class="users-list pb-5">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -67,7 +96,7 @@
       <tbody>
         @forelse ($employees as $key => $employe)
           <tr>
-            <th scope="row">{{ ++$key }}</th>
+            <th scope="row">{{ ($key + 1) + (($employees->currentPage() - 1) * $employees->perPage()) }}</th>
             <td>{{ $employe->name }}</td>
             <td>{{ $employe->email }}</td>
             <td>{{ $employe->department->name ?? 'نامشخص' }}</td>
@@ -112,6 +141,8 @@
 
       </tbody>
     </table>
+
+    {{ $employees->onEachSide(2)->links('vendor.pagination.default') }}
 
   </div>
 
