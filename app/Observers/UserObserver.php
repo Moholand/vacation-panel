@@ -11,8 +11,5 @@ class UserObserver
     public function created(User $user)
     {
         notifyAdminOnRegisteration::dispatch($user);
-        
-        // Clear Admin user page cache to see new user
-        Cache::forget('employees');
     }
 }

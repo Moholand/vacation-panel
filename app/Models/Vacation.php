@@ -22,7 +22,8 @@ class Vacation extends Model
         'from_date', 
         'to_date',
         'from_hour', 
-        'to_hour'
+        'to_hour',
+        'user_id'
     ];
 
     public function getRouteKeyName()
