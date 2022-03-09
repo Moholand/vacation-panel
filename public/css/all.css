@@ -52,6 +52,10 @@ body {
   z-index: 30;
 }
 
+input, select {
+  outline: none;
+}
+
 /* Content styles */
 .content-inner {
   margin: 0 20px;

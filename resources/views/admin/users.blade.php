@@ -1,32 +1,13 @@
 @extends('layouts.main_layout')
 
 @section('filters')
-  {{-- PerPage options --}}
-  <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">
-    <form id="perPage-form">
-      <div class="form-group my-0">
-        {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-        @if(request()->department_id || request()->user_status)
-          <input type="hidden" name="department_id" value="{{ request()->department_id ?? null }}"/>
-          <input type="hidden" name="user_status" value="{{ request()->user_status ?? null }}"/>
-        @endif
-        <select 
-          class="form-control-sm text-secondary border-0 perPage-select" 
-          id="perPageSelect" name="perPage" onchange="this.form.submit()"
-        >
-          <option selected="true" disabled="disabled">فیلتر تعداد</option>
-          @for ($count = 10; $count <= 50; $count += 10)
-            <option 
-              value="{{ $count }}" 
-              {{ request()->get('perPage') == $count ? 'selected' : '' }}
-            >
-              {{ $count }}
-            </option>
-          @endfor
-        </select>
-      </div>
-    </form>
-  </li>
+
+  <x-per-page-filter>
+    @if(request()->department_id || request()->user_status)
+      <input type="hidden" name="department_id" value="{{ request()->department_id ?? null }}"/>
+      <input type="hidden" name="user_status" value="{{ request()->user_status ?? null }}"/>
+    @endif
+  </x-per-page-filter>
 
   {{-- Select Department --}}
   <li class="list-group-item bg-transparent d-flex align-items-center mr-1 mr-md-5 py-4">

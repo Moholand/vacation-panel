@@ -15,10 +15,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   @stack('scripts')
 
-  <!-- Fonts -->
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
   <!-- Styles -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <link href="{{ mix('css/all.css') }}" rel="stylesheet">
@@ -32,7 +28,7 @@
     </div>
     <div class="content">
       <div class="content-header">
-        @include('includes.contentHeader')
+        @include('includes.content_header')
       </div>
       <div class="content-inner">
         @yield('content')
