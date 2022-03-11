@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Vacation;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -35,8 +36,24 @@ class VacationTest extends TestCase
             'to_date' => '1401-12-24'
         ];
 
-        $this->post('/vacations', $attribute);
+        $this->post('/vacations', $attribute)->assertRedirect(route('vacations.index'));
 
         $this->assertDatabaseHas('vacations', $attribute);
+    }
+
+    /** @test */
+    public function a_vacation_requires_a_title()
+    {
+        $attribute = Vacation::factory()->raw(['title' => '']);
+
+        $user = User::withoutEvents(function() {
+            return User::factory()->create([
+                'isVerified' => 1
+            ]);
+        });
+
+        $this->actingAs($user);
+
+        $this->post('/vacations', $attribute)->assertSessionHasErrors('title');
     }
 }

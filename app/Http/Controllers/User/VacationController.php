@@ -36,27 +36,16 @@ class VacationController extends Controller
 
     public function store(CreateVacationRequest $request) 
     {
-        $vacation = auth()->user()->vacations()->create([
-            'title' => $request->title,
-            'request_message' => $request->request_message,
-            'type' => $request->type,
-            'mode' => $request->mode,
-            'from_date' => $request->from_date,
-            'to_date' => $request->to_date,
-            'from_hour' => $request->from_hour,
-            'to_hour' => $request->to_hour,
-        ]);
+        auth()->user()->vacations()->create( 
+                $request->only('title', 'request_message', 'type', 'mode', 'from_date', 'to_date', 'from_hour', 'to_hour') 
+            );
 
-        $vacation->save();
-        
-        session()->flash('successMessage', 'درخواست شما با موفقیت ثبت شد');
-
-        return redirect()->back();
+        return redirect()->route('vacations.index')->with('successMessage', 'درخواست شما با موفقیت ثبت شد');
     }
 
     public function edit(Vacation $vacation) 
     {
-        return view('user.create', ['vacation' => $vacation]);
+        return view('user.create', compact('vacation'));
     }
 
     public function update(UpdateVacationRequest $request, Vacation $vacation)
