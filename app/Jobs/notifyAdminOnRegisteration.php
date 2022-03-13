@@ -34,7 +34,10 @@ class notifyAdminOnRegisteration implements ShouldQueue
      */
     public function handle()
     {
-        $admin = User::where('isAdmin', true)->first();
-        $admin->notify(new UserRegisteredNotification($this->user));
+        if($admins = User::where('isAdmin', true)->get()) {
+            foreach($admins as $admin) {
+                $admin->notify(new UserRegisteredNotification($this->user));
+            }
+        }
     }
 }

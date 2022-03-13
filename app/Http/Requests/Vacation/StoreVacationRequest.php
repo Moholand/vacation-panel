@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Vacation;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateVacationRequest extends FormRequest
+class StoreVacationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

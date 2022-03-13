@@ -17,11 +17,7 @@ class VacationTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user = User::withoutEvents(function() {
-            return User::factory()->create([
-                'isVerified' => 1
-            ]);
-        });
+        $user = User::factory()->create(['isVerified' => 1]);
 
         $this->actingAs($user);
 
@@ -46,14 +42,22 @@ class VacationTest extends TestCase
     {
         $attribute = Vacation::factory()->raw(['title' => '']);
 
-        $user = User::withoutEvents(function() {
-            return User::factory()->create([
-                'isVerified' => 1
-            ]);
-        });
+        $user = User::factory()->create(['isVerified' => 1]);
 
         $this->actingAs($user);
 
         $this->post('/vacations', $attribute)->assertSessionHasErrors('title');
+    }
+
+    /** @test */
+    public function a_vacation_requires_a_request_message()
+    {
+        $attribute = Vacation::factory()->raw(['request_message' => '']);
+
+        $user = User::factory()->create(['isVerified' => 1]);
+
+        $this->actingAs($user);
+
+        $this->post('/vacations', $attribute)->assertSessionHasErrors('request_message');
     }
 }

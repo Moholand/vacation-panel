@@ -5,8 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Models\Vacation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateVacationRequest;
-use App\Http\Requests\UpdateVacationRequest;
+use App\Http\Requests\Vacation\StoreVacationRequest;
+use App\Http\Requests\Vacation\UpdateVacationRequest;
 
 class VacationController extends Controller
 {
@@ -34,11 +34,9 @@ class VacationController extends Controller
         return view('user.create');
     }
 
-    public function store(CreateVacationRequest $request) 
+    public function store(StoreVacationRequest $request) 
     {
-        auth()->user()->vacations()->create( 
-                $request->only('title', 'request_message', 'type', 'mode', 'from_date', 'to_date', 'from_hour', 'to_hour') 
-            );
+        auth()->user()->vacations()->create( $request->validated() );
 
         return redirect()->route('vacations.index')->with('successMessage', 'درخواست شما با موفقیت ثبت شد');
     }

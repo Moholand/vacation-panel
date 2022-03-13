@@ -75,7 +75,13 @@
      'زباله‌دان' }}</h4>
     
     @if(Route::is('vacations.index'))
-      <a href="{{ route('vacations.trashed') }}" class="btn btn-outline-danger">زباله‌دان</a>
+      <a 
+        href="{{ route('vacations.trashed') }}" 
+        class="btn btn-outline-danger d-flex justify-content-between align-items-center"
+      >
+        <i class="fas fa-recycle"></i>
+        <span class="mr-2 font-weight-bold">زباله‌دان</span>
+      </a>
     @elseif(Route::is('vacations.trashed'))
       <a href="{{ route('vacations.index') }}" class="btn btn-outline-primary">همه درخواست‌ها</a>
     @endif
