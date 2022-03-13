@@ -25,48 +25,13 @@
     </x-status-filter>
   @endif
 
-  {{-- Date Range options --}}
-  <li class="list-group-item bg-transparent d-flex justify-content-center align-items-center date-filter pb-3 pt-2 py-md-4">
-    <form autocomplete="off">
-      {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-      @if(request()->perPage || request()->vacation_status)
-        <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
-        <input type="hidden" name="vacation_status" value="{{ request()->vacation_status ?? null }}"/>
-      @endif
-      <div class="form-row">
-        <div class="col-4">
-          <input 
-            type="text" 
-            name="fromDate"
-            class="form-control-sm border-0 from-date-input" 
-            placeholder="تاریخ شروع"
-            data-jdp
-            value="{{ request()->get('fromDate') ?? '' }}"
-            required
-          >
-        </div>
-        <div class="col-4">
-          <input 
-            type="text" 
-            name="toDate"
-            class="form-control-sm border-0 to-date-input" 
-            placeholder="تاریخ پایان"
-            data-jdp
-            value="{{ request()->get('toDate') ?? '' }}"
-            required
-          >
-        </div>
-        <div class="col-4">
-          <button 
-            type="submit" 
-            class="btn btn-secondary btn-sm"
-          >
-            اعمال فیلتر
-          </button>
-        </div>
-      </div>
-    </form>
-  </li>
+  <x-date-filter>
+    @if(request()->perPage || request()->vacation_status)
+			<input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
+			<input type="hidden" name="vacation_status" value="{{ request()->vacation_status ?? null }}"/>
+		@endif
+  </x-date-filter>
+  
 @endsection
 
 @section('content')
@@ -83,7 +48,13 @@
         <span class="mr-2 font-weight-bold">زباله‌دان</span>
       </a>
     @elseif(Route::is('vacations.trashed'))
-      <a href="{{ route('vacations.index') }}" class="btn btn-outline-primary">همه درخواست‌ها</a>
+      <a 
+        href="{{ route('vacations.index') }}" 
+        class="btn btn-outline-primary d-flex justify-content-between align-items-center"
+      >
+        <i class="fas fa-arrow-left"></i>
+        <span class="mr-2 font-weight-bold">همه درخواست‌ها</span>
+      </a>
     @endif
   </div>
   <hr class="mb-0">

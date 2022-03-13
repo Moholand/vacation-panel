@@ -22,43 +22,13 @@
     @endif
   </x-status-filter>
 
-  {{-- Date Range options --}}
-  <li class="list-group-item bg-transparent d-flex align-items-center date-filter py-4">
-    <form autocomplete="off">
-      {{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
-      @if(request()->perPage || request()->vacation_status)
-        <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
-        <input type="hidden" name="vacation_status" value="{{ request()->vacation_status ?? null }}"/>
-      @endif
-      <div class="form-row">
-        <div class="col-4">
-          <input 
-            type="text" 
-            name="fromDate"
-            class="form-control-sm border-0 from-date-input" 
-            placeholder="تاریخ شروع"
-            data-jdp
-            value="{{ request()->get('fromDate') ?? '' }}"
-            required
-          >
-        </div>
-        <div class="col-4">
-          <input 
-            type="text" 
-            name="toDate"
-            class="form-control-sm border-0 to-date-input" 
-            placeholder="تاریخ پایان"
-            data-jdp
-            value="{{ request()->get('toDate') ?? '' }}"
-            required
-          >
-        </div>
-        <div class="col-4">
-          <button type="submit" class="btn btn-outline-secondary btn-sm">اعمال فیلتر</button>
-        </div>
-      </div>
-    </form>
-  </li>
+  <x-date-filter>
+    @if(request()->perPage || request()->vacation_status)
+      <input type="hidden" name="perPage" value="{{ request()->perPage ?? null }}"/>
+      <input type="hidden" name="vacation_status" value="{{ request()->vacation_status ?? null }}"/>
+    @endif
+  </x-date-filter>
+
 @endsection
 
 @section('content')
