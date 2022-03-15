@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Vacation;
+use PhpParser\Node\Attribute;
 use App\Traits\User\UserFilter;
 use App\Traits\User\UserSearch;
 use Laravel\Sanctum\HasApiTokens;
@@ -46,6 +47,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get the user's avatar fullpath.
+     */
+    public function getAvatarPath($avatarName): string
+    {
+        return $avatarName && file_exists(public_path("/img/avatars/{$avatarName}"))
+            ? asset("img/avatars/{$avatarName}")
+            : asset('img/avatars/profile-default.jpg');
+    }
+
+
+    /**
+     * Define user's relations.
+     */
     public function vacations() 
     {
         return $this->hasMany(Vacation::class);

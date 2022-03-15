@@ -25,9 +25,10 @@
                   <form method="POST">
                     @csrf
                     <label for="uploadImage">
-                      <img src="{{ $user->avatar 
-                        ? asset('img/avatars') . '/' . $user->avatar 
-                        : asset('img/avatars/profile-default.png') }}" id="uploaded_image" class="img-responsive rounded-circle" width="160">
+                      <img 
+                        src="{{ $user->getAvatarPath($user->avatar) }}" 
+                        id="uploaded_image" class="img-responsive rounded-circle" width="160"
+                      >
                       <div class="overlay">
                         <div class="text">
                           تغییر عکس پروفایل

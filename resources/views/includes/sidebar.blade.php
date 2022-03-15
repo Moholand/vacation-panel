@@ -6,9 +6,9 @@
   </div>
   <div class="user-info">
     <div class="user-image">
-      <img width="110" src="{{ $user->avatar 
-      ? asset('img/avatars') . '/' . $user->avatar 
-      : asset('img/avatars/profile-default.png') }}">
+      <img width="110" 
+        src="{{ $user->getAvatarPath($user->avatar) }}"
+      >
     </div>
     <div class="user-name">
       <h3>{{ $user->name }}</h3>
