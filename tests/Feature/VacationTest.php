@@ -15,8 +15,6 @@ class VacationTest extends TestCase
     /** @test */
     public function a_user_can_create_vacation()
     {
-        $this->withoutExceptionHandling();
-
         $user = User::factory()->create(['isVerified' => 1]);
 
         $this->actingAs($user);
@@ -60,4 +58,12 @@ class VacationTest extends TestCase
 
         $this->post('/vacations', $attribute)->assertSessionHasErrors('request_message');
     }
+
+        /** @test */
+        public function only_authenticated_users_can_create_vacation()
+        {
+            $attribute = Vacation::factory()->raw();
+    
+            $this->post('/vacations', $attribute)->assertRedirect('login');
+        }
 }
