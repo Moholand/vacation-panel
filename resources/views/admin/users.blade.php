@@ -68,6 +68,7 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">تصویر</th>
           <th scope="col">نام ‌و ‌نام‌خوانوادگی</th>
           <th scope="col">آدرس ایمیل</th>
           <th scope="col">واحد کاری</th>
@@ -78,10 +79,16 @@
         @forelse ($employees as $key => $employe)
           <tr>
             <th scope="row">{{ ($key + 1) + (($employees->currentPage() - 1) * $employees->perPage()) }}</th>
+            <td>
+              <img 
+                src="{{ $employe->getAvatarPath($employe->avatar) }}" 
+                alt="{{ $employe->name }}" class="rounded-circle" width="50"
+              >
+            </td>
             <td>{{ $employe->name }}</td>
             <td>{{ $employe->email }}</td>
             <td>{{ $employe->department->name ?? 'نامشخص' }}</td>
-            <td class="d-flex align-items-center">
+            <td>
               <form action="{{ route('admin.users.update', ['user' => $employe->id]) }}" method="POST" id="userUpdateForm">
                 @csrf
                 @method("PATCH")

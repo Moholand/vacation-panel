@@ -56,6 +56,10 @@ input, select {
   outline: none;
 }
 
+.users-list table td, .users-list table th {
+  vertical-align: middle;
+}
+
 /* Content styles */
 .content-inner {
   margin: 0 20px;
