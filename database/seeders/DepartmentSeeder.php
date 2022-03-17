@@ -36,7 +36,7 @@ class DepartmentSeeder extends Seeder
                 'department_id' => $department->id
             ]);
 
-            $department->head = $administrator->id;
+            $department->head_id = $administrator->id;
             $department->save();
 
             \App\Models\User::factory(20)->create([

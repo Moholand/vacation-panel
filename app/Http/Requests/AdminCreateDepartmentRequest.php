@@ -26,7 +26,7 @@ class AdminCreateDepartmentRequest extends FormRequest
     {
         return [
             'name' => 'required|string|unique:departments,name',
-            'head' => 'required|numeric|unique:departments,head'
+            'head_id' => 'required|numeric|unique:departments,head_id'
         ];
     }
 }

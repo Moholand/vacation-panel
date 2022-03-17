@@ -23,7 +23,7 @@ class AdminDepartmentController extends Controller
     }
 
     public function store(AdminCreateDepartmentRequest $request) {
-        Department::create( $request->only(['name', 'head']) );
+        Department::create( $request->only(['name', 'head_id']) );
 
         return redirect()->back()->with('successMessage', 'واحد کاری جدید با موفقیت ایجاد شد');
     }
@@ -34,7 +34,7 @@ class AdminDepartmentController extends Controller
 
     public function update(AdminUpdateDepartmentRequest $request, Department $department) 
     {
-        $department->update( $request->only(['name', 'head']) );
+        $department->update( $request->only(['name', 'head_id']) );
 
         return redirect()->back()->with('successMessage', 'واحد کاری با موفقیت ویرایش شد');
     }

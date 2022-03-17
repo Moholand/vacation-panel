@@ -27,8 +27,8 @@ class AdminUpdateDepartmentRequest extends FormRequest
         return [
             'name' => ['required', 'string', 
                         Rule::unique('departments')->ignore(request()->name, 'name')],
-            'head' => ['required', 'numeric', 
-                        Rule::unique('departments')->ignore(request()->head, 'head')],
+            'head_id' => ['required', 'numeric', 
+                        Rule::unique('departments')->ignore(request()->head, 'head_id')],
         ];
     }
 }

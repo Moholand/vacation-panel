@@ -7,8 +7,12 @@
 @section('content')
   <div class="d-flex justify-content-between">
     <h4>واحد‌های کاری</h4>
-    <a class="btn btn-outline-secondary ml-3" href="{{ route('admin.departments.create') }}">
-      واحد کاری جدید
+    <a 
+      class="btn btn-outline-secondary ml-3 d-flex align-items-center" 
+      href="{{ route('admin.departments.create') }}"
+    >
+      <i class="fas fa-plus-circle"></i>
+      <span class="font-weight-bold mr-2">واحد کاری جدید</span>
     </a>
   </div>
   <hr class="mb-0">
@@ -35,12 +39,12 @@
             <td>{{ $department->employees->count() }}</td>
             <td class="d-flex align-items-center">
               {{-- Edit Department --}}
-              <a href="{{ route('admin.departments.edit', ['department' => $department->id]) }}">
+              <a href="{{ route('admin.departments.edit', $department) }}">
                 <i class="far fa-edit fa-lg text-info"></i>
               </a>
               {{-- Delete Department --}}
               <form 
-                action="{{ route('admin.departments.destroy', ['department' => $department->id]) }}" 
+                action="{{ route('admin.departments.destroy', $department) }}" 
                 method="POST"
               >
                 @csrf

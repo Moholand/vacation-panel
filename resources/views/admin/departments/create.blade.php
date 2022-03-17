@@ -21,7 +21,7 @@
         <div class="card p-5">
           <form 
             action="{{ isset($department) 
-              ? route('admin.departments.update', ['department' => $department->id]) 
+              ? route('admin.departments.update', $department) 
               : route('admin.departments.store') }}" 
             method="POST"
           >
@@ -52,26 +52,26 @@
             </div>
             <div class="form-group row align-items-center">
               <div class="col-md-3">
-                <label for="head" class="mb-0">مدیر واحد:</label>
+                <label for="head_id" class="mb-0">مدیر واحد:</label>
               </div>
               <div class="col-md-9">
                 <select 
-                  name="head" 
-                  class="form-control select-picker @error('head') is-invalid @enderror"
+                  name="head_id" 
+                  class="form-control select-picker @error('head_id') is-invalid @enderror"
                   data-live-search="true"
                 >
                   <option selected="true" disabled="disabled">انتخاب مدیر واحد</option>
                   @foreach ($users as $user)
                     <option 
                       value="{{ $user->id }}"
-                      {{ old('head') == $user->id ? 'selected' : '' }}
-                      {{ isset($department) && $department->head === $user->id ? 'selected' : '' }}
+                      {{ old('head_id') == $user->id ? 'selected' : '' }}
+                      {{ isset($department) && $department->head_id === $user->id ? 'selected' : '' }}
                     >
                       {{ $user->name }}
                     </option>
                   @endforeach
                 </select>
-                @error('head')
+                @error('head_id')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
