@@ -31,6 +31,15 @@
             <span>همه‌ی درخواست‌ها</span>
           </a>
         </li>
+        <li class="list-group-item pr-0 mb-2 {{ Route::is('admin.profile.show') ? 'active' : ''}}">
+          <a href="{{ route('admin.profile.show') }}" class="d-flex align-items-center text-decoration-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-person w-25" viewBox="0 0 16 16">
+              <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+              <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            </svg>
+            <span>ویرایش پروفایل</span>
+          </a>
+        </li>
         <li class="list-group-item mb-2 pr-0 {{ Route::is('admin.users.index') ? 'active' : ''}}">
           <a href="{{ route('admin.users.index') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people w-25" viewBox="0 0 16 16">
@@ -71,8 +80,8 @@
             <span>درخواست جدید</span>
           </a>
         </li>
-        <li class="list-group-item pr-0 mb-2 {{ Route::is('profile') ? 'active' : ''}}">
-          <a href="{{ route('profile') }}" class="d-flex align-items-center text-decoration-none">
+        <li class="list-group-item pr-0 mb-2 {{ Route::is('profile.show') ? 'active' : ''}}">
+          <a href="{{ route('profile.show') }}" class="d-flex align-items-center text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-person w-25" viewBox="0 0 16 16">
               <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
               <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>

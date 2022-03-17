@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Department;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\UserUpdateRequest;
 
-class UserController extends Controller
+class AdminProfileController extends Controller
 {
-    public function profile()
+    public function show()
     {
         return view('user.profile', ['departments' => Department::all()]);
     }
 
-    public function update(UserUpdateRequest $request, User $user) 
+    public function update(Request $request, User $user) 
     {
         $user->update([
             'name' => $request->name,
@@ -28,8 +28,6 @@ class UserController extends Controller
             $user->save();
         }
 
-        session()->flash('successMessage', 'اطلاعات شما با موفقیت ویرایش شد');
-
-        return redirect()->back();
+        return redirect()->back()->with('successMessage', 'اطلاعات شما با موفقیت ویرایش شد');
     }
 }

@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\VacationController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminVacationController;
 use App\Http\Controllers\Admin\AdminDepartmentController;
 use App\Http\Controllers\User\TeammateVacationController;
@@ -26,22 +27,24 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => 'auth'], function() {
     // User routes
     Route::resource('/vacations', VacationController::class)->except('show');
     Route::get('/vacations/trashed', [VacationController::class, 'trashed'])->name('vacations.trashed');
     Route::patch('/vacations/{vacation}/restore', [VacationController::class, 'restore'])->name('vacations.restore');
 
-    // Can be profile resource???
-    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-    Route::patch('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::patch('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::resource('/teammate-vacations', TeammateVacationController::class)->only('index', 'update');
 
     // Admin routes
-    Route::prefix('/admin')->name('admin.')->middleware('admin.check')->group(function () {
+    Route::group(['middleware' => 'admin.check', 'prefix' => '/admin', 'as' => 'admin.'], function() {
         Route::resource('/vacations', AdminVacationController::class)->only(['index', 'update']);
         Route::resource('/users', AdminUserController::class)->only(['index', 'update']);
         Route::resource('/departments', AdminDepartmentController::class)->except('show');
+
+        Route::get('/profile', [AdminProfileController::class, 'show'])->name('profile.show');
+        Route::patch('/profile/{user}', [AdminProfileController::class, 'update'])->name('profile.update');
     });
 });
