@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('/users', AdminUserController::class)->only(['index', 'update']);
         Route::resource('/departments', AdminDepartmentController::class)->except('show');
 
+        // Is it posible to merge this with user profile routes???
         Route::get('/profile', [AdminProfileController::class, 'show'])->name('profile.show');
         Route::patch('/profile/{user}', [AdminProfileController::class, 'update'])->name('profile.update');
     });

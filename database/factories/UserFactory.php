@@ -18,6 +18,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => Hash::make('mha123456789'),
+            'isVerified' => $this->faker->randomElement([true, false])
         ];
     }
 
