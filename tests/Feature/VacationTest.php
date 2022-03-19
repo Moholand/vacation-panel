@@ -36,6 +36,20 @@ class VacationTest extends TestCase
     }
 
     /** @test */
+    public function unverified_users_may_not_create_vacation()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $attribute = Vacation::factory()->raw(['user_id' => $user->id]);
+
+        $this->post('/vacations', $attribute);
+
+        $this->assertDatabaseCount('vacations', 0);
+    }
+
+    /** @test */
     public function a_vacation_requires_a_title()
     {
         $attribute = Vacation::factory()->raw(['title' => '']);
@@ -59,11 +73,11 @@ class VacationTest extends TestCase
         $this->post('/vacations', $attribute)->assertSessionHasErrors('request_message');
     }
 
-        /** @test */
-        public function only_authenticated_users_can_create_vacation()
-        {
-            $attribute = Vacation::factory()->raw();
-    
-            $this->post('/vacations', $attribute)->assertRedirect('login');
-        }
+    /** @test */
+    public function only_authenticated_users_can_create_vacation()
+    {
+        $attribute = Vacation::factory()->raw();
+
+        $this->post('/vacations', $attribute)->assertRedirect('login');
+    }
 }
