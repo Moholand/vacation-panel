@@ -25,32 +25,25 @@
       <ul class="list-group">
         <li class="list-group-item mb-2 pr-0 {{ Route::is('admin.vacations.index') ? 'active' : ''}}">
           <a href="{{ route('admin.vacations.index') }}" class="d-flex align-items-center text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-files w-25" viewBox="0 0 16 16">
-              <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/>
-            </svg>
+            <i class="fas fa-file-alt w-25 text-secondary"></i>
             <span>همه‌ی درخواست‌ها</span>
           </a>
         </li>
         <li class="list-group-item pr-0 mb-2 {{ Route::is('admin.profile.show') ? 'active' : ''}}">
           <a href="{{ route('admin.profile.show') }}" class="d-flex align-items-center text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-person w-25" viewBox="0 0 16 16">
-              <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
-              <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-            </svg>
+            <i class="fas fa-id-badge w-25 text-secondary"></i>
             <span>ویرایش پروفایل</span>
           </a>
         </li>
         <li class="list-group-item mb-2 pr-0 {{ Route::is('admin.users.index') ? 'active' : ''}}">
           <a href="{{ route('admin.users.index') }}" class="d-flex align-items-center text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people w-25" viewBox="0 0 16 16">
-              <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-            </svg>
+            <i class="fas fa-users w-25 text-secondary"></i>
             <span>کاربر‌ها</span>
           </a>
         </li>
         <li class="list-group-item pr-0 {{ Route::is('admin.departments.*') ? 'active' : ''}}">
           <a href="{{ route('admin.departments.index') }}" class="d-flex align-items-center text-decoration-none">
-            <i class="far fa-building w-25"></i>
+            <i class="far fa-building w-25 text-secondary"></i>
             <span>واحد‌های کاری</span>
           </a>
         </li>
@@ -67,25 +60,19 @@
           }}"
         >
           <a href="{{ route('vacations.index') }}" class="d-flex align-items-center text-decoration-none">
-            <i class="far fa-file-alt fa-lg w-25"></i>
+            <i class="far fa-file-alt w-25 text-secondary"></i>
             <span>داشبورد</span>
           </a>
         </li>
         <li class="list-group-item pr-0 mb-2 {{ Route::is('vacations.create') ? 'active' : ''}}">
           <a href="{{ route('vacations.create') }}" class="d-flex align-items-center text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cloud-plus w-25" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
-              <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
-            </svg>
+            <i class="fas fa-plus-circle w-25 text-secondary"></i>
             <span>درخواست جدید</span>
           </a>
         </li>
         <li class="list-group-item pr-0 mb-2 {{ Route::is('profile.show') ? 'active' : ''}}">
           <a href="{{ route('profile.show') }}" class="d-flex align-items-center text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-person w-25" viewBox="0 0 16 16">
-              <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
-              <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-            </svg>
+            <i class="fas fa-user-edit w-25 text-secondary"></i>
             <span>ویرایش پروفایل</span>
           </a>
         </li>
@@ -107,11 +94,8 @@
   <div class="exit-btn-wrapper">
     <form action="{{ route('logout') }}" method="POST">
       @csrf
-      <button type="submit" class="exit-btn pr-0">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-box-arrow-left w-25" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-          <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-        </svg>
+      <button type="submit" class="exit-btn d-flex align-items-center">
+        <i class="fas fa-sign-out-alt text-secondary pl-4 pr-2"></i>
         <span>خروج</span>
       </button>
     </form>

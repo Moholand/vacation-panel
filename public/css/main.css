@@ -77,8 +77,11 @@
   color: #2d3436;
 }
 
-.list-group-item:hover a, .list-group-item.active a{
-  color: #40407a;
+.list-group-item:hover a, 
+.list-group-item:hover a i, 
+.list-group-item.active a, 
+.list-group-item.active a i {
+  color: #40407a !important;
 }
 
 .exit-btn-wrapper {
@@ -100,9 +103,9 @@
   box-shadow: 0 0 10px rgba(0 0 0 / 0.25);
 }
 
-.exit-btn:hover {
+.exit-btn:hover, .exit-btn:hover i {
   background: #ffeaa7;
-  color: #40407a;
+  color: #40407a !important;
 }
 
 @media only screen and (max-width: 600px) {

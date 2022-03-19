@@ -145,6 +145,14 @@
       let $modal = $('#modal');
       let image = $('#sample_image');
       let cropper;
+
+      let baseUrl = 'http://127.0.0.1:8000/';
+      $.ajaxSetup({
+          beforeSend: function(xhr, options) {
+              options.url = baseUrl + options.url;
+          }
+      });
+
       $(document).on("change", "#uploadImage", function(e){
         let files = e.target.files;
         let done = function (url) {
