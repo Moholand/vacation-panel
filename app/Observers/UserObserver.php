@@ -3,12 +3,17 @@
 namespace App\Observers;
 
 use App\Models\User;
-use App\Jobs\notifyAdminOnRegisteration;
+use App\Notifications\UserRegisteredNotification;
 
 class UserObserver
 {
     public function created(User $user)
     {
-        notifyAdminOnRegisteration::dispatch($user);
+        // Send notification to admin
+        if($admins = User::where('isAdmin', true)->get()) {
+            foreach($admins as $admin) {
+                $admin->notify(new UserRegisteredNotification($user));
+            }
+        }
     }
 }
