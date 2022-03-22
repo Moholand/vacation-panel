@@ -1,4 +1,4 @@
-<li class="list-group-item bg-transparent d-flex justify-content-center align-items-center date-filter pb-3 pt-2 py-md-4">
+<li class="list-group-item bg-transparent d-flex justify-content-center align-items-center date-filter pt-2 py-md-0">
 	<form autocomplete="off">
 		{{-- Hidden input fields for keeping other query strings -- any better idea?? --}}
 		{{$slot}}

@@ -1,4 +1,4 @@
-<li class="list-group-item bg-transparent d-flex align-items-center py-2 py-md-4">
+<li class="list-group-item bg-transparent d-flex align-items-center pb-2 py-md-0">
 	<form>
 		<div class="form-group my-0">
 

@@ -62,7 +62,7 @@
 
 .filters-wrapper {
   position: absolute;
-  top: -75px;
+  top: -60px;
   left: 3%;
   right: 3%;
   border-radius: 0 0 10px 10px;
@@ -121,15 +121,15 @@
   .filters-wrapper {
     left: 0;
     right: 0;
-    top: -140px;
+    top: -110px;
   }
 
   .filters-wrapper ul {
-    flex-direction: column !important;
+    justify-content: center;
   }
 
   .filters-wrapper .slider-btn {
-    bottom: -17%;
+    bottom: -23px;
     right: 20%;
     font-size: 10px;
   }

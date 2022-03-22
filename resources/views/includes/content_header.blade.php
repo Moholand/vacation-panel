@@ -104,7 +104,7 @@
 
   {{-- filters --}}
   <div class="filters-wrapper text-center">
-    <ul class="list-group flex-row">
+    <ul class="list-group flex-row py-3 flex-wrap flex-md-nowrap">
       @yield('filters')
     </ul>
     <button class="bg-transparent border-0 d-flex align-items-center text-secondary slider-btn">
