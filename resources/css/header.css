@@ -31,6 +31,10 @@
   white-space: unset !important;
 }
 
+.unread-notification {
+  background: #dff9fb;
+}
+
 .search input {
   width: 0 !important;
   padding-right: 0; 

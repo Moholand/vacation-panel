@@ -43,11 +43,11 @@ class UserConfirmationNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->markdown('emails.user_confirmation_notify', [
-                        'employee' => $notifiable, 
-                        'isVerified' => $this->isVerified,
-                        'url' => url('vacations/create'),
-                    ]);
+            ->markdown('emails.user_confirmation_notify', [
+                'employee' => $notifiable, 
+                'isVerified' => $this->isVerified,
+                'url' => url('vacations/create'),
+            ]);
     }
 
     /**

@@ -1,7 +1,7 @@
 <div class="row flex-row-reverse justify-content-between position-relative">
 
   <ul class="list-group flex-row-reverse px-3 px-md-5">
-    {{-- Notification --}}
+    {{-- Notifications --}}
     <li class="list-group-item bg-transparent px-0">
       <div class="dropdown dropdown-bell" data-user-id={{ $user->id }}>
         <button 
@@ -22,7 +22,10 @@
             @if($user->isAdmin)
               @foreach ($user->notifications as $notification)
                 @if($notification->data['type'] === 'userRegistered')
-                  <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
+                  <a 
+                    class="dropdown-item lead text-right {{ $notification->unread() ? 'unread-notification' : '' }}" 
+                    href="#"
+                  >
                     <small>
                         کاربر جدید با نام
                       <span class="font-weight-bold">{{ $notification->data['name'] }}</span>
@@ -38,7 +41,10 @@
             @else
               @foreach ($user->notifications as $notification)
                 @if($notification->data['type'] === 'vacationConfirmation')
-                  <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
+                  <a 
+                    class="dropdown-item lead text-right {{ $notification->unread() ? 'unread-notification' : '' }}" 
+                    href="#"
+                  >
                     <small>
                         درخواست مرخصی شما با عنوان
                       <span class="font-weight-bold">{{ $notification->data['title'] }}</span>
@@ -49,7 +55,10 @@
                   </a>
                   <div class="dropdown-divider my-1"></div>
                 @elseif($notification->data['type'] === 'userConfirmation')
-                  <a class="dropdown-item lead text-right {{ $notification->unread() ? 'bg-secondary text-white' : '' }}" href="#">
+                  <a 
+                    class="dropdown-item lead text-right {{ $notification->unread() ? 'unread-notification' : '' }}" 
+                    href="#"
+                  >
                     @if($notification->data['isVerified'] === 'verified')
                       <small>
                         هویت شما توسط مدیر سایت 

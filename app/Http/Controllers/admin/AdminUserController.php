@@ -30,7 +30,7 @@ class AdminUserController extends Controller
         $user->isVerified = $request->verification === 'verified' ? true : false;
         $user->save();
 
-        // Send notification to user / Delete cache to see the changes Immediately
+        // Send notification to user
         UserConfirmation::dispatch($user, $request->verified);
 
         session()->flash('successMessage', 'تغییرات با موفقیت ذخیره شد');
