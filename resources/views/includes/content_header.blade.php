@@ -76,6 +76,22 @@
                     @endif
                   </a>
                   <div class="dropdown-divider my-1"></div>
+                @elseif($notification->data['type'] === 'teammateVacationCreated')
+                  <a 
+                    class="dropdown-item lead text-right {{ $notification->unread() ? 'unread-notification' : '' }}" 
+                    href="#"
+                  >
+                    <small>
+                        درخواست مرخصی همکار شما با نام
+                      <span class="font-weight-bold">{{ $notification->data['teammate']['name'] }}</span>
+                      و آدرس ایمیل
+                      <span class="font-weight-bold">{{ $notification->data['teammate']['email'] }}</span>
+                      با عنوان 
+                      <span class="font-weight-bold">{{ $notification->data['vacation']['title'] }}</span>
+                      در سیستم ثبت شده است. لطفاً آنرا بررسی نمایید.
+                    </small>
+                  </a>
+                  <div class="dropdown-divider my-1"></div>
                 @endif
               @endforeach
             @endif
