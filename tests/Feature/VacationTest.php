@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Vacation;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -14,7 +15,9 @@ class VacationTest extends TestCase
 
     /** @test */
     public function a_user_can_create_vacation()
-    {
+    {     
+        $this->withoutEvents();
+        
         $user = User::factory()->create(['isVerified' => 1]);
 
         $this->actingAs($user);

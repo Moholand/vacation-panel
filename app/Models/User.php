@@ -57,6 +57,10 @@ class User extends Authenticatable
             : asset('img/avatars/profile-default.jpg');
     }
 
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
+    }
 
     /**
      * Define user's relations.
@@ -64,11 +68,6 @@ class User extends Authenticatable
     public function vacations() 
     {
         return $this->hasMany(Vacation::class);
-    }
-
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new ResetPassword($token));
     }
 
     public function department()
