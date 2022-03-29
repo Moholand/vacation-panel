@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         آیا مایل به
-        <span class="font-weight-bold">{{ $title }}</span>
+        <span class="font-weight-bold confirm-modal-title">{{ $title }}</span>
         می‌باشید؟
       </div>
       <div class="modal-footer">

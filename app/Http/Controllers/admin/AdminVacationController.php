@@ -27,12 +27,7 @@ class AdminVacationController extends Controller
     public function update(AdminUpdateVacationRequest $request, Vacation $vacation)
     {
         $vacation->response_message = $request->response_message;
-
-        if($request->submit === 'confirm') {
-            $vacation->status = 'confirmed';
-        } elseif($request->submit === 'refuse') {
-            $vacation->status = 'refuse';
-        }
+        $vacation->status = $request->verification === 'confirmed' ? 'confirmed' : 'refuse';
 
         $vacation->save();
 

@@ -103,20 +103,27 @@
               {{-- 'initial-approval' => Means vacations that confirmed by head of department --}}
               @if($vacation->status === 'initial-approval')
                 <hr>
-                <form action="{{ route('admin.vacations.update', $vacation) }}" method="POST">
+                <form action="{{ route('admin.vacations.update', $vacation) }}" method="POST" id="vacationUpdateForm">
                   @csrf
                   @method('PATCH')
 
+                  <input type="hidden" name="verification">
+
                   <div class="form-group">
                     <label for="response_message" class="font-weight-bold">متن پاسخ:</label>
-                    <textarea class="form-control" name="response_message" id="response_message" cols="15" rows="3" placeholder="متن پاسخ">{{ $vacation->response_message }}</textarea>
+                    <textarea class="form-control" name="response_message" id="response_message" cols="15" rows="3" placeholder="متن پاسخ"></textarea>
                   </div>
                   
                   <div class="form-group mb-0 d-flex justify-content-end">
-                    <button type="submit" name="submit" value="confirm" class="btn btn-sm btn-success">
+                    <button 
+                      onclick="confirmation(event, 'confirmed')" 
+                      type="submit" name="confirmed" value="confirmed" class="btn btn-sm btn-success"
+                    >
                       تأیید
                     </button>
-                    <button type="submit" name="submit" value="refuse" class="btn btn-sm btn-danger mr-2">
+                    <button
+                      onclick="confirmation(event, 'refuse')" 
+                      type="submit" name="refuse" value="refuse" class="btn btn-sm btn-danger mr-2">
                       عدم تأیید
                     </button>
                   </div>
@@ -143,6 +150,8 @@
 
     </div>
   </div>
+
+  <x-confirm-modal title="تأیید درخواست کاربر"></x-confirm-modal>
 @endsection
 
 @push('scripts')
@@ -152,5 +161,27 @@
       // Date picker start
       jalaliDatepicker.startWatch();
     });
+
+    function confirmation(e, status) {
+      e.preventDefault();
+
+      let form = e.target.parentElement.parentElement;
+
+      $("#vacationUpdateForm input[name='verification']").val(status);
+
+      if(status === 'refuse') {
+        $("#confirmModal .confirm-modal-title").html("عدم تأیید درخواست کاربر"); 
+      } else {
+        $("#confirmModal .confirm-modal-title").html("تأیید درخواست کاربر"); 
+      }
+      
+      $('#confirmModal').modal('show');
+
+      $('#confirmModal').on('shown.bs.modal', function(e) {
+        $('#confirmBtn').on('click', function() {
+          $(form).submit();
+        });
+      })
+    }
   </script>
 @endpush

@@ -89,12 +89,11 @@
             <td>{{ $employe->email }}</td>
             <td>{{ $employe->department->name ?? 'نامشخص' }}</td>
             <td>
-              <form action="{{ route('admin.users.update', ['user' => $employe->id]) }}" method="POST" id="userUpdateForm">
+              <form action="{{ route('admin.users.update', $employe) }}" method="POST" id="userUpdateForm">
                 @csrf
                 @method("PATCH")
                 
                 <input type="hidden" name="verification">
-                <input type="hidden" name="user_id" value="{{ $employe->id }}">
 
                 <button 
                   type="submit" 
@@ -113,7 +112,7 @@
                   value="unverified" 
                   class="border-0 bg-transparent {{ $employe->isVerified ? 'text-secondary' : 'text-danger' }} mr-1" 
                   title="عدم تأیید"
-                  {{-- onclick="confirmation(event, 'unverified')" --}}
+                  onclick="confirmation(event, 'unverified')"
                 >
                   <i class="fas fa-user-times fa-lg"></i>
                 </button>
@@ -146,6 +145,12 @@
       let form = e.target.parentElement.parentElement;
 
       $("#userUpdateForm input[name='verification']").val(status);
+
+      if(status === 'unverified') {
+        $("#confirmModal .confirm-modal-title").html("لغو تأیید کاربر"); 
+      } else {
+        $("#confirmModal .confirm-modal-title").html("تأیید کاربر"); 
+      }
       
       $('#confirmModal').modal('show');
 

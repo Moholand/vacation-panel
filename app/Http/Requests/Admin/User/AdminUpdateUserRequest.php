@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminUpdateVacationRequest extends FormRequest
+class AdminUpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class AdminUpdateVacationRequest extends FormRequest
     public function rules()
     {
         return [
-            'verification' => 'required|string|in:confirmed,refuse',
-            'response_message' => 'nullable|min:3|max:1000'
+            'verification' => 'required|string|in:verified,unverified'
         ];
     }
 }
