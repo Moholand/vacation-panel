@@ -60,12 +60,7 @@
   <hr class="mb-0">
 
   @include('includes.successMessage')
-
-  @if(session()->has('errorMessage'))
-    <div class="alert alert-danger" role="alert">
-      {{ session()->get('errorMessage') }}
-    </div>
-  @endif
+  @include('includes.errorMessage')
 
   <div class="request-list">
     <div id="accordion">
@@ -139,7 +134,13 @@
                   <form action="{{ route('vacations.destroy', $vacation) }}" method="POST" id="deleteForm">
                     @csrf
                     @method('DELETE')
-                    <button onclick="confirmation(event)" type="submit" id="delete-request" class="text-danger border-0 bg-transparent mr-2" title="حذف">
+                    <button 
+                      onclick="confirmation(event, 'delete')" 
+                      type="submit" 
+                      id="delete-request" 
+                      class="text-danger border-0 bg-transparent mr-2" 
+                      title="حذف"
+                    >
                       <i class="far fa-trash-alt fa-lg"></i>
                     </button>
                   </form>
@@ -152,7 +153,13 @@
                     <form action="{{ route('vacations.restore', $vacation) }}" method="POST">
                       @csrf
                       @method('PATCH')
-                      <button type="submit" class="text-primary border-0 bg-transparent mr-2" title="بازیابی">
+                      <button 
+                        onclick="confirmation(event, 'restore')" 
+                        type="submit" 
+                        name="restore"
+                        class="text-primary border-0 bg-transparent mr-2" 
+                        title="بازیابی"
+                      >
                         <i class="fas fa-undo fa-lg"></i>
                       </button>
                     </form>
@@ -185,14 +192,20 @@
     });
 
     // Confirm delete vacation request
-    function confirmation(e) {
-      e.preventDefault();
+    function confirmation(event, status) {
+      event.preventDefault();
 
-      let form = e.target.parentElement.parentElement;
+      let form = event.target.parentElement.parentElement;
+
+      if(status === 'restore') {
+        $("#confirmModal .confirm-modal-title").html("بازیابی درخواست مرخصی"); 
+      } else {
+        $("#confirmModal .confirm-modal-title").html("حذف درخواست مرخصی"); 
+      }
       
       $('#confirmModal').modal('show');
 
-      $('#confirmModal').on('shown.bs.modal', function(e) {
+      $('#confirmModal').on('shown.bs.modal', function() {
         $('#confirmBtn').on('click', function() {
           $(form).submit();
         });
