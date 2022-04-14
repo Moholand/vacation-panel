@@ -1,5 +1,5 @@
 <div class="sidebar-inner">
-  <div class="sidebar-hide d-md-none text-left">
+  <div class="sidebar-hide d-md-none">
     <button class="bg-transparent border-0 text-secondary">
       <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
     </button>

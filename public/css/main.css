@@ -109,9 +109,9 @@
 }
 
 @media only screen and (max-width: 600px) {
-  /* .sidebar-hide {
-
-  } */
+  .sidebar-hide {
+    position: absolute;
+  }
 }
 /* Content Header */
 .content-header li {
@@ -260,6 +260,4 @@
   .date-filter input{
     margin-left: 10px;
   }
-
-  .
 }

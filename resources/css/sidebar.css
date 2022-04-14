@@ -72,7 +72,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  /* .sidebar-hide {
-
-  } */
+  .sidebar-hide {
+    position: absolute;
+  }
 }
